@@ -1,0 +1,25 @@
+Dynamic Notch
+High-performance macOS utility that converts the MacBook hardware notch into an interactive software hub for productivity and system control.
+
+Overview
+Dynamic Notch is a macOS application (Swift/SwiftUI) designed to utilize the "dead space" of the MacBook notch. It provides a persistent, hover-activated interface for file management, media control, and quick data access.
+
+Core Features
+File Tray: A temporary storage buffer for drag-and-drop operations. Acts as a global clipboard for files to facilitate moving assets between apps (e.g., Finder to Slack).
+
+Media Controls: Real-time Now Playing metadata and playback controls (Play/Pause/Skip) for system-level audio.
+
+System Widgets: Glanceable local weather data and system status updates.
+
+AirDrop Integration: Dedicated drop zone to trigger the macOS AirDrop sharing sheet for any file placed in the notch.
+
+Note-Taking: Minimalist text buffer for transient notes and snippets.
+
+Technical Implementation
+Platform: macOS 12.0+
+
+Input Methods: Mouse hover, drag-and-drop, and click-to-expand.
+
+Architecture: Lightweight background process with a dynamic overlay UI that adjusts to notch dimensions across different MacBook models (Pro 14", Pro 16", Air).
+
+Notch Nook Dynamic Island 
