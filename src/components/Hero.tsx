@@ -44,7 +44,7 @@ export default function Hero() {
                 className="w-full max-w-5xl mx-auto mt-20 relative z-10"
             >
                 <div className="aspect-video bg-gradient-to-b from-white/5 to-transparent rounded-t-3xl border border-white/10 border-b-0 p-2 shadow-2xl backdrop-blur-sm">
-                    <div className="w-full h-full bg-[#0a0a0a] rounded-t-2xl border border-white/5 relative overflow-hidden flex items-center justify-center">
+                    <div className="w-full h-full bg-[#0a0a0a] rounded-t-2xl border border-white/5 relative overflow-hidden flex items-start justify-center pt-32">
                         {/* Minimalist Wallpaper Abstract */}
                         <div className="absolute inset-0 opacity-30 mix-blend-screen">
                             <div className="absolute top-0 right-0 w-full h-full bg-gradient-to-bl from-[var(--color-accent)] via-transparent to-transparent opacity-20" />
