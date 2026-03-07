@@ -27,8 +27,8 @@ export default function Hero() {
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            Bring the power of the Dynamic Island to your desktop. Seamless,
-            smart, and sleek interactions.
+            Bring the power of the Dynamic Island to your Mac. Seamless,
+            smart, and sleek.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
