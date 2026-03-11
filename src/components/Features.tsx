@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Play, Folder, Edit3, Thermometer } from 'lucide-react';
+import { Play, Folder, Edit3, Thermometer, Timer } from 'lucide-react';
+import InteractiveTimer from './InteractiveTimer';
 
 const features = [
     {
@@ -56,20 +57,29 @@ const features = [
     {
         title: "Temperature Check",
         description: "Keep an eye on outside temperature right from your notch.",
-        icon: <Thermometer className="w-5 h-5 text-orange-400" />,
-        colSpan: "md:col-span-2",
+        icon: <Thermometer className="w-5 h-5 text-cyan-400" />,
+        colSpan: "md:col-span-1",
         delay: 0.4,
-        gradient: "from-orange-500/10 to-transparent",
+        gradient: "from-cyan-500/10 to-transparent",
         image: (
             <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
                 <div className="w-40 h-10 bg-[#1a1a1a] rounded-full flex items-center px-4 border border-white/10 shadow-lg">
-                    <span className="text-orange-400 font-medium ml-2">82°C</span>
+                    <span className="text-cyan-400 font-medium ml-2">24°C</span>
                     <div className="flex-1 ml-4 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <div className="w-3/4 h-full bg-gradient-to-r from-orange-400 to-red-500" />
+                        <div className="w-2/5 h-full bg-gradient-to-r from-cyan-400 to-blue-500" />
                     </div>
                 </div>
             </div>
         )
+    },
+    {
+        title: "Custom Timer",
+        description: "Custom time input, notch expands dynamically, and plays an alert when time's up.",
+        icon: <Timer className="w-5 h-5 text-pink-400" />,
+        colSpan: "md:col-span-1",
+        delay: 0.5,
+        gradient: "from-pink-500/10 to-transparent",
+        image: <InteractiveTimer />
     }
 ];
 
