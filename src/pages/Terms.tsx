@@ -11,21 +11,59 @@ export default function Terms() {
                 <h1 className="text-4xl font-bold mb-8 title-gradient">Terms of Service</h1>
                 <div className="prose prose-invert prose-lg text-[var(--color-text-secondary)]">
                     <p>Last updated: {new Date().toLocaleDateString()}</p>
+                    
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Acceptance of Terms</h2>
                     <p>
-                        By accessing and downloading Dynamic Notch, you accept and agree to be bound by the terms and provision of this agreement.
-                        In addition, when using these particular services, you shall be subject to any posted guidelines or rules applicable to such services.
+                        By downloading, installing, or using Dynamic Notch, you acknowledge that you have read, 
+                        understood, and agree to be bound by these Terms and Conditions. If you do not agree 
+                        with any part of these terms, you must not download or use the application.
                     </p>
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">2. Use License</h2>
+
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">2. License & Use</h2>
                     <p>
-                        Permission is granted to temporarily download one copy of the materials (information or software) on Dynamic Notch's
-                        website for personal, non-commercial transitory viewing only. This is the grant of a license, not a transfer of title.
+                        Developed by Aryaan, Dynamic Notch is provided to you as a personal use utility. 
+                        This grant is a license for use, not a transfer of title. Under this license, you may not:
                     </p>
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. Disclaimer</h2>
+                    <ul className="list-disc pl-6 space-y-2">
+                        <li>Modify or copy the software for commercial redistribution.</li>
+                        <li>Attempt to decompile or reverse engineer the application.</li>
+                        <li>Remove any copyright or other proprietary notations from the materials.</li>
+                    </ul>
+
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. Disclaimer (The "As-Is" Clause)</h2>
                     <p>
-                        The materials on Dynamic Notch's website and application are provided on an 'as is' basis. Dynamic Notch makes no
-                        warranties, expressed or implied, and hereby disclaims and negates all other warranties including, without limitation,
-                        implied warranties or conditions of merchantability, fitness for a particular purpose, or non-infringement of intellectual property.
+                        Dynamic Notch is provided on an "as-is" and "as-available" basis. As this software is 
+                        distributed independently and is not notarized by Apple, the developer (Aryaan) makes 
+                        no warranties, expressed or implied, regarding its performance or compatibility with 
+                        future macOS updates.
+                    </p>
+                    <p className="mt-4">
+                        By using this software, you acknowledge the security warnings presented by macOS during 
+                        installation and agree that the developer is not liable for any issues, data loss, or 
+                        system behavior resulting from the manual bypass of Gatekeeper security settings.
+                    </p>
+
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">4. Limitation of Liability</h2>
+                    <p>
+                        In no event shall Aryaan or Dynamic Notch be liable for any damages (including, 
+                        without limitation, damages for loss of data or profit, or due to business interruption) 
+                        arising out of the use or inability to use the software, even if the developer has 
+                        been notified of the possibility of such damage.
+                    </p>
+
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">5. External Data & APIs</h2>
+                    <p>
+                        The application interacts with third-party software (such as Spotify and Apple Music) 
+                        and external APIs (for weather data). Use of these features is subject to those 
+                        respective services' own terms and privacy policies.
+                    </p>
+
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">6. Termination</h2>
+                    <p>
+                        This license shall automatically terminate if you violate any of these restrictions 
+                        and may be terminated by the developer at any time. Upon terminating your viewing 
+                        of these materials or upon the termination of this license, you must destroy any 
+                        downloaded materials in your possession whether in electronic or printed format.
                     </p>
                 </div>
             </motion.div>

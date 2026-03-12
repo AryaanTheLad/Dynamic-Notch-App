@@ -23,7 +23,7 @@ export default function Blog() {
                 <section>
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">The Point of Dynamic Notch</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.
+                        If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper refined utility straight to your Mac.
                         The purpose of Dynamic Notch is simple: turn the passive, dead space of your MacBook's notch into a vibrant, active hub for
                         your most essential tools, saving you time and reducing context switching. It's a premium upgrade to your everyday workflow.
                     </p>
@@ -34,8 +34,16 @@ export default function Blog() {
                         <li><strong>File Drop Tray:</strong> Drag and drop files directly into the notch to stash them temporarily. Need to AirDrop a photo? Just drag it up.</li>
                         <li><strong>Quick Notes:</strong> Keep temporary text in a handy clipboard space attached to the notch.</li>
                         <li><strong>Temperature Check:</strong> Glance up to see the current weather and temperature outside without opening a dedicated weather app.</li>
-                        <li><strong>Custom Timer:</strong> Need to focus? Set a quick timer right from the notch with beautiful countdown animations.</li>
+                        <li><strong>Timer:</strong> Need to focus? Set a quick timer right from the notch with sleek countdown animations.</li>
+                        <li><strong>Customization:</strong> Customize the way the notch looks, and functions.</li>
                     </ul>
+
+                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">Lightweight Performance & Efficiency</h2>
+                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
+                        We built Dynamic Notch with the "Apple-esque" philosophy of absolute efficiency. Engineered primarily in Swift and optimized
+                        for Apple Silicon (M2/M3/M4/M5), it boasts exceptionally low CPU overhead (typically under 0.1% usage) and virtually unnoticeable
+                        RAM consumption. It's designed to run natively and silently in the background without draining your battery or slowing down your pro apps.
+                    </p>
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">How to Use Dynamic Notch</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
@@ -44,11 +52,21 @@ export default function Blog() {
                         to expand it, or drag files directly into the black area to trigger the File Tray.
                     </p>
 
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">Lightweight Performance & Efficiency</h2>
+                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">A Note on Security & Notarization</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        We built Dynamic Notch with the "Apple-esque" philosophy of absolute efficiency. Engineered primarily in Swift and optimized
-                        for Apple Silicon (M1/M2/M3), it boasts exceptionally low CPU overhead (typically under 0.1% usage) and virtually unnoticeable
-                        RAM consumption. It's designed to run natively and silently in the background without draining your battery or slowing down your pro apps.
+                        When you first install Dynamic Notch, macOS may show a warning saying the app "cannot be opened because it is 
+                        from an unidentified developer" or even a "Malware" warning.
+
+                        Here is the truth: As a university student and independent developer, the $99/year fee for an official Apple Developer Program membership is currently out of reach. Because the app isn't "Notarized" by Apple's paid servers, macOS defaults to its strictest warning. Dynamic Notch is 100% safe, open for inspection, and contains zero malicious code.
+
+                        <strong>How to Install (Bypassing the Warning):</strong>
+
+                        Since the app isn't notarized, you cannot simply double-click it to open. Follow these steps to grant it permission:
+                        Drag to Applications: Open the DMG and drag Dynamic Notch into your Applications folder.
+                        The First Launch: Right-click (or Control-click) the app icon in your Applications folder and select Open.
+                        Confirm: A popup will appear asking if you're sure. Click Open again. (This only needs to be done once).
+                        If it still blocks you: Go to System Setting then, Privacy & Security. Scroll down to the "Security" section, 
+                        where you will see a message saying "Dynamic Notch was blocked." Click Open Anyway and enter your password.
                     </p>
                 </section>
             </motion.article>
