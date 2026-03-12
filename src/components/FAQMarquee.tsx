@@ -7,7 +7,7 @@ const faqs = [
   },
   {
     question: "Does it support external monitors?",
-    answer: "Yes! However, it's recommended to be used on Macbook M2 or later for best experience.",
+    answer: "No! It's recommended to be used on Macbook M2 or later for the best experience.",
   },
   {
     question: "Does it affect my battery life?",
@@ -15,7 +15,15 @@ const faqs = [
   },
   {
     question: "Is there a one-time purchase?",
-    answer: "Dynamic Notch is currently free during beta, with a 'pay what you want' model coming soon.",
+    answer: "Dynamic Notch is currently free during beta, with a 'pay what you want' model implemented soon.",
+  },
+    {
+    question: "What features does it have?",
+    answer: "File Tray, Media Control, Quick Notes, Timer, Timer Notch Animations, Shortcuts, Weather and more coming soon!",
+  },
+    {
+    question: "Why does it show its not safe for my Mac?",
+    answer: "As an individual, I do not currenly possess the funds to notarize the app and get it approved by apple. (99$)",
   },
 ];
 
