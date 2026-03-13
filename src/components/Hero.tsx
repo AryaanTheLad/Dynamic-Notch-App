@@ -39,7 +39,15 @@ export default function Hero() {
             >
               Download Now
             </a>
-            <button className="h-12 px-8 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+            <button 
+              onClick={() => {
+                const element = document.getElementById("demo-video-container");
+                if (element) {
+                  element.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+              }}
+              className="h-12 px-8 rounded-full bg-white/5 text-white font-medium border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all duration-300"
+            >
               Watch Demo
             </button>
           </div>
@@ -73,11 +81,19 @@ export default function Hero() {
             <div className="absolute bottom-[-20%] left-[-10%] w-[60%] h-[60%] bg-purple-500/20 blur-[80px] rounded-full" />
           </div>
 
-          {/* Centered Preview Text */}
-          <div className="absolute inset-0 flex items-center justify-center z-10">
-            <span className="text-white/20 font-medium tracking-widest text-sm">
-              APP VIDEO PREVIEW IS UNDER CONSTRUCTION.
-            </span>
+          {/* Video Preview */}
+          <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10">
+            <video 
+              className="w-full h-full object-cover"
+              autoPlay 
+              loop 
+              muted 
+              playsInline
+              controls
+            >
+              <source src="/demo.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
 
           {/* Simulated Desktop Notch */}
