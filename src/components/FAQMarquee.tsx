@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     question: "Is there a one-time purchase?",
-    answer: "Dynamic Notch is currently free during beta, with a 'pay what you want' model implemented soon.",
+    answer: "Dynamic Notch is currently free during beta, with a 'pay what you want' model arriving soon.",
   },
     {
     question: "What features does it have?",
