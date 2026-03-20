@@ -18,8 +18,8 @@ export default function Footer() {
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
                         Ready to elevate?
                     </h2>
-                    <a href="/DynamicNotchApp.dmg" download className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center">
-                        Download Dynamic Notch
+                    <a href="https://dynamicnotchofficial.lemonsqueezy.com/checkout/buy/b1976809-d837-4608-acb1-7de6e790ae43" target="_blank" rel="noopener noreferrer" className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center">
+                        Purchase Dynamic Notch
                     </a>
                 </motion.div>
 
