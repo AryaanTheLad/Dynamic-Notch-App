@@ -33,7 +33,7 @@ export default function Hero() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <a
-              href="https://yourstore.lemonsqueezy.com/checkout/buy/YOUR_PRODUCT_ID"
+              href="https://dynamicnotchofficial.lemonsqueezy.com/checkout/buy/b1976809-d837-4608-acb1-7de6e790ae43"
               target="_blank"
               rel="noopener noreferrer"
               className="h-12 px-8 rounded-full bg-white text-black font-medium hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_30px_rgba(255,255,255,0.2)] inline-flex items-center justify-center"
