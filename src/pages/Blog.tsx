@@ -1,80 +1,99 @@
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+
+const BLOG_POSTS = [
+    {
+        id: 'intro',
+        title: 'Elevate Your macOS Experience with Dynamic Notch',
+        date: 'November 25, 2025',
+        readTime: '5 min read',
+        excerpt: 'If you\'ve ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.'
+    },
+    {
+        id: 'why-dynamic-island-mac',
+        title: 'Why Your Mac Deserves a Dynamic Island',
+        date: 'January 2, 2026',
+        readTime: '4 min read',
+        excerpt: 'An area the iPhone transformed into an interactive hub was left completely static on macOS—until now.'
+    },
+    {
+        id: 'boost-productivity',
+        title: 'How Dynamic Notch Supercharges Productivity',
+        date: 'February 15, 2026',
+        readTime: '5 min read',
+        excerpt: 'Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state.'
+    },
+    {
+        id: 'minimalist-setup',
+        title: 'Dynamic Notch and the Minimalist Desk Setup',
+        date: 'February 28, 2026',
+        readTime: '4 min read',
+        excerpt: 'True aesthetic equilibrium requires digital minimalism. Declutter your menu bar and your desktop.'
+    },
+    {
+        id: 'notch-customization',
+        title: 'How Much Can You Customize the macOS Notch?',
+        date: 'March 1, 2026',
+        readTime: '4 min read',
+        excerpt: 'With Dynamic Notch, the static bezel isn\'t just utilized—it is deeply customizable to fit any personal aesthetic.'
+    },
+    {
+        id: 'battery-efficiency',
+        title: 'Does Dynamic Notch Affect Your MacBook Battery Life?',
+        date: 'March 20, 2026',
+        readTime: '3 min read',
+        excerpt: 'Built natively in Swift, Dynamic Notch runs silently in the background without draining your battery or slowing down your pro apps.'
+    }
+];
 
 export default function Blog() {
     return (
-        <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-            <motion.article
+        <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+            <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="prose prose-invert prose-lg max-w-none"
+                className="mb-16 text-center"
             >
-                <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
-                        Elevate Your macOS Experience with Dynamic Notch
-                    </h1>
-                    <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
-                        <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
-                        <time dateTime="2023-10-25">October 25, 2023</time>
-                        <span>•</span>
-                        <span>5 min read</span>
-                    </div>
-                </header>
+                <h1 className="text-4xl md:text-5xl font-semibold mb-4 text-white">The Dynamic Notch Journal</h1>
+                <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
+                    Insights, updates, and thoughts on making macOS workflows cleaner, faster, and much more beautiful.
+                </p>
+            </motion.div>
 
-                <section>
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">The Point of Dynamic Notch</h2>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac. 
-                        The purpose of Dynamic Notch is simple: turn the passive, dead space of your MacBook's notch into a vibrant, active hub for 
-                        your most essential tools, saving you time and reducing context switching. It's a premium upgrade to your everyday workflow.
-                    </p>
-
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">Detailed Features</h2>
-                    <ul className="list-disc pl-6 text-[var(--color-text-secondary)] leading-relaxed space-y-4 mb-6">
-                        <li><strong>Media Control:</strong> Directly control your Apple Music or Spotify via a sleek, interactive widget hovering right below your notch. Pause, play, or skip effortlessly.</li>
-                        <li><strong>File Drop Tray:</strong> Drag and drop files directly into the notch to stash them temporarily. Need to AirDrop a photo? Just drag it up.</li>
-                        <li><strong>Quick Notes:</strong> Keep temporary text in a handy clipboard space attached to the notch for quick access later.</li>
-                        <li><strong>Temperature Check:</strong> Glance up to see the current weather and temperature outside without opening a dedicated weather app.</li>
-                        <li><strong>Custom Timer:</strong> Need to focus? Set a quick timer right from the notch with beautiful, high-fidelity countdown animations.</li>
-                        <li><strong>Cinematic Customization:</strong> Switch between Standard, Cinematic Monochrome, and Translucent Glass themes to match your desktop aesthetic.</li>
-                    </ul>
-
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">Lightweight Performance & Efficiency</h2>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        We built Dynamic Notch with the "Apple-esque" philosophy of absolute efficiency. Engineered primarily in Swift and optimized 
-                        for Apple Silicon (M1/M2/M3/M4), it boasts exceptionally low CPU overhead (typically under 0.1% usage) and virtually unnoticeable 
-                        RAM consumption. It's designed to run natively and silently in the background without draining your battery or slowing down your pro apps.
-                    </p>
-
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">How to Use Dynamic Notch</h2>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        Getting started is seamless. Once installed from the downloaded DMG, Dynamic Notch quietly runs in your menu bar. 
-                        Simply move your mouse pointer up towards your Mac's physical notch to reveal the interactive UI. You can click on the notch 
-                        to expand it, or drag files directly into the black area to trigger the File Tray.
-                    </p>
-
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">A Note on Security & Notarization</h2>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-                        When you first install Dynamic Notch, macOS may show a warning saying the app "cannot be opened because it is 
-                        from an unidentified developer" or even a "Malware" warning.
-                    </p>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        <strong>The Truth:</strong> As a university student and independent developer, the $99/year fee for an official Apple Developer Program membership is currently out of reach. Because the app isn't "Notarized" by Apple's paid servers, macOS defaults to its strictest warning. Dynamic Notch is 100% safe, open for inspection, and contains zero malicious code.
-                    </p>
-
-                    <h3 className="text-xl font-medium mt-8 mb-4 text-white underline underline-offset-8">How to Install (Bypassing the Warning)</h3>
-                    <p className="text-[var(--color-text-secondary)] mb-6">
-                        Since the app isn't notarized, you cannot simply double-click it to open. Follow these steps to grant it permission:
-                    </p>
-                    <ol className="list-decimal pl-6 text-[var(--color-text-secondary)] leading-relaxed space-y-4 mb-6">
-                        <li><strong>Drag to Applications:</strong> Open the DMG and drag Dynamic Notch into your Applications folder.</li>
-                        <li><strong>The First Launch:</strong> Right-click (or Control-click) the app icon in your Applications folder and select <strong>Open</strong>.</li>
-                        <li><strong>Confirm:</strong> A popup will appear asking if you're sure. Click <strong>Open</strong> again. (This only needs to be done once).</li>
-                        <li><strong>If it still blocks you:</strong> Go to <strong>System Settings</strong> → <strong>Privacy & Security</strong>. Scroll down to the "Security" section, where you will see a message saying "Dynamic Notch was blocked." Click <strong>Open Anyway</strong> and enter your password.</li>
-                    </ol>
-                </section>
-            </motion.article>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {BLOG_POSTS.map((post, i) => (
+                    <motion.div
+                        key={post.id}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                    >
+                        <Link to={`/blog/${post.id}`} className="group block h-full">
+                            <article className="h-full bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 flex flex-col cursor-pointer hover:shadow-lg hover:shadow-white/5">
+                                <div className="flex items-center gap-3 text-xs text-[var(--color-text-secondary)] mb-4">
+                                    <time dateTime={post.date}>{post.date}</time>
+                                    <span>•</span>
+                                    <span>{post.readTime}</span>
+                                </div>
+                                <h2 className="text-xl font-medium text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                    {post.title}
+                                </h2>
+                                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow">
+                                    {post.excerpt}
+                                </p>
+                                <div className="mt-6 flex items-center text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
+                                    Read Article
+                                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                                    </svg>
+                                </div>
+                            </article>
+                        </Link>
+                    </motion.div>
+                ))}
+            </div>
         </div>
     );
 }
