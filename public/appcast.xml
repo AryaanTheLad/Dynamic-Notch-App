@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="yes"?>
+<rss xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle" version="2.0">
+    <channel>
+        <title>DynamicNotch</title>
+        <item>
+            <title>1.0.0</title>
+            <pubDate>Thu, 09 Apr 2026 19:53:17 +0500</pubDate>
+            <sparkle:version>1</sparkle:version>
+            <sparkle:shortVersionString>1.0.0</sparkle:shortVersionString>
+            <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
+            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg"length="2239321" type="application/octet-stream" sparkle:edSignature="1xpG4Q8GDgp6+hTpkswr1EReVTOvQi2W0ePr5VwruLtjnlnQhX382KSi/CFA8bz1FmYhJtWHA1e/o5Zqa35CBQ=="/>
+        </item>
+    </channel>
+</rss>
