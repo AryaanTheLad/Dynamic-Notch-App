@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 const faqs = [
   {
@@ -42,7 +42,7 @@ export default function FAQMarquee() {
       {/* The Container (The Window) */}
       <div className="relative flex overflow-hidden w-full">
         {/* The Animated Track */}
-        <motion.div
+        <m.div
           className="flex gap-6 pr-6 whitespace-nowrap"
           animate={{
             x: ["0%", "-33.33%"], // We only move across one set of the triple-array
@@ -73,7 +73,7 @@ export default function FAQMarquee() {
               </div>
             </div>
           ))}
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

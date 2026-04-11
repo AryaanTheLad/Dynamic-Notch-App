@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function Navbar() {
     return (
-        <motion.nav
+        <m.nav
             initial={{ y: -20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
@@ -12,7 +12,7 @@ export default function Navbar() {
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                 <Link to="/" className="flex items-center gap-2 cursor-pointer group">
                     {/* Minimalist Notch Icon */}
-                    <img src="/urlicon.png" alt="Logo" className="h-6" />
+                    <img src="/urlicon.png" alt="Logo" width="24" height="24" className="h-6 w-6 object-contain" />
                     <span className="font-semibold text-white/90 tracking-tight text-sm translate-x-1 group-hover:translate-x-2 transition-transform duration-300">
                         Dynamic Notch
                     </span>
@@ -27,6 +27,6 @@ export default function Navbar() {
                     </a>
                 </div>
             </div>
-        </motion.nav>
+        </m.nav>
     );
 }

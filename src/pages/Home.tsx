@@ -1,15 +1,19 @@
+import { lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
-import Features from '../components/Features';
-import HowItWorks from '../components/HowItWorks';
-import FAQMarquee from '../components/FAQMarquee';
+
+const Features = lazy(() => import('../components/Features'));
+const HowItWorks = lazy(() => import('../components/HowItWorks'));
+const FAQMarquee = lazy(() => import('../components/FAQMarquee'));
 
 export default function Home() {
   return (
     <>
       <Hero />
-      <Features />
-      <HowItWorks />
-      <FAQMarquee />
+      <Suspense fallback={null}>
+        <Features />
+        <HowItWorks />
+        <FAQMarquee />
+      </Suspense>
     </>
   );
 }

@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Play, Folder, Edit3, Thermometer, Timer } from 'lucide-react';
 import InteractiveTimer from './InteractiveTimer';
 
@@ -87,7 +87,7 @@ export default function Features() {
     return (
         <section className="py-32 px-6 relative max-w-6xl mx-auto">
             <div className="text-center mb-20">
-                <motion.h2
+                <m.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -96,12 +96,12 @@ export default function Features() {
                 >
                     Everything you need.<br />
                     <span className="text-white/40">Nothing you don't.</span>
-                </motion.h2>
+                </m.h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {features.map((feature, index) => (
-                    <motion.div
+                    <m.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -126,7 +126,7 @@ export default function Features() {
 
                             {feature.image}
                         </div>
-                    </motion.div>
+                    </m.div>
                 ))}
             </div>
         </section>

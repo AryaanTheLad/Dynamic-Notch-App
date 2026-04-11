@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Download, Sliders, Sparkles } from 'lucide-react';
 
 const steps = [
@@ -26,7 +26,7 @@ export default function HowItWorks() {
     return (
         <section className="py-32 px-6 relative max-w-5xl mx-auto border-t border-white/5">
             <div className="text-center mb-16">
-                <motion.h2
+                <m.h2
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -34,12 +34,12 @@ export default function HowItWorks() {
                     className="text-3xl font-bold tracking-tight mb-4"
                 >
                     Setup in seconds.
-                </motion.h2>
+                </m.h2>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
                 {steps.map((step, index) => (
-                    <motion.div
+                    <m.div
                         key={index}
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
@@ -57,7 +57,7 @@ export default function HowItWorks() {
                         <p className="text-[var(--color-text-secondary)] font-light leading-relaxed max-w-[250px]">
                             {step.description}
                         </p>
-                    </motion.div>
+                    </m.div>
                 ))}
             </div>
         </section>

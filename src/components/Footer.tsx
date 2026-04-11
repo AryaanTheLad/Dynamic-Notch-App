@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 
 export default function Footer() {
@@ -8,7 +8,7 @@ export default function Footer() {
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--color-accent)] opacity-[0.03] blur-[100px] rounded-[100%] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
-                <motion.div
+                <m.div
                     initial={{ opacity: 0, y: 30 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
@@ -21,7 +21,7 @@ export default function Footer() {
                     <a href="https://dynamicnotchofficial.lemonsqueezy.com/checkout/buy/b1976809-d837-4608-acb1-7de6e790ae43" target="_blank" rel="noopener noreferrer" className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center">
                         Purchase Dynamic Notch
                     </a>
-                </motion.div>
+                </m.div>
 
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm font-light text-[var(--color-text-secondary)]">
                     <div className="flex items-center gap-2 mb-4 md:mb-0">

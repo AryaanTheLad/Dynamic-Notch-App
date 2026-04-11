@@ -1,4 +1,4 @@
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function Hero() {
   return (
@@ -9,7 +9,7 @@ export default function Hero() {
 
       {/* Hero Text */}
       <div className="max-w-4xl mx-auto text-center z-10">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, scale: 0.95, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -52,11 +52,11 @@ export default function Hero() {
               Watch Demo
             </button>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Screen Mockup */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
@@ -83,7 +83,7 @@ export default function Hero() {
           </div>
 
           {/* Video Preview */}
-          <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10">
+          <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10 bg-zinc-900/40 animate-pulse">
             <video 
               className="w-full h-full object-cover"
               autoPlay 
@@ -106,7 +106,7 @@ export default function Hero() {
             <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10" />
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 }
