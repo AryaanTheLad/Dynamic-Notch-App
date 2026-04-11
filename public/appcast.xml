@@ -3,12 +3,12 @@
     <channel>
         <title>DynamicNotch</title>
         <item>
-            <title>1.1</title>
-            <pubDate>Fri, 10 Apr 2026 14:56:59 +0500</pubDate>
-            <sparkle:version>2</sparkle:version>
-            <sparkle:shortVersionString>1.1</sparkle:shortVersionString>
+            <title>1.2</title>
+            <pubDate>Sat, 11 Apr 2026 15:26:53 +0500</pubDate>
+            <sparkle:version>3</sparkle:version>
+            <sparkle:shortVersionString>1.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>26.0</sparkle:minimumSystemVersion>
-            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg" length="2249455" type="application/octet-stream" sparkle:edSignature="Ccodcn0y2B/ElJeG7sAKYG0uXFAcnuK0SyUMWuC9J1UhyjbN06YJDTwvAfVyvKZOUrw91EPy6bJs4wd6atK0Dw=="/>
+            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg" length="2247604" type="application/octet-stream" sparkle:edSignature="9UY4RoFOdzY+kfZGhSU7LTj0gaGMkx6Te71DfM+0iMMzMSFfnsizO/KKYDDP7AsutGS1mn+O5Gel3cL0Ia1BCA=="/>
         </item>
     </channel>
 </rss>
