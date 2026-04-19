@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import { Play, Folder, Edit3, Thermometer, Timer } from 'lucide-react';
+import { Play, Folder, Edit3, Thermometer, Timer, Target, Clipboard } from 'lucide-react';
 import InteractiveTimer from './InteractiveTimer';
 
 const features = [
@@ -80,6 +80,39 @@ const features = [
         delay: 0.5,
         gradient: "from-pink-500/10 to-transparent",
         image: <InteractiveTimer />
+    },
+    {
+        title: "Current Task Setter",
+        description: "Set your current focused task and keep it visible in the notch to boost productivity.",
+        icon: <Target className="w-5 h-5 text-yellow-400" />,
+        colSpan: "md:col-span-1",
+        delay: 0.6,
+        gradient: "from-yellow-500/10 to-transparent",
+        image: (
+            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
+                <div className="w-48 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center px-4 border border-white/10 shadow-lg text-sm text-yellow-500/80">
+                    <span className="font-medium">Focus: Coding</span>
+                </div>
+            </div>
+        )
+    },
+    {
+        title: "Clipboard History",
+        description: "Access your recently copied text and links seamlessly directly from the notch.",
+        icon: <Clipboard className="w-5 h-5 text-orange-400" />,
+        colSpan: "md:col-span-2",
+        delay: 0.7,
+        gradient: "from-orange-500/10 to-transparent",
+        image: (
+            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex flex-col items-center justify-center p-4 gap-2">
+                 <div className="w-full max-w-[250px] h-8 bg-zinc-800/80 rounded border border-white/10 flex items-center px-3 text-xs text-white/50 truncate">
+                     https://github.com/aryaanq...
+                 </div>
+                 <div className="w-full max-w-[250px] h-8 bg-zinc-800/50 rounded border border-white/5 flex items-center px-3 text-xs text-white/30 truncate">
+                     npm install framer-motion
+                 </div>
+            </div>
+        )
     }
 ];
 

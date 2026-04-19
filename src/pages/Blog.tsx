@@ -42,7 +42,13 @@ const BLOG_POSTS = [
         title: 'Does Dynamic Notch Affect Your MacBook Battery Life?',
         date: 'March 20, 2026',
         readTime: '3 min read',
-        excerpt: 'Built natively in Swift, Dynamic Notch runs silently in the background without draining your battery or slowing down your pro apps.'
+    },
+    {
+        id: 'how-to-hide-macbook-notch',
+        title: 'How to Hide the MacBook Notch (and Why You Might Not Want To)',
+        date: 'April 19, 2026',
+        readTime: '4 min read',
+        excerpt: 'If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful.'
     }
 ];
 

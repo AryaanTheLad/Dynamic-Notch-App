@@ -19,12 +19,24 @@ const faqs = [
   },
     {
     question: "What features does it have?",
-    answer: "File Tray, Media Control, Quick Notes, Timer, Timer Notch Animations, Shortcuts, Weather and more coming soon!",
+    answer: "File Tray, Media Control, Quick Notes, Timer, Timer Notch Animations, Current Task Setter, Clipboard History, Weather and more coming soon!",
   },
     {
     question: "Why does it show its not safe for my Mac?",
     answer: "As an individual, I do not currenly possess the funds to notarize the app and get it approved by apple. (99$)",
   },
+  {
+    question: "Can I customize the applications shown in the notch?",
+    answer: "Yes, you can configure which apps interact with your Dynamic Notch and set specific behaviors for each.",
+  },
+  {
+    question: "Is it compatible with older Macs?",
+    answer: "Dynamic Notch works on both Intel and Apple Silicon Macs, provided they are running a supported macOS version.",
+  },
+  {
+    question: "How do I hide the MacBook notch?",
+    answer: "While our app embraces the notch, you can use our upcoming 'stealth mode' to blend the notch visually with a black menu bar.",
+  }
 ];
 
 export default function FAQMarquee() {

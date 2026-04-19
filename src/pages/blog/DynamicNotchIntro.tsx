@@ -37,6 +37,8 @@ export default function DynamicNotchIntro() {
                         <li><strong>Quick Notes:</strong> Keep temporary text in a handy clipboard space attached to the notch for quick access later.</li>
                         <li><strong>Temperature Check:</strong> Glance up to see the current weather and temperature outside without opening a dedicated weather app.</li>
                         <li><strong>Custom Timer:</strong> Need to focus? Set a quick timer right from the notch with beautiful, high-fidelity countdown animations.</li>
+                        <li><strong>Current Task Setter:</strong> Make sure you never lose track of what you are working on by keeping your current task pinned to the notch.</li>
+                        <li><strong>Clipboard History:</strong> Easily retrieve your most recently copied text or links directly from the notch menu.</li>
                         <li><strong>Cinematic Customization:</strong> Switch between Standard, Cinematic Monochrome, and Translucent Glass themes to match your desktop aesthetic.</li>
                     </ul>
 

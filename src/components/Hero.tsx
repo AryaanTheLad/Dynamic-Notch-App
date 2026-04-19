@@ -83,9 +83,9 @@ export default function Hero() {
           </div>
 
           {/* Video Preview */}
-          <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10 bg-zinc-900/40 animate-pulse">
+          <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10">
             <video 
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
               autoPlay 
               loop 
               muted 
@@ -97,14 +97,6 @@ export default function Hero() {
             </video>
           </div>
 
-          {/* Simulated Desktop Notch */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-8 bg-black rounded-b-2xl border border-white/10 border-t-0 shadow-[0_10px_30px_rgba(0,0,0,0.5)] flex items-center justify-between px-3 z-20">
-            <div className="flex items-center gap-2">
-              <div className="w-4 h-4 rounded-full bg-gradient-to-br from-green-400 to-emerald-600 animate-pulse shadow-[0_0_10px_rgba(52,211,153,0.5)]" />
-              <div className="w-16 h-1 bg-white/10 rounded-full" />
-            </div>
-            <div className="w-6 h-6 rounded-full bg-white/5 border border-white/10" />
-          </div>
         </div>
       </m.div>
     </section>
