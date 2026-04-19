@@ -4,11 +4,11 @@
         <title>DynamicNotch</title>
         <item>
             <title>2.2</title>
-            <pubDate>Sun, 19 Apr 2026 22:55:18 +0500</pubDate>
-            <sparkle:version>18</sparkle:version>
+            <pubDate>Sun, 19 Apr 2026 23:10:20 +0500</pubDate>
+            <sparkle:version>19</sparkle:version>
             <sparkle:shortVersionString>2.2</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.6</sparkle:minimumSystemVersion>
-            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg" length="2652571" type="application/octet-stream" sparkle:edSignature="OtbY/6/z8klz82J5+47FzrvokLsJWMc1IuSE3qWlRnUlC8hcMFhewXgR6JJVS+W+O3iUfPzd1NDIiW3BlLJEAQ=="/>
+            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg" length="2653239" type="application/octet-stream" sparkle:edSignature="c3It//W7+UZUlJs7jbaRMycoLXnpFpLYWhS2vMeb2le+/X5pXL40PdK0Ii+dfTB2w6mgDI/goIqydyDAjybkBQ=="/>
         </item>
     </channel>
 </rss>
