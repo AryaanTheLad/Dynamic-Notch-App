@@ -19,16 +19,15 @@ export default function Hero() {
           </span>
 
           <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/60 mb-6 leading-tight">
-            Your workflow,
+            The Ultimate Dynamic Island
             <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-white/40">
-              elevated.
+              for your Mac.
             </span>
           </h1>
 
           <p className="text-lg md:text-xl text-[var(--color-text-secondary)] max-w-2xl mx-auto mb-10 font-light leading-relaxed">
-            Bring the power of the Dynamic Island to your Mac. Seamless,
-            smart, and sleek.
+            Transform your MacBook notch into a powerful, interactive workstation. The missing MacBook Notch App for productivity.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -91,6 +90,7 @@ export default function Hero() {
               muted 
               playsInline
               controls
+              aria-label="Dynamic Notch App Demo Video showcasing the MacBook notch utility"
             >
               <source src="/demo.mp4" type="video/mp4" />
               Your browser does not support the video tag.

@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function NotchCustomization() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="How Much Can You Customize the macOS Notch?"
+                description="With Dynamic Notch, the static bezel isn't just utilized—it is deeply customizable to fit any personal aesthetic."
+                publishDate="2026-03-01"
+                url="https://dynamicnotch.tech/blog/notch-customization"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

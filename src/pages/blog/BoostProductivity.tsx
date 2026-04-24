@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function BoostProductivity() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="How Dynamic Notch Supercharges Productivity"
+                description="Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state."
+                publishDate="2026-02-15"
+                url="https://dynamicnotch.tech/blog/boost-productivity"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

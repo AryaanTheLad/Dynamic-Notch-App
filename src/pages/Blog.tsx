@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import SEO from '../components/SEO';
 
 const BLOG_POSTS = [
     {
@@ -55,6 +56,10 @@ const BLOG_POSTS = [
 export default function Blog() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+            <SEO 
+              title="Dynamic Notch Blog - MacBook Notch Utilities & Customization"
+              description="Read the latest articles about maximizing productivity, customizing your MacBook notch, and turning it into a functional Dynamic Island."
+            />
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function BatteryEfficiency() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="Does Dynamic Notch Affect Your MacBook Battery Life?"
+                description="Learn how Dynamic Notch runs natively and silently in the background without draining your battery or slowing down your pro apps."
+                publishDate="2026-03-20"
+                url="https://dynamicnotch.tech/blog/battery-efficiency"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

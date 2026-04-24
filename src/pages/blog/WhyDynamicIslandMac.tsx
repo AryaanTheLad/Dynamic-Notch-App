@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function WhyDynamicIslandMac() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="Why Your Mac Deserves a Dynamic Island"
+                description="An area the iPhone transformed into an interactive hub was left completely static on macOS—until now."
+                publishDate="2026-01-02"
+                url="https://dynamicnotch.tech/blog/why-dynamic-island-mac"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

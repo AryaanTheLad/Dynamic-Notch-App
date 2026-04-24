@@ -127,8 +127,8 @@ export default function Features() {
                     transition={{ duration: 0.6 }}
                     className="text-4xl font-bold tracking-tight mb-4"
                 >
-                    Everything you need.<br />
-                    <span className="text-white/40">Nothing you don't.</span>
+                    The Essential MacBook Notch Utility.<br />
+                    <span className="text-white/40">Everything you need. Nothing you don't.</span>
                 </m.h2>
             </div>
 

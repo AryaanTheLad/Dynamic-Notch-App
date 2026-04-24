@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function DynamicNotchIntro() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="Elevate Your macOS Experience with Dynamic Notch"
+                description="If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac."
+                publishDate="2025-11-25"
+                url="https://dynamicnotch.tech/blog/intro"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

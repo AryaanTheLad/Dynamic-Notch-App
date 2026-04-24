@@ -1,8 +1,15 @@
 import { motion } from 'framer-motion';
+import ArticleSEO from '../../components/ArticleSEO';
 
 export default function MinimalistSetup() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
+            <ArticleSEO 
+                title="Dynamic Notch and the Minimalist Desk Setup"
+                description="True aesthetic equilibrium requires digital minimalism. Declutter your menu bar and your desktop."
+                publishDate="2026-02-28"
+                url="https://dynamicnotch.tech/blog/minimalist-setup"
+            />
             <motion.article
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}

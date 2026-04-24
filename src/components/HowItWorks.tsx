@@ -33,7 +33,7 @@ export default function HowItWorks() {
                     transition={{ duration: 0.6 }}
                     className="text-3xl font-bold tracking-tight mb-4"
                 >
-                    Setup in seconds.
+                    Setup your MacBook Dynamic Notch in seconds.
                 </m.h2>
             </div>
 
