@@ -14,7 +14,8 @@ export default function Privacy() {
                     
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Introduction</h2>
                     <p>
-                        Welcome to Dynamic Notch. Developed by Aryaan, this app is built with a "Privacy First" philosophy. 
+                        Welcome to Dynamic Notch. Developed by Aryaan. By Installing this app you agree to our privacy
+                        policy and our terms and conditions. This app is built with a "Privacy First" philosophy. 
                         We believe that your desktop activity is your business alone. This policy explains the minimal, 
                         anonymous data we collect to help improve the app experience.
                     </p>

@@ -30,15 +30,17 @@ export default function Terms() {
                         <li>Remove any copyright or other proprietary notations from the materials.</li>
                     </ul>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. Disclaimer (The "As-Is" Clause)</h2>
+                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. Disclaimer</h2>
                     <p>
-                        Dynamic Notch is provided on an "as-is" and "as-available" basis. As this software is 
-                        distributed independently and is not notarized by Apple, the developer (Aryaan) makes 
-                        no warranties, expressed or implied, regarding its performance or compatibility with 
-                        future macOS updates.
+                        All rights reserved. This application and its original content, features, and functionality are 
+                        the exclusive property of Aryaan. Unauthorized distribution, reproduction, modification, or 
+                        piracy of this software is strictly prohibited. Use of this application is granted only to 
+                        individuals who have paid the full mentioned purchase price. Any attempt to bypass payment 
+                        systems or distribute this application without the express written consent of the owner 
+                        (Aryaan) may result in the immediate termination of access and potential legal action.
                     </p>
                     <p className="mt-4">
-                        By using this software, you acknowledge the security warnings presented by macOS during 
+                        By using this software, you acknowledge the warnings presented by macOS during 
                         installation and agree that the developer is not liable for any issues, data loss, or 
                         system behavior resulting from the manual bypass of Gatekeeper security settings.
                     </p>

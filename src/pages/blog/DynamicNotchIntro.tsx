@@ -55,26 +55,6 @@ export default function DynamicNotchIntro() {
                         Simply move your mouse pointer up towards your Mac's physical notch to reveal the interactive UI. You can click on the notch 
                         to expand it, or drag files directly into the black area to trigger the File Tray.
                     </p>
-
-                    <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">A Note on Security & Notarization</h2>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-4">
-                        When you first install Dynamic Notch, macOS may show a warning saying the app "cannot be opened because it is 
-                        from an unidentified developer" or even a "Malware" warning.
-                    </p>
-                    <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        <strong>The Truth:</strong> As a university student and independent developer, the $99/year fee for an official Apple Developer Program membership is currently out of reach. Because the app isn't "Notarized" by Apple's paid servers, macOS defaults to its strictest warning. Dynamic Notch is 100% safe, open for inspection, and contains zero malicious code.
-                    </p>
-
-                    <h3 className="text-xl font-medium mt-8 mb-4 text-white underline underline-offset-8">How to Install (Bypassing the Warning)</h3>
-                    <p className="text-[var(--color-text-secondary)] mb-6">
-                        Since the app isn't notarized, you cannot simply double-click it to open. Follow these steps to grant it permission:
-                    </p>
-                    <ol className="list-decimal pl-6 text-[var(--color-text-secondary)] leading-relaxed space-y-4 mb-6">
-                        <li><strong>Drag to Applications:</strong> Open the DMG and drag Dynamic Notch into your Applications folder.</li>
-                        <li><strong>The First Launch:</strong> Right-click (or Control-click) the app icon in your Applications folder and select <strong>Open</strong>.</li>
-                        <li><strong>Confirm:</strong> A popup will appear asking if you're sure. Click <strong>Open</strong> again. (This only needs to be done once).</li>
-                        <li><strong>If it still blocks you:</strong> Go to <strong>System Settings</strong> → <strong>Privacy & Security</strong>. Scroll down to the "Security" section, where you will see a message saying "Dynamic Notch was blocked." Click <strong>Open Anyway</strong> and enter your password.</li>
-                    </ol>
                 </section>
             </motion.article>
         </div>
