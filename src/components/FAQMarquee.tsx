@@ -11,31 +11,27 @@ const faqs = [
   },
   {
     question: "Does it affect my battery life?",
-    answer: "Not at all! Dynamic notch is a very lightweight utility app that has minimal impact on the system.",
+    answer: "Not at all! Dynamic notch is a very lightweight utility app that has minimal impact on the system. Used 0% cpu on idle, with 2-5% when actively being used. Ram usage is constant around 45MB.",
   },
   {
     question: "Is there a one-time purchase?",
-    answer: "Dynamic Notch is currently free during beta, with a 'pay what you want' model arriving soon.",
+    answer: "Dynamic Notch is priced at 3.99$, along with a pay-what-you-want model.",
   },
     {
     question: "What features does it have?",
-    answer: "File Tray, Media Control, Quick Notes, Timer, Timer Notch Animations, Current Task Setter, Clipboard History, Weather and more coming soon!",
-  },
-    {
-    question: "Why does it show its not safe for my Mac?",
-    answer: "As an individual, I do not currenly possess the funds to notarize the app and get it approved by apple. (99$)",
+    answer: "File Tray, Media Control, Quick Notes, Custom Timer, Current Task Setter, Clipboard History, Weather and more!",
   },
   {
-    question: "Can I customize the applications shown in the notch?",
-    answer: "Yes, you can configure which apps interact with your Dynamic Notch and set specific behaviors for each.",
+    question: "Can I customize the application?",
+    answer: "Yes, you can configure your Dynamic Notch and change specific behaviors.",
   },
   {
     question: "Is it compatible with older Macs?",
-    answer: "Dynamic Notch works on both Intel and Apple Silicon Macs, provided they are running a supported macOS version.",
+    answer: "Dynamic Notch works on Apple Silicon Macs starting with the base variant of M2.",
   },
   {
     question: "How do I hide the MacBook notch?",
-    answer: "While our app embraces the notch, you can use our upcoming 'stealth mode' to blend the notch visually with a black menu bar.",
+    answer: "While our app embraces the notch, you can use our 'Hide Notch Mode' to revert the notch when needed.",
   }
 ];
 
