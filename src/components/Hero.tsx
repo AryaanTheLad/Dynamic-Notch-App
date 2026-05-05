@@ -3,7 +3,7 @@ import { m } from "framer-motion";
 export default function Hero() {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-24 overflow-hidden">
-      
+
       {/* Background Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[var(--color-accent)] opacity-[0.05] blur-[120px] rounded-full pointer-events-none" />
 
@@ -36,7 +36,7 @@ export default function Hero() {
             >
               Purchase Now
             </a>
-            <button 
+            <button
               onClick={() => {
                 const element = document.getElementById("demo-video-container");
                 if (element) {
@@ -60,7 +60,7 @@ export default function Hero() {
       >
         {/* Outer Frame */}
         <div className="aspect-video rounded-t-3xl border border-white/10 border-b-0 bg-white/5 p-2 shadow-2xl backdrop-blur-sm relative overflow-hidden">
-          
+
           {/* Screen Surface (REAL fade using mask) */}
           <div
             className="absolute inset-0 rounded-t-2xl bg-[#0a0a0a]"
@@ -80,11 +80,11 @@ export default function Hero() {
 
           {/* Video Preview */}
           <div id="demo-video-container" className="absolute inset-0 z-10 rounded-t-2xl overflow-hidden border-t border-white/10">
-            <video 
+            <video
               className="w-full h-full object-cover object-top"
-              autoPlay 
-              loop 
-              muted 
+              autoPlay
+              loop
+              muted
               playsInline
               controls
               aria-label="Dynamic Notch App Demo Video showcasing the MacBook notch utility"
