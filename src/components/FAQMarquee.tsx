@@ -7,7 +7,7 @@ const faqs = [
   },
   {
     question: "Does it support external monitors?",
-    answer: "No! It's recommended to be used on Macbook M2 or later for the best experience.",
+    answer: "Yes! However, it's recommended to be used on Macbook M1 or later for the best experience.",
   },
   {
     question: "Does it affect my battery life?",
@@ -27,7 +27,7 @@ const faqs = [
   },
   {
     question: "Is it compatible with older Macs?",
-    answer: "Dynamic Notch works on Apple Silicon Macs starting with the base variant of M2.",
+    answer: "Dynamic Notch works on Apple Silicon Macs starting with the base variant of M1.",
   },
   {
     question: "How do I hide the MacBook notch?",
