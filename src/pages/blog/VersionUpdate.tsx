@@ -4,7 +4,7 @@ import ArticleSEO from '../../components/ArticleSEO';
 export default function VersionUpdate() {
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
-            <ArticleSEO 
+            <ArticleSEO
                 title="Major App Updates and Performance Optimizations"
                 description="We have added multi file dragging and opening functionality, fixed bug errors, and made the app more optimized for a seamless experience."
                 publishDate="2026-05-23"
