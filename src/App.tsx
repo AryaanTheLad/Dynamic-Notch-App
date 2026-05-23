@@ -15,6 +15,7 @@ const MinimalistSetup = lazy(() => import('./pages/blog/MinimalistSetup'));
 const NotchCustomization = lazy(() => import('./pages/blog/NotchCustomization'));
 const BatteryEfficiency = lazy(() => import('./pages/blog/BatteryEfficiency'));
 const HowToHideMacbookNotch = lazy(() => import('./pages/blog/HowToHideMacbookNotch'));
+const VersionUpdate = lazy(() => import('./pages/blog/VersionUpdate'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -50,6 +51,7 @@ function App() {
               <Route path="/blog/notch-customization" element={<NotchCustomization />} />
               <Route path="/blog/battery-efficiency" element={<BatteryEfficiency />} />
               <Route path="/blog/how-to-hide-macbook-notch" element={<HowToHideMacbookNotch />} />
+              <Route path="/blog/versionUpdate" element={<VersionUpdate />} />
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />

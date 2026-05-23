@@ -50,6 +50,13 @@ const BLOG_POSTS = [
         date: 'April 19, 2026',
         readTime: '4 min read',
         excerpt: 'If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful.'
+    },
+    {
+        id: 'versionUpdate',
+        title: 'Major App Updates and Performance Optimizations',
+        date: 'May 23, 2026',
+        readTime: '2 min read',
+        excerpt: 'We have added multi file dragging and opening functionality, fixed bug errors, and made the app more optimized.'
     }
 ];
 
