@@ -1,4 +1,5 @@
 import { Helmet } from 'react-helmet-async';
+import { useLocation } from 'react-router-dom';
 
 interface SEOProps {
   title: string;
@@ -7,6 +8,7 @@ interface SEOProps {
   type?: string;
   url?: string;
   image?: string;
+  robots?: string;
   children?: React.ReactNode;
 }
 
@@ -15,21 +17,29 @@ export default function SEO({
   description, 
   name = "Dynamic Notch", 
   type = "website",
-  url = "https://dynamicnotch.tech",
+  url,
   image = "https://dynamicnotch.tech/urlicon.png?v=2",
+  robots = "index, follow",
   children
 }: SEOProps) {
+  const { pathname } = useLocation();
+  const canonicalUrl = url || `https://dynamicnotch.tech${pathname === '/' ? '' : pathname}`;
+
   return (
     <Helmet>
       {/* Standard metadata tags */}
       <title>{title}</title>
       <meta name='description' content={description} />
+      <meta name="robots" content={robots} />
+      
+      {/* Canonical link */}
+      <link rel="canonical" href={canonicalUrl} />
       
       {/* OpenGraph tags */}
       <meta property="og:type" content={type} />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:url" content={url} />
+      <meta property="og:url" content={canonicalUrl} />
       <meta property="og:image" content={image} />
       
       {/* Twitter tags */}

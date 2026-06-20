@@ -1,8 +1,14 @@
 import { motion } from 'framer-motion';
+import SEO from '../components/SEO';
 
 export default function Terms() {
     return (
-        <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
+        <>
+            <SEO 
+                title="Terms of Service - Dynamic Notch"
+                description="Read the terms of service governing the download, license, and usage of the Dynamic Notch macOS application."
+            />
+            <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
             <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -70,5 +76,6 @@ export default function Terms() {
                 </div>
             </motion.div>
         </div>
+        </>
     );
 }
