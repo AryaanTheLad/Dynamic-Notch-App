@@ -44,12 +44,14 @@ function replaceOrInsertCanonical(html, url) {
 // Helper to replace or insert JSON-LD schema
 function replaceOrInsertSchema(html, schemaObj) {
   const regex = /<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi;
-  const newTag = `<script type="application/ld+json">\n${JSON.stringify(schemaObj, null, 2)}\n</script>`;
-  if (regex.test(html)) {
-    return html.replace(regex, newTag);
+  let newTag = '';
+  if (Array.isArray(schemaObj)) {
+    newTag = schemaObj.map(s => `<script type="application/ld+json">\n${JSON.stringify(s, null, 2)}\n</script>`).join('\n');
   } else {
-    return html.replace('</head>', `  ${newTag}\n</head>`);
+    newTag = `<script type="application/ld+json">\n${JSON.stringify(schemaObj, null, 2)}\n</script>`;
   }
+  const cleanedHtml = html.replace(regex, '');
+  return cleanedHtml.replace('</head>', `  ${newTag}\n</head>`);
 }
 
 const PAGES = [
@@ -58,31 +60,103 @@ const PAGES = [
     title: 'Dynamic Notch - The Ultimate MacBook Notch Utility',
     description: 'Transform your MacBook notch into an interactive Dynamic Island. Add a file tray, music player, native AirDrop, and widgets right to your notch.',
     type: 'website',
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "SoftwareApplication",
-      "name": "Dynamic Notch",
-      "operatingSystem": "macOS",
-      "applicationCategory": "UtilitiesApplication",
-      "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, music player, weather widget, and native AirDrop integration.",
-      "url": "https://dynamicnotch.tech",
-      "offers": {
-        "@type": "Offer",
-        "price": "3.99",
-        "priceCurrency": "USD"
+    schema: [
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "Dynamic Notch",
+        "operatingSystem": "macOS",
+        "applicationCategory": "UtilitiesApplication",
+        "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, music player, weather widget, and native AirDrop integration.",
+        "url": "https://dynamicnotch.tech",
+        "offers": {
+          "@type": "Offer",
+          "price": "5.99",
+          "priceCurrency": "USD"
+        },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5",
+          "reviewCount": "1"
+        },
+        "featureList": [
+          "File Tray for temporary storage",
+          "Music Player controls",
+          "Native AirDrop integration",
+          "Weather and Notes widgets"
+        ]
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "1"
-      },
-      "featureList": [
-        "File Tray for temporary storage",
-        "Music Player controls",
-        "Native AirDrop integration",
-        "Weather and Notes widgets"
-      ]
-    }
+      {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is it safe for my MacBook?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Absolutely. Dynamic Notch uses native macOS APIs and doesn't modify system files."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it support external monitors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! However, it's recommended to be used on Macbook M1 or later for the best experience."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it affect my battery life?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not at all! Dynamic notch is a very lightweight utility app that has minimal impact on the system. Used 0% cpu on idle, with 2-5% when actively being used. Ram usage is constant around 45MB."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is there a one-time purchase?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dynamic Notch is priced at 5.99$, along with a pay-what-you-want model."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What features does it have?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "File Tray, Media Control, Quick Notes, Custom Timer, Current Task Setter, Clipboard History, Weather and more!"
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I customize the application?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, you can configure your Dynamic Notch and change specific behaviors."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is it compatible with older Macs?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Dynamic Notch works on Apple Silicon Macs starting with the base variant of M1."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How do I hide the MacBook notch?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "While our app embraces the notch, you can use our 'Hide Notch Mode' to revert the notch when needed."
+            }
+          }
+        ]
+      }
+    ]
   },
   {
     route: '/blog',
