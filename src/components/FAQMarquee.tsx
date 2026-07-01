@@ -15,7 +15,7 @@ const faqs = [
   },
   {
     question: "Is there a one-time purchase?",
-    answer: "Dynamic Notch is priced at 3.99$, along with a pay-what-you-want model.",
+    answer: "Dynamic Notch is priced at 5.99$, along with a pay-what-you-want model.",
   },
     {
     question: "What features does it have?",
