@@ -172,6 +172,60 @@ const PAGES = [
     }
   },
   {
+    route: '/blog/founder-journey-first-payout',
+    title: 'Behind the Launch: What It Feels Like to Ship a Mac App and Earn Your First Payout - Dynamic Notch Blog',
+    description: "From late-night Swift debugging to pressing 'Publish', and that unforgettable email notification for your very first payout as an indie founder.",
+    type: 'article',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Behind the Launch: What It Feels Like to Ship a Mac App and Earn Your First Payout",
+      "description": "From late-night Swift debugging to pressing 'Publish', and that unforgettable email notification for your very first payout as an indie founder.",
+      "author": {
+        "@type": "Person",
+        "name": "Aryaan"
+      },
+      "datePublished": "2026-08-05",
+      "url": "https://dynamicnotch.tech/blog/founder-journey-first-payout"
+    }
+  },
+  {
+    route: '/blog/native-swift-vs-electron',
+    title: 'Why Native Swift Apps are Making a Massive Comeback on macOS - Dynamic Notch Blog',
+    description: 'In an era dominated by RAM-heavy web wrappers, native Swift development delivers the lightweight, hyper-responsive software Mac users deserve.',
+    type: 'article',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "Why Native Swift Apps are Making a Massive Comeback on macOS",
+      "description": "In an era dominated by RAM-heavy web wrappers, native Swift development delivers the lightweight, hyper-responsive software Mac users deserve.",
+      "author": {
+        "@type": "Person",
+        "name": "Aryaan"
+      },
+      "datePublished": "2026-07-08",
+      "url": "https://dynamicnotch.tech/blog/native-swift-vs-electron"
+    }
+  },
+  {
+    route: '/blog/mac-power-user-hacks',
+    title: '5 Essential macOS Customization Hacks for Power Users in 2026 - Dynamic Notch Blog',
+    description: "Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions.",
+    type: 'article',
+    schema: {
+      "@context": "https://schema.org",
+      "@type": "BlogPosting",
+      "headline": "5 Essential macOS Customization Hacks for Power Users in 2026",
+      "description": "Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions.",
+      "author": {
+        "@type": "Person",
+        "name": "Aryaan"
+      },
+      "datePublished": "2026-06-12",
+      "url": "https://dynamicnotch.tech/blog/mac-power-user-hacks"
+    }
+  },
+  {
     route: '/blog/intro',
     title: 'Elevate Your macOS Experience with Dynamic Notch - Dynamic Notch Blog',
     description: "If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.",

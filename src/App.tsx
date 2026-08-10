@@ -16,6 +16,9 @@ const NotchCustomization = lazy(() => import('./pages/blog/NotchCustomization'))
 const BatteryEfficiency = lazy(() => import('./pages/blog/BatteryEfficiency'));
 const HowToHideMacbookNotch = lazy(() => import('./pages/blog/HowToHideMacbookNotch'));
 const VersionUpdate = lazy(() => import('./pages/blog/VersionUpdate'));
+const FounderJourney = lazy(() => import('./pages/blog/FounderJourney'));
+const NativeSwiftApp = lazy(() => import('./pages/blog/NativeSwiftApp'));
+const PowerUserHacks = lazy(() => import('./pages/blog/PowerUserHacks'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Contact = lazy(() => import('./pages/Contact'));
@@ -44,6 +47,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog/founder-journey-first-payout" element={<FounderJourney />} />
+              <Route path="/blog/native-swift-vs-electron" element={<NativeSwiftApp />} />
+              <Route path="/blog/mac-power-user-hacks" element={<PowerUserHacks />} />
               <Route path="/blog/intro" element={<DynamicNotchIntro />} />
               <Route path="/blog/why-dynamic-island-mac" element={<WhyDynamicIslandMac />} />
               <Route path="/blog/boost-productivity" element={<BoostProductivity />} />

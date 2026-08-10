@@ -4,6 +4,27 @@ import SEO from '../components/SEO';
 
 const BLOG_POSTS = [
     {
+        id: 'founder-journey-first-payout',
+        title: 'Behind the Launch: What It Feels Like to Ship a Mac App and Earn Your First Payout',
+        date: 'August 5, 2026',
+        readTime: '6 min read',
+        excerpt: 'From late-night Swift debugging to pressing \'Publish\', and that unforgettable email notification for your very first payout as an indie founder.'
+    },
+    {
+        id: 'native-swift-vs-electron',
+        title: 'Why Native Swift Apps are Making a Massive Comeback on macOS',
+        date: 'July 8, 2026',
+        readTime: '5 min read',
+        excerpt: 'In an era dominated by RAM-heavy web wrappers, native Swift development delivers the lightweight, hyper-responsive software Mac users deserve.'
+    },
+    {
+        id: 'mac-power-user-hacks',
+        title: '5 Essential macOS Customization Hacks for Power Users in 2026',
+        date: 'June 12, 2026',
+        readTime: '5 min read',
+        excerpt: 'Unlocking maximum productivity on macOS isn\'t about complex scripts—it\'s about streamlining your visual space and micro-interactions.'
+    },
+    {
         id: 'intro',
         title: 'Elevate Your macOS Experience with Dynamic Notch',
         date: 'November 25, 2025',
@@ -43,6 +64,7 @@ const BLOG_POSTS = [
         title: 'Does Dynamic Notch Affect Your MacBook Battery Life?',
         date: 'March 20, 2026',
         readTime: '3 min read',
+        excerpt: 'Learn how Dynamic Notch runs natively and silently in the background without draining your battery or slowing down your pro apps.'
     },
     {
         id: 'how-to-hide-macbook-notch',
