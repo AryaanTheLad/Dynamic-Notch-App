@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Analytics } from '@vercel/analytics/react';
 import { LazyMotion } from 'framer-motion';
+import { motionFeatures } from './lib/motion';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -22,27 +23,54 @@ const PowerUserHacks = lazy(() => import('./pages/blog/PowerUserHacks'));
 const Privacy = lazy(() => import('./pages/Privacy'));
 const Terms = lazy(() => import('./pages/Terms'));
 const Contact = lazy(() => import('./pages/Contact'));
+const Changelog = lazy(() => import('./pages/Changelog'));
+const NotFound = lazy(() => import('./pages/NotFound'));
 
+/**
+ * react-router does not restore scroll or honour `#hash` targets on its own. Navigating
+ * to `/#pricing` from another page has to land on the section, and everything else has
+ * to land at the top.
+ */
 function ScrollToTop() {
-  const { pathname } = useLocation();
+  const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (hash) {
+      // The section may still be lazy-loading, so retry on the next frame.
+      const target = () => document.querySelector(hash);
+      const scroll = () => target()?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      if (target()) scroll();
+      else requestAnimationFrame(() => requestAnimationFrame(scroll));
+      return;
+    }
     window.scrollTo(0, 0);
-  }, [pathname]);
+  }, [pathname, hash]);
 
   return null;
 }
 
-const loadFeatures = () => import('framer-motion').then(res => res.domAnimation);
 
-function App() {
+/**
+ * Everything inside the router, with no opinion about which router it is.
+ *
+ * The client mounts this under `BrowserRouter`; `src/entry-server.tsx` renders the same
+ * tree under `StaticRouter` at build time so each route ships real HTML instead of an
+ * empty `<div id="root">`. Keeping the two entries over one shared component is what
+ * stops the server and client markup from drifting apart and causing hydration errors.
+ */
+export function AppShell() {
   return (
-    <LazyMotion features={loadFeatures} strict>
-      <BrowserRouter>
+    <>
       <ScrollToTop />
       <div className="min-h-screen bg-[var(--color-bg-base)] text-[var(--color-text-primary)] font-sans antialiased selection:bg-indigo-500/30 selection:text-white flex flex-col">
+        <a
+          href="#main"
+          className="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[60] focus:px-4 focus:py-2 focus:rounded-full focus:bg-white focus:text-black focus:text-sm focus:font-medium"
+        >
+          Skip to content
+        </a>
         <Navbar />
-        <main className="flex-1">
+        <main id="main" className="flex-1">
           <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
@@ -61,6 +89,8 @@ function App() {
               <Route path="/privacy" element={<Privacy />} />
               <Route path="/terms" element={<Terms />} />
               <Route path="/contact" element={<Contact />} />
+              <Route path="/changelog" element={<Changelog />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
           </Suspense>
         </main>
@@ -69,7 +99,16 @@ function App() {
         <SpeedInsights />
         <Analytics />
       </div>
-    </BrowserRouter>
+    </>
+  );
+}
+
+function App() {
+  return (
+    <LazyMotion features={motionFeatures} strict>
+      <BrowserRouter>
+        <AppShell />
+      </BrowserRouter>
     </LazyMotion>
   );
 }

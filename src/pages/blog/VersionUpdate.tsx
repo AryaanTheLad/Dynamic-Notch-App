@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function VersionUpdate() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO
                 title="Major App Updates and Performance Optimizations"
                 description="We have added multi file dragging and opening functionality, fixed bug errors, and made the app more optimized for a seamless experience."
                 publishDate="2026-05-23"
-                url="https://dynamicnotch.tech/blog/versionUpdate"
+                url="https://www.dynamicnotch.tech/blog/versionUpdate"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,9 +24,9 @@ export default function VersionUpdate() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <time dateTime="2026-05-23">May 23, 2026</time>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <span>2 min read</span>
                     </div>
                 </header>
@@ -49,7 +51,8 @@ export default function VersionUpdate() {
                         Performance is everything. We have made the app significantly more optimized to ensure it uses the absolute minimum amount of your CPU and RAM. The animations are faster, the memory footprint is smaller, and the overall responsiveness has been dramatically improved. You get all the visual flair and utility of the Dynamic Notch with zero compromises on your MacBook performance.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="versionUpdate" />
         </div>
     );
 }

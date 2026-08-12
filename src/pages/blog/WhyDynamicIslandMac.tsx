@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function WhyDynamicIslandMac() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="Why Your Mac Deserves a Dynamic Island"
                 description="An area the iPhone transformed into an interactive hub was left completely static on macOS—until now."
                 publishDate="2026-01-02"
-                url="https://dynamicnotch.tech/blog/why-dynamic-island-mac"
+                url="https://www.dynamicnotch.tech/blog/why-dynamic-island-mac"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function WhyDynamicIslandMac() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
-                        <time dateTime="2023-11-02">January 2, 2026</time>
-                        <span>•</span>
-                        <span>4 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <time dateTime="2026-01-02">January 2, 2026</time>
+                        <span aria-hidden="true">•</span>
+                        <span>2 min read</span>
                     </div>
                 </header>
 
@@ -51,7 +53,8 @@ export default function WhyDynamicIslandMac() {
                         A Dynamic Island on your Mac isn’t just a cosmetic gimmick. It fundamentally restructures how you execute micro tasks like changing tracks or viewing the weather. It transforms hardware dead space into a software powerhouse. If you appreciate Apple’s meticulous attention to interactive design, Dynamic Notch is the missing piece of your macOS experience.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="why-dynamic-island-mac" />
         </div>
     );
 }

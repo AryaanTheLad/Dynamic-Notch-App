@@ -3,21 +3,27 @@ import Hero from '../components/Hero';
 import SEO from '../components/SEO';
 
 const Features = lazy(() => import('../components/Features'));
-const HowItWorks = lazy(() => import('../components/HowItWorks'));
-const FAQMarquee = lazy(() => import('../components/FAQMarquee'));
+const NotchDrop = lazy(() => import('../components/NotchDrop'));
+const Pricing = lazy(() => import('../components/Pricing'));
+const FirstLaunch = lazy(() => import('../components/FirstLaunch'));
+const Specs = lazy(() => import('../components/Specs'));
+const FAQ = lazy(() => import('../components/FAQ'));
 
 export default function Home() {
   return (
     <>
-      <SEO 
+      <SEO
         title="Dynamic Notch - The Ultimate MacBook Notch Utility"
         description="Transform your MacBook notch into an interactive Dynamic Island. Add a file tray, music player, native AirDrop, and widgets right to your notch."
       />
       <Hero />
       <Suspense fallback={null}>
         <Features />
-        <HowItWorks />
-        <FAQMarquee />
+        <NotchDrop />
+        <Pricing />
+        <FirstLaunch />
+        <Specs />
+        <FAQ />
       </Suspense>
     </>
   );

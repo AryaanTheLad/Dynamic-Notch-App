@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function HowToHideMacbookNotch() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="How to Hide the MacBook Notch (and Why You Might Not Want To)"
                 description="If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful."
                 publishDate="2026-04-19"
-                url="https://dynamicnotch.tech/blog/how-to-hide-macbook-notch"
+                url="https://www.dynamicnotch.tech/blog/how-to-hide-macbook-notch"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function HowToHideMacbookNotch() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <time dateTime="2026-04-19">April 19, 2026</time>
-                        <span>•</span>
-                        <span>4 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <span>2 min read</span>
                     </div>
                 </header>
 
@@ -70,7 +72,8 @@ export default function HowToHideMacbookNotch() {
                         While hiding the notch is easy, giving it purpose enhances your entire macOS experience. Why camouflage something when you can turn it into your most productive tool?
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="how-to-hide-macbook-notch" />
         </div>
     );
 }

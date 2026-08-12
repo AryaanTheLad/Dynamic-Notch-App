@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function FounderJourney() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="Behind the Launch: What It Feels Like to Ship a Mac App and Earn Your First Payout"
                 description="From late-night Swift debugging to pressing 'Publish', and that unforgettable email notification for your very first payout as an indie founder."
                 publishDate="2026-08-05"
-                url="https://dynamicnotch.tech/blog/founder-journey-first-payout"
+                url="https://www.dynamicnotch.tech/blog/founder-journey-first-payout"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function FounderJourney() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <time dateTime="2026-08-05">August 5, 2026</time>
-                        <span>•</span>
-                        <span>6 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <span>3 min read</span>
                     </div>
                 </header>
 
@@ -88,7 +90,8 @@ export default function FounderJourney() {
                         Dynamic Notch started with a simple question and a few lines of code. Today, it’s actively helping thousands of Mac users stay in their flow state every day. If you’re currently sitting on an idea or working on a project of your own: finish it, ship it, and put it out there. The feeling of seeing your creation fly is worth every single late night.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="founder-journey-first-payout" />
         </div>
     );
 }

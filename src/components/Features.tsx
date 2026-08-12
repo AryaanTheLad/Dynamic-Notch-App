@@ -1,166 +1,171 @@
 import { m } from 'framer-motion';
+import type { ReactNode } from 'react';
 import { Play, Folder, Edit3, Thermometer, Timer, Target, Clipboard } from 'lucide-react';
 import InteractiveTimer from './InteractiveTimer';
+import SectionHeading from './SectionHeading';
+import { useEntrance } from '../hooks/useEntrance';
 
-const features = [
+/**
+ * The art on these cards is cropped straight out of `public/demo.mp4` — the notch
+ * running on a real machine, not a CSS approximation of it. Recrop from the video if
+ * the UI changes; the frame timestamps are noted in each `shot` comment.
+ */
+type Shot = { src: string; alt: string; width: number; height: number };
+
+type Feature = {
+    title: string;
+    description: string;
+    icon: ReactNode;
+    span: string;
+    delay: number;
+    tint: string;
+    shot?: Shot;
+    live?: ReactNode;
+    /** Extra padding for the very short weather strip, so it reads as a screen edge. */
+    shotPad?: string;
+};
+
+const features: Feature[] = [
     {
-        title: "Media Control",
-        description: "Instantly pause, play, or skip tracks with a single click. Your music, always within reach.",
-        icon: <Play className="w-5 h-5 text-emerald-400" />,
-        colSpan: "md:col-span-2",
+        title: 'Media Control',
+        description:
+            'Artwork, track, and play / pause / skip for whatever is making sound — without raising the app that owns it.',
+        icon: <Play className="w-5 h-5 text-emerald-300" />,
+        span: 'md:col-span-4',
+        delay: 0.05,
+        tint: 'from-emerald-500/10',
+        // demo.mp4 @ 25.5s
+        shot: { src: '/shots/media.webp', alt: 'The notch expanded to show album art, track name and playback controls', width: 1320, height: 384 },
+    },
+    {
+        title: 'Weather at a glance',
+        description: 'Current conditions live in the bar itself. No panel to open.',
+        icon: <Thermometer className="w-5 h-5 text-cyan-300" />,
+        span: 'md:col-span-2',
         delay: 0.1,
-        gradient: "from-emerald-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
-                <div className="w-48 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-between px-4 border border-white/10 shadow-lg">
-                    <div className="w-6 h-6 rounded-md bg-zinc-800" />
-                    <div className="flex gap-3">
-                        <div className="w-3 h-3 rounded-full bg-white/20" />
-                        <div className="w-3 h-3 rounded-full bg-white" />
-                        <div className="w-3 h-3 rounded-full bg-white/20" />
-                    </div>
-                </div>
-            </div>
-        )
+        tint: 'from-cyan-500/10',
+        // demo.mp4 @ 4.5s — the left end of the collapsed bar, cropped tight so the
+        // reading is still legible at card width.
+        shot: { src: '/shots/weather.webp', alt: 'The notch bar showing 31 degrees next to the timer and task buttons', width: 660, height: 72 },
+        shotPad: 'px-5 py-12',
     },
     {
-        title: "File Tray",
-        description: "Drag and drop files to store them temporarily or AirDrop instantly.",
-        icon: <Folder className="w-5 h-5 text-blue-400" />,
-        colSpan: "md:col-span-1",
+        title: 'File Tray',
+        description:
+            'Drag files up into the notch, walk them to another app, drag them out. Or hand the whole batch to AirDrop.',
+        icon: <Folder className="w-5 h-5 text-blue-300" />,
+        span: 'md:col-span-3',
+        delay: 0.15,
+        tint: 'from-blue-500/10',
+        // demo.mp4 @ 16.8s
+        shot: { src: '/shots/files.webp', alt: 'Three files parked in the notch file tray: Rubric.docx, Preview 2.png and Preview 1.pdf', width: 1320, height: 431 },
+    },
+    {
+        title: 'Clipboard History',
+        description:
+            'Everything you copied, still there. Click an entry to put it back on the clipboard.',
+        icon: <Clipboard className="w-5 h-5 text-orange-300" />,
+        span: 'md:col-span-3',
         delay: 0.2,
-        gradient: "from-blue-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
-                <div className="flex flex-col gap-2">
-                    <div className="w-24 h-8 bg-blue-500/20 border border-blue-500/30 rounded-md" />
-                    <div className="w-24 h-8 bg-blue-500/10 border border-blue-500/20 rounded-md" />
-                </div>
-            </div>
-        )
+        tint: 'from-orange-500/10',
+        // demo.mp4 @ 11.5s
+        shot: { src: '/shots/clipboard.webp', alt: 'The notch clipboard panel listing recently copied text with a copied badge', width: 1320, height: 412 },
     },
     {
-        title: "Quick Notes",
-        description: "Jot down brilliant ideas in a flash. Click to copy them.",
-        icon: <Edit3 className="w-5 h-5 text-purple-400" />,
-        colSpan: "md:col-span-1",
+        title: 'Quick Notes',
+        description: 'A scratch line for the thing you will forget in ninety seconds.',
+        icon: <Edit3 className="w-5 h-5 text-purple-300" />,
+        span: 'md:col-span-2',
+        delay: 0.25,
+        tint: 'from-purple-500/10',
+        // demo.mp4 @ 6.2s
+        shot: { src: '/shots/notes.webp', alt: 'The notch notes panel holding a single short note', width: 1320, height: 394 },
+    },
+    {
+        title: 'Current Task Setter',
+        description: 'Name what you are doing and keep it pinned where you cannot avoid it.',
+        icon: <Target className="w-5 h-5 text-yellow-300" />,
+        span: 'md:col-span-2',
         delay: 0.3,
-        gradient: "from-purple-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-start justify-start p-4">
-                <div className="w-full bg-transparent border-b border-white/10 text-white/40 text-sm pb-1">
-                    Buy groceries...|
-                </div>
-            </div>
-        )
+        tint: 'from-yellow-500/10',
+        // demo.mp4 @ 39.5s
+        shot: { src: '/shots/task.webp', alt: 'The notch current-task panel with a task named Recording', width: 1320, height: 412 },
     },
     {
-        title: "Temperature Check",
-        description: "Keep an eye on outside temperature right from your notch.",
-        icon: <Thermometer className="w-5 h-5 text-cyan-400" />,
-        colSpan: "md:col-span-1",
-        delay: 0.4,
-        gradient: "from-cyan-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
-                <div className="w-40 h-10 bg-[#1a1a1a] rounded-full flex items-center px-4 border border-white/10 shadow-lg">
-                    <span className="text-cyan-400 font-medium ml-2">24°C</span>
-                    <div className="flex-1 ml-4 h-1.5 bg-white/10 rounded-full overflow-hidden">
-                        <div className="w-2/5 h-full bg-gradient-to-r from-cyan-400 to-blue-500" />
-                    </div>
-                </div>
-            </div>
-        )
+        title: 'Custom Timer',
+        description:
+            'Any duration. The notch expands to count it down and chimes when it lands. Try it —',
+        icon: <Timer className="w-5 h-5 text-pink-300" />,
+        span: 'md:col-span-2',
+        delay: 0.35,
+        tint: 'from-pink-500/10',
+        live: <InteractiveTimer />,
     },
-    {
-        title: "Custom Timer",
-        description: "Custom time input, notch expands dynamically, and plays an alert when time's up.",
-        icon: <Timer className="w-5 h-5 text-pink-400" />,
-        colSpan: "md:col-span-1",
-        delay: 0.5,
-        gradient: "from-pink-500/10 to-transparent",
-        image: <InteractiveTimer />
-    },
-    {
-        title: "Current Task Setter",
-        description: "Set your current focused task and keep it visible in the notch to boost productivity.",
-        icon: <Target className="w-5 h-5 text-yellow-400" />,
-        colSpan: "md:col-span-1",
-        delay: 0.6,
-        gradient: "from-yellow-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center">
-                <div className="w-48 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-center px-4 border border-white/10 shadow-lg text-sm text-yellow-500/80">
-                    <span className="font-medium">Focus: Coding</span>
-                </div>
-            </div>
-        )
-    },
-    {
-        title: "Clipboard History",
-        description: "Access your recently copied text and links seamlessly directly from the notch.",
-        icon: <Clipboard className="w-5 h-5 text-orange-400" />,
-        colSpan: "md:col-span-2",
-        delay: 0.7,
-        gradient: "from-orange-500/10 to-transparent",
-        image: (
-            <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex flex-col items-center justify-center p-4 gap-2">
-                 <div className="w-full max-w-[250px] h-8 bg-zinc-800/80 rounded border border-white/10 flex items-center px-3 text-xs text-white/50 truncate">
-                     https://github.com/aryaanq...
-                 </div>
-                 <div className="w-full max-w-[250px] h-8 bg-zinc-800/50 rounded border border-white/5 flex items-center px-3 text-xs text-white/30 truncate">
-                     npm install framer-motion
-                 </div>
-            </div>
-        )
-    }
 ];
 
 export default function Features() {
+    const entrance = useEntrance();
+
     return (
-        <section className="py-32 px-6 relative max-w-6xl mx-auto">
-            <div className="text-center mb-20">
-                <m.h2
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.6 }}
-                    className="text-4xl font-bold tracking-tight mb-4"
-                >
-                    The Essential MacBook Notch Utility.<br />
-                    <span className="text-white/40">Everything you need. Nothing you don't.</span>
-                </m.h2>
-            </div>
+        <section id="features" className="notch-spill py-28 px-6 md:py-36">
+            <div className="max-w-6xl mx-auto">
+                <SectionHeading
+                    eyebrow="Features"
+                    title={
+                        <>
+                            Seven things you'd otherwise{' '}
+                            <span className="text-white/55">stop working to do.</span>
+                        </>
+                    }
+                    subtitle="Every image below is a frame from the app running on a real Mac — not a mockup."
+                />
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {features.map((feature, index) => (
-                    <m.div
-                        key={index}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true, margin: "-100px" }}
-                        transition={{ duration: 0.6, delay: feature.delay }}
-                        className={`group rounded-3xl bg-zinc-900 border border-white/5 p-8 hover:border-white/10 transition-colors relative overflow-hidden ${feature.colSpan}`}
-                    >
-                        {/* Subtle Gradient Background */}
-                        <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-br ${feature.gradient} opacity-0 group-hover:opacity-100 transition-opacity duration-700`} />
+                <div className="mt-16 grid grid-cols-1 md:grid-cols-6 gap-5">
+                    {features.map((feature) => (
+                        <m.div
+                            key={feature.title}
+                            {...entrance({ inView: true, delay: feature.delay, y: 24 })}
+                            className={`group relative flex flex-col overflow-hidden rounded-[1.75rem] border border-white/[0.07] bg-[var(--color-surface)] p-7 transition-colors duration-500 hover:border-white/15 ${feature.span}`}
+                        >
+                            <div
+                                className={`pointer-events-none absolute inset-0 bg-gradient-to-br ${feature.tint} to-transparent opacity-0 transition-opacity duration-700 group-hover:opacity-100`}
+                            />
 
-                        <div className="relative z-10 flex flex-col h-full">
-                            <div className="flex items-center gap-3 mb-4">
-                                <div className="w-10 h-10 rounded-full bg-black/50 flex items-center justify-center border border-white/5">
-                                    {feature.icon}
+                            <div className="relative z-10 flex flex-col h-full">
+                                <div className="flex items-center gap-3">
+                                    <span className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/10 bg-black/50">
+                                        {feature.icon}
+                                    </span>
+                                    <h3 className="text-lg font-semibold tracking-[-0.01em]">
+                                        {feature.title}
+                                    </h3>
                                 </div>
-                                <h3 className="text-xl font-semibold">{feature.title}</h3>
+
+                                <p className="mt-4 flex-1 text-sm font-light leading-relaxed text-[var(--color-text-secondary)]">
+                                    {feature.description}
+                                </p>
+
+                                {feature.shot && (
+                                    <div
+                                        className={`screen mt-6 overflow-hidden rounded-xl ${feature.shotPad ?? ''}`}
+                                    >
+                                        <img
+                                            src={feature.shot.src}
+                                            alt={feature.shot.alt}
+                                            width={feature.shot.width}
+                                            height={feature.shot.height}
+                                            loading="lazy"
+                                            decoding="async"
+                                            className="w-full h-auto"
+                                        />
+                                    </div>
+                                )}
+
+                                {feature.live}
                             </div>
-
-                            <p className="text-[var(--color-text-secondary)] font-light leading-relaxed mb-6 flex-1">
-                                {feature.description}
-                            </p>
-
-                            {feature.image}
-                        </div>
-                    </m.div>
-                ))}
+                        </m.div>
+                    ))}
+                </div>
             </div>
         </section>
     );

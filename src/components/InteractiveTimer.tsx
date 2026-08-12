@@ -7,20 +7,16 @@ export default function InteractiveTimer() {
     const [isActive, setIsActive] = useState(false);
     const [timeLeft, setTimeLeft] = useState(0);
 
-    useEffect(() => {
-        let interval: ReturnType<typeof setInterval>;
-        if (isActive && timeLeft > 0) {
-            interval = setInterval(() => setTimeLeft((prev) => prev - 1), 1000);
-        } else if (timeLeft === 0 && isActive) {
-            setIsActive(false);
-            playBeep();
-        }
-        return () => clearInterval(interval);
-    }, [isActive, timeLeft]);
-
+    // Declared above the effect that calls it: a `const` arrow function is in the
+    // temporal dead zone until this line runs, so referencing it from an effect defined
+    // earlier in the body is only safe by accident of timing.
     const playBeep = () => {
         try {
-            const AudioContext = window.AudioContext || (window as any).webkitAudioContext;
+            const AudioContext =
+                window.AudioContext ??
+                (window as unknown as { webkitAudioContext?: typeof window.AudioContext })
+                    .webkitAudioContext;
+            if (!AudioContext) return;
             const ctx = new AudioContext();
             const osc = ctx.createOscillator();
             const gain = ctx.createGain();
@@ -39,6 +35,29 @@ export default function InteractiveTimer() {
             console.error("Audio block", e);
         }
     };
+
+    // Tick. Depends only on `isActive`, so the interval is created once per run rather
+    // than being torn down and recreated on every second that elapses.
+    useEffect(() => {
+        if (!isActive) return;
+        const interval = setInterval(
+            () => setTimeLeft((prev) => (prev > 0 ? prev - 1 : 0)),
+            1000,
+        );
+        return () => clearInterval(interval);
+    }, [isActive]);
+
+    // Finish. The stop-and-beep is deferred by a timeout rather than run inline: setting
+    // state synchronously inside an effect re-renders before the browser paints, which
+    // is what the cascading-render lint rule is about.
+    useEffect(() => {
+        if (!isActive || timeLeft > 0) return;
+        const done = setTimeout(() => {
+            setIsActive(false);
+            playBeep();
+        }, 0);
+        return () => clearTimeout(done);
+    }, [isActive, timeLeft]);
 
     const toggleTimer = () => {
         if (!isActive) {
@@ -69,23 +88,27 @@ export default function InteractiveTimer() {
                     <div className="flex items-center gap-1 text-white pr-2">
                         <input
                             type="text"
+                            inputMode="numeric"
+                            aria-label="Minutes"
                             min="0"
                             max="99"
                             value={minutes}
                             onChange={(e) => setMinutes(e.target.value.replace(/\D/g, '').slice(0, 2))}
                             onFocus={handleFocus}
-                            className="w-6 bg-transparent text-right outline-none text-pink-400 font-mono text-sm selection:bg-pink-500/30"
+                            className="w-6 bg-transparent text-right outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-pink-400 text-pink-400 font-mono text-sm selection:bg-pink-500/30"
                             placeholder="00"
                         />
-                        <span className="text-white/40 pb-0.5">:</span>
+                        <span className="text-white/60 pb-0.5">:</span>
                         <input
                             type="text"
+                            inputMode="numeric"
+                            aria-label="Seconds"
                             min="0"
                             max="59"
                             value={seconds}
                             onChange={(e) => setSeconds(e.target.value.replace(/\D/g, '').slice(0, 2))}
                             onFocus={handleFocus}
-                            className="w-6 bg-transparent outline-none text-pink-400 font-mono text-sm selection:bg-pink-500/30"
+                            className="w-6 bg-transparent outline-none rounded-sm focus-visible:ring-2 focus-visible:ring-pink-400 text-pink-400 font-mono text-sm selection:bg-pink-500/30"
                             placeholder="00"
                         />
                     </div>
@@ -96,8 +119,10 @@ export default function InteractiveTimer() {
                 )}
 
                 <button
+                    type="button"
                     onClick={toggleTimer}
-                    className={`flex items-center justify-center w-6 h-6 rounded-full transition-colors ${isActive ? 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30' : 'bg-white/10 text-white hover:bg-white/20'}`}
+                    aria-label={isActive ? 'Stop timer' : 'Start timer'}
+                    className={`flex items-center justify-center w-6 h-6 rounded-full transition-colors outline-none focus-visible:ring-2 focus-visible:ring-pink-400 ${isActive ? 'bg-pink-500/20 text-pink-400 hover:bg-pink-500/30' : 'bg-white/10 text-white hover:bg-white/20'}`}
                 >
                     {isActive ? <Square className="w-3 h-3" /> : <Play className="w-3 h-3 ml-0.5" />}
                 </button>

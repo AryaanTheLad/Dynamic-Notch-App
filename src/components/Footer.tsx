@@ -1,42 +1,75 @@
 import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import HomeLink from './HomeLink';
+import { useEntrance } from '../hooks/useEntrance';
+import { CHECKOUT_URL, COPYRIGHT_YEAR, PRICE, REFUND_POLICY, REQUIREMENTS, SOCIAL } from '../data/product.js';
+import { trackCheckout } from '../lib/analytics';
+
+/** py-3 on a 20px line box clears the 44×44pt minimum tap target on mobile. */
+const footerLink = 'inline-flex items-center py-3 hover:text-white transition-colors';
 
 export default function Footer() {
+    const entrance = useEntrance();
+
     return (
         <footer className="relative pt-32 pb-10 border-t border-white/5 overflow-hidden">
             {/* Background Glow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--color-accent)] opacity-[0.03] blur-[100px] rounded-[100%] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
-                <m.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.8 }}
-                    className="mb-24"
-                >
+                <m.div {...entrance({ y: 30, duration: 0.8, inView: true })} className="mb-24">
                     <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
-                        Ready to elevate?
+                        {PRICE.display}. Once. No subscription.
                     </h2>
-                    <a href="https://dynamicnotchofficial.lemonsqueezy.com/checkout/buy/b1976809-d837-4608-acb1-7de6e790ae43" target="_blank" rel="noopener noreferrer" className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center">
-                        Purchase Dynamic Notch
+                    <a
+                        href={CHECKOUT_URL}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={() => trackCheckout('footer')}
+                        className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center"
+                    >
+                        Buy Dynamic Notch — {PRICE.display}
                     </a>
+
+                    <p className="mt-6 text-sm text-white/60">
+                        {REQUIREMENTS.minMacOSLabel} · {REQUIREMENTS.architecture} ·{' '}
+                        {REQUIREMENTS.downloadSize} download
+                    </p>
+                    <p className="mt-2 text-xs text-white/55 max-w-md mx-auto leading-relaxed">
+                        Signed and notarized by Apple. {REFUND_POLICY}
+                    </p>
                 </m.div>
 
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm font-light text-[var(--color-text-secondary)]">
-                    <div className="flex items-center gap-2 mb-4 md:mb-0">
-                        <Link to="/" className="font-semibold text-white tracking-tight hover:opacity-80 transition-opacity">Dynamic Notch</Link>
-                        <span>© {new Date().getFullYear()}</span>
+                    <div className="flex items-center gap-2 mb-2 md:mb-0">
+                        <HomeLink className="font-semibold text-white tracking-tight hover:opacity-80 transition-opacity py-3">Dynamic Notch</HomeLink>
+                        <span>© {COPYRIGHT_YEAR}</span>
                     </div>
 
-                    <div className="flex items-center gap-6">
-                        <Link to="/" className="hover:text-white transition-colors">Home</Link>
-                        <Link to="/blog" className="hover:text-white transition-colors">Blog</Link>
-                        <Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <Link to="/contact" className="hover:text-white transition-colors">Contact</Link>
-                        <a href="https://x.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors flex items-center justify-center w-8 h-8 rounded-full bg-white/5 border border-white/10 ml-2">
-                            <svg viewBox="0 0 24 24" aria-hidden="true" className="w-4 h-4 fill-current"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 24.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.008 5.418H5.078z"></path></svg>
+                    <div className="flex flex-wrap items-center justify-center gap-x-6">
+                        <HomeLink className={footerLink}>Home</HomeLink>
+                        <Link to="/blog" className={footerLink}>Blog</Link>
+                        <Link to="/changelog" className={footerLink}>Changelog</Link>
+                        <Link to="/privacy" className={footerLink}>Privacy Policy</Link>
+                        <Link to="/terms" className={footerLink}>Terms of Service</Link>
+                        <Link to="/contact" className={footerLink}>Contact</Link>
+                        <a
+                            href={SOCIAL.x}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Dynamic Notch on X"
+                            className={footerLink}
+                        >
+                            X
+                        </a>
+                        <a
+                            href={SOCIAL.github}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Aryaan on GitHub"
+                            className={footerLink}
+                        >
+                            GitHub
                         </a>
                     </div>
                 </div>

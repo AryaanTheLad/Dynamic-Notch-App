@@ -1,7 +1,11 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import SEO from '../components/SEO';
+import { useEntrance } from '../hooks/useEntrance';
+import { LEGAL_LAST_UPDATED_LABEL } from '../data/product.js';
 
 export default function Terms() {
+    const entrance = useEntrance();
+
     return (
         <>
             <SEO 
@@ -9,14 +13,12 @@ export default function Terms() {
                 description="Read the terms of service governing the download, license, and usage of the Dynamic Notch macOS application."
             />
             <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.div
+                {...entrance({ duration: 0.6 })}
             >
                 <h1 className="text-4xl font-bold mb-8 title-gradient">Terms of Service</h1>
                 <div className="prose prose-invert prose-lg text-[var(--color-text-secondary)]">
-                    <p>Last updated: {new Date().toLocaleDateString()}</p>
+                    <p>Last updated: {LEGAL_LAST_UPDATED_LABEL}</p>
                     
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Acceptance of Terms</h2>
                     <p>
@@ -46,9 +48,9 @@ export default function Terms() {
                         (Aryaan) may result in the immediate termination of access and potential legal action.
                     </p>
                     <p className="mt-4">
-                        By using this software, you acknowledge the warnings presented by macOS during 
-                        installation and agree that the developer is not liable for any issues, data loss, or 
-                        system behavior resulting from the manual bypass of Gatekeeper security settings.
+                        You agree to obtain the application only from its official distribution channel. The
+                        developer is not liable for any issues, data loss, or system behaviour arising from
+                        modified, repackaged, or third-party redistributed copies of the software.
                     </p>
 
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">4. Limitation of Liability</h2>
@@ -74,7 +76,7 @@ export default function Terms() {
                         downloaded materials in your possession whether in electronic or printed format.
                     </p>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
         </>
     );

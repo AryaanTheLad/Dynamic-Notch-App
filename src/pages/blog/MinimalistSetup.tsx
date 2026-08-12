@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function MinimalistSetup() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="Dynamic Notch and the Minimalist Desk Setup"
                 description="True aesthetic equilibrium requires digital minimalism. Declutter your menu bar and your desktop."
                 publishDate="2026-02-28"
-                url="https://dynamicnotch.tech/blog/minimalist-setup"
+                url="https://www.dynamicnotch.tech/blog/minimalist-setup"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function MinimalistSetup() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
-                        <time dateTime="2023-11-28">February 28, 2026</time>
-                        <span>•</span>
-                        <span>4 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <time dateTime="2026-02-28">February 28, 2026</time>
+                        <span aria-hidden="true">•</span>
+                        <span>1 min read</span>
                     </div>
                 </header>
 
@@ -52,7 +54,8 @@ export default function MinimalistSetup() {
                         By deploying the Cinematic Monochrome mode inside Dynamic Notch, your utilitarian pop-ups beautifully blend with the high contrast physical bezels of the MacBook. It isn't just a widget; it's a seamless extension of your high end hardware, completing the ultimate clean desk setup.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="minimalist-setup" />
         </div>
     );
 }

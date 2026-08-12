@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function NativeSwiftApp() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="Why Native Swift Apps are Making a Massive Comeback on macOS"
                 description="In an era dominated by RAM-heavy web wrappers, native Swift development delivers the lightweight, hyper-responsive software Mac users deserve."
                 publishDate="2026-07-08"
-                url="https://dynamicnotch.tech/blog/native-swift-vs-electron"
+                url="https://www.dynamicnotch.tech/blog/native-swift-vs-electron"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function NativeSwiftApp() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <time dateTime="2026-07-08">July 8, 2026</time>
-                        <span>•</span>
-                        <span>5 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <span>2 min read</span>
                     </div>
                 </header>
 
@@ -68,7 +70,8 @@ export default function NativeSwiftApp() {
                         As developers and power users demand faster workflows and longer battery life, native macOS utilities are enjoying a renaissance. Building native software requires a deeper investment in learning Apple's platform ecosystem, but the result—fast, beautiful, respectful software—is well worth the effort.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="native-swift-vs-electron" />
         </div>
     );
 }

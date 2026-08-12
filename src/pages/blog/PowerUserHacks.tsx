@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function PowerUserHacks() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="5 Essential macOS Customization Hacks for Power Users in 2026"
                 description="Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions."
                 publishDate="2026-06-12"
-                url="https://dynamicnotch.tech/blog/mac-power-user-hacks"
+                url="https://www.dynamicnotch.tech/blog/mac-power-user-hacks"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function PowerUserHacks() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
+                        <span aria-hidden="true">•</span>
                         <time dateTime="2026-06-12">June 12, 2026</time>
-                        <span>•</span>
-                        <span>5 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <span>2 min read</span>
                     </div>
                 </header>
 
@@ -59,7 +61,8 @@ export default function PowerUserHacks() {
                         Visual harmony breeds mental clarity. Matching your macOS accent colors with clean wallpapers, dark mode interfaces, and subtle translucent glass elements reduces eye strain during long coding or design sessions. Software designed with native macOS translucency automatically adapts to your system wallpaper for a unified, modern aesthetic.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="mac-power-user-hacks" />
         </div>
     );
 }

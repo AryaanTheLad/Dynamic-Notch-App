@@ -1,9 +1,11 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import { useState } from 'react';
 import SEO from '../components/SEO';
+import { useEntrance } from '../hooks/useEntrance';
 
 export default function Contact() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+    const entrance = useEntrance();
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -12,7 +14,15 @@ export default function Contact() {
         const form = e.currentTarget;
         const formData = new FormData(form);
 
-        // 🔥 IMPORTANT: Replace 'YOUR_FORMSPREE_ID' with your ID from Formspree
+        // Honeypot: a real person never sees this field, so anything in it is a bot
+        // filling every input it finds. Report success rather than an error — telling a
+        // spam script it failed just invites it to retry with a different shape.
+        if (formData.get("company")) {
+            setStatus("success");
+            form.reset();
+            return;
+        }
+
         const response = await fetch("https://formspree.io/f/xpqyrlev", {
             method: "POST",
             body: formData,
@@ -34,21 +44,15 @@ export default function Contact() {
                 description="Have questions, feedback, or need help with Dynamic Notch? Get in touch directly with the developer."
             />
             <div className="pt-32 pb-20 px-6 max-w-2xl mx-auto min-h-[70vh]">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-                >
+                <m.div {...entrance({ duration: 0.8, ease: [0.16, 1, 0.3, 1] })}>
                     <h1 className="text-5xl font-light italic font-serif mb-4 title-gradient text-center">Contact Us</h1>
                     <p className="text-white/40 text-center mb-16 text-sm uppercase tracking-[0.3em]">
                         A Direct Line to Aryaan
                     </p>
 
                     {status === "success" ? (
-                        <motion.div 
-                            initial={{ opacity: 0, scale: 0.98 }}
-                            animate={{ opacity: 1, scale: 1 }}
-                            transition={{ duration: 1, ease: "easeOut" }}
+                        <m.div
+                            {...entrance({ y: 0, scale: 0.98, duration: 1 })}
                             className="bg-black border border-white/20 rounded-none p-16 text-center shadow-[0_0_60px_rgba(255,255,255,0.03)]"
                         >
                             <h2 className="text-4xl font-light italic font-serif text-white mb-6">Message Sent</h2>
@@ -62,9 +66,20 @@ export default function Contact() {
                             >
                                 Send another message
                             </button>
-                        </motion.div>
+                        </m.div>
                     ) : (
                         <form className="space-y-10" onSubmit={handleSubmit}>
+                            {/* Honeypot. `hidden` keeps it out of the layout and out of the
+                                accessibility tree, so screen readers never announce it, while
+                                a bot parsing the DOM still finds and fills it. */}
+                            <input
+                                type="text"
+                                name="company"
+                                tabIndex={-1}
+                                autoComplete="off"
+                                aria-hidden="true"
+                                hidden
+                            />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                                 <div className="flex flex-col gap-3">
                                     <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-white/30 ml-1">Name</label>
@@ -121,7 +136,7 @@ export default function Contact() {
                             )}
                         </form>
                     )}
-                </motion.div>
+                </m.div>
             </div>
         </>
     );

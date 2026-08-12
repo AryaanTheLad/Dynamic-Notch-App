@@ -1,7 +1,11 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import SEO from '../components/SEO';
+import { useEntrance } from '../hooks/useEntrance';
+import { LEGAL_LAST_UPDATED_LABEL } from '../data/product.js';
 
 export default function Privacy() {
+    const entrance = useEntrance();
+
     return (
         <>
             <SEO 
@@ -9,14 +13,12 @@ export default function Privacy() {
                 description="Read our Privacy Policy to understand how we protect your data. Dynamic Notch operates locally and values your privacy first."
             />
             <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.div
+                {...entrance({ duration: 0.6 })}
             >
                 <h1 className="text-4xl font-bold mb-8 title-gradient">Privacy Policy</h1>
                 <div className="prose prose-invert prose-lg text-[var(--color-text-secondary)]">
-                    <p>Last updated: {new Date().toLocaleDateString()}</p>
+                    <p>Last updated: {LEGAL_LAST_UPDATED_LABEL}</p>
                     
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Introduction</h2>
                     <p>
@@ -63,9 +65,11 @@ export default function Privacy() {
 
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">4. Transparency & Security</h2>
                     <p>
-                        Since Dynamic Notch is not notarized by Apple due to the high cost of the developer program, 
-                        we remain fully transparent about our code. The app is built with standard Swift and SwiftUI 
-                        libraries and does not perform any background "phoning home" aside from the initial install signal.
+                        Dynamic Notch is signed with an Apple Developer ID and notarized by Apple, so macOS
+                        checks the binary before it ever runs and the app opens without a Gatekeeper detour.
+                        Beyond that we remain transparent about behaviour: the app is built with standard Swift
+                        and SwiftUI libraries and does not perform any background "phoning home" aside from the
+                        initial install signal.
                     </p>
 
                     <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">5. Contact</h2>
@@ -74,7 +78,7 @@ export default function Privacy() {
                         through our official channels.
                     </p>
                 </div>
-            </motion.div>
+            </m.div>
         </div>
         </>
     );

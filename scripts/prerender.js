@@ -1,12 +1,152 @@
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
+import {
+  SITE_URL,
+  VERSION,
+  REQUIREMENTS,
+  FEATURES,
+  PRICE,
+  AUTHOR,
+  SOCIAL,
+  FIRST_LAUNCH_STEPS,
+  buildLlmsTxt,
+} from '../src/data/product.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const DIST_DIR = path.resolve(__dirname, '../dist');
+const ROOT_DIR = path.resolve(__dirname, '..');
+const DIST_DIR = path.join(ROOT_DIR, 'dist');
+const SSR_ENTRY_PATH = path.join(ROOT_DIR, 'dist-ssr', 'entry-server.js');
 const TEMPLATE_PATH = path.join(DIST_DIR, 'index.html');
+const APPCAST_PATH = path.join(ROOT_DIR, 'public', 'appcast.xml');
+const APP_TSX_PATH = path.join(ROOT_DIR, 'src', 'App.tsx');
+
+/** The empty mount point Vite emits, which the server-rendered markup replaces. */
+const ROOT_DIV = '<div id="root"></div>';
+
+/** Must stay in step with the defaults in src/components/SEO.tsx. */
+const OG_IMAGE = `${SITE_URL}/og-card.jpg`;
+const OG_IMAGE_WIDTH = '1200';
+const OG_IMAGE_HEIGHT = '630';
+const OG_IMAGE_ALT =
+  'Dynamic Notch — everyone else hides the notch. We gave it a job. macOS 14.6+, Apple Silicon, $5.99 once.';
+
+/** Reused as `publisher`, `author` and `provider` so the graph has one identity, not four. */
+const PERSON = {
+  "@type": "Person",
+  "@id": `${SITE_URL}/#founder`,
+  "name": AUTHOR.name,
+  "url": `${SITE_URL}/contact`,
+  "jobTitle": "Independent macOS developer",
+  "knowsAbout": ["macOS development", "Swift", "SwiftUI", "AppKit"],
+  "sameAs": AUTHOR.sameAs,
+};
+
+const ORGANIZATION = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}/#organization`,
+  "name": "Dynamic Notch",
+  "url": SITE_URL,
+  "logo": {
+    "@type": "ImageObject",
+    "url": `${SITE_URL}/urlicon.png`,
+    "width": 2000,
+    "height": 2000,
+  },
+  "founder": PERSON,
+  // Disambiguates this "Dynamic Notch" from the identically named GitHub project, the
+  // Mac App Store app, and the stale Gumroad listing.
+  "sameAs": [SOCIAL.x, SOCIAL.github],
+};
+
+const WEBSITE = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}/#website`,
+  "name": "Dynamic Notch",
+  "url": SITE_URL,
+  "publisher": { "@id": `${SITE_URL}/#organization` },
+  "inLanguage": "en",
+};
+
+/**
+ * The hero demo. Without this the only moving picture of the product in existence is
+ * invisible to search — a `<video>` tag on its own carries no title, no description and
+ * no thumbnail for anything to index.
+ *
+ * `uploadDate` is the 3.0 release date rather than the build date, so it stays stable
+ * across rebuilds instead of claiming the video is new every deploy.
+ */
+const VIDEO = {
+  "@context": "https://schema.org",
+  "@type": "VideoObject",
+  "@id": `${SITE_URL}/#demo-video`,
+  "name": "Dynamic Notch running on a MacBook",
+  "description":
+    "A screen recording of Dynamic Notch in use: dragging files into the notch, " +
+    "controlling playback, running a timer and reading the clipboard history, all " +
+    "without leaving the app in front.",
+  "thumbnailUrl": `${SITE_URL}/hero-poster.webp`,
+  "contentUrl": `${SITE_URL}/demo.mp4`,
+  "encodingFormat": "video/mp4",
+  "uploadDate": "2026-06-20",
+  "publisher": { "@id": `${SITE_URL}/#organization` },
+};
+
+/** Mirrors the rendered steps in `src/components/FirstLaunch.tsx`. */
+const HOW_TO = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "How to install Dynamic Notch on a MacBook",
+  "description":
+    "Dynamic Notch is signed and notarized by Apple, so it opens like any other Mac " +
+    "app — there is no Gatekeeper warning and no right-click workaround.",
+  "totalTime": "PT2M",
+  "tool": [
+    {
+      "@type": "HowToTool",
+      "name": `MacBook with ${REQUIREMENTS.architecture}, ${REQUIREMENTS.minMacOSLabel}`,
+    },
+  ],
+  "step": FIRST_LAUNCH_STEPS.map((text, index) => ({
+    "@type": "HowToStep",
+    "position": index + 1,
+    "text": text,
+  })),
+};
+
+/** Google wants a forward-looking date on an Offer; a year out, recomputed each build. */
+function priceValidUntil() {
+  const date = new Date();
+  date.setFullYear(date.getFullYear() + 1);
+  return date.toISOString().slice(0, 10);
+}
+
+function breadcrumbsFor(route, title) {
+  if (route === '/') return null;
+
+  const segments = route.split('/').filter(Boolean);
+  const items = [{ name: 'Home', url: SITE_URL }];
+
+  if (segments[0] === 'blog' && segments.length > 1) {
+    items.push({ name: 'Blog', url: `${SITE_URL}/blog` });
+  }
+  items.push({ name: title, url: `${SITE_URL}${route}` });
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url,
+    })),
+  };
+}
 
 // Helper to replace or insert title
 function replaceTitle(html, title) {
@@ -65,26 +205,28 @@ const PAGES = [
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Dynamic Notch",
-        "operatingSystem": "macOS",
+        "operatingSystem": REQUIREMENTS.minMacOSLabel,
+        "processorRequirements": REQUIREMENTS.architecture,
         "applicationCategory": "UtilitiesApplication",
-        "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, music player, weather widget, and native AirDrop integration.",
-        "url": "https://dynamicnotch.tech",
+        "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, media controls, clipboard history, a timer, notes and weather.",
+        "url": SITE_URL,
+        "softwareVersion": VERSION,
+        "screenshot": `${SITE_URL}/shots/media.webp`,
+        "publisher": { "@id": `${SITE_URL}/#organization` },
+        "author": PERSON,
+        // downloadUrl / fileSize are filled in from public/appcast.xml at build time.
         "offers": {
           "@type": "Offer",
-          "price": "5.99",
-          "priceCurrency": "USD"
+          "price": PRICE.amount,
+          "priceCurrency": PRICE.currency,
+          "availability": "https://schema.org/InStock",
+          "url": SITE_URL,
+          "priceValidUntil": priceValidUntil(),
+          "seller": { "@id": `${SITE_URL}/#organization` }
         },
-        "aggregateRating": {
-          "@type": "AggregateRating",
-          "ratingValue": "5",
-          "reviewCount": "1"
-        },
-        "featureList": [
-          "File Tray for temporary storage",
-          "Music Player controls",
-          "Native AirDrop integration",
-          "Weather and Notes widgets"
-        ]
+        // No aggregateRating: there are no reviews rendered on the page, and Google's
+        // review-snippet policy requires the markup to match visible content.
+        "featureList": FEATURES.map(f => f.title)
       },
       {
         "@context": "https://schema.org",
@@ -119,7 +261,7 @@ const PAGES = [
             "name": "Is there a one-time purchase?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Dynamic Notch is priced at 5.99$, along with a pay-what-you-want model."
+              "text": `Dynamic Notch is priced at ${PRICE.display}, along with a pay-what-you-want model.`
             }
           },
           {
@@ -168,7 +310,7 @@ const PAGES = [
       "@type": "Blog",
       "name": "Dynamic Notch Blog",
       "description": "Read the latest articles about maximizing productivity, customizing your MacBook notch, and turning it into a functional Dynamic Island.",
-      "url": "https://dynamicnotch.tech/blog"
+      "url": "https://www.dynamicnotch.tech/blog"
     }
   },
   {
@@ -186,7 +328,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-08-05",
-      "url": "https://dynamicnotch.tech/blog/founder-journey-first-payout"
+      "url": "https://www.dynamicnotch.tech/blog/founder-journey-first-payout"
     }
   },
   {
@@ -204,7 +346,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-07-08",
-      "url": "https://dynamicnotch.tech/blog/native-swift-vs-electron"
+      "url": "https://www.dynamicnotch.tech/blog/native-swift-vs-electron"
     }
   },
   {
@@ -222,7 +364,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-06-12",
-      "url": "https://dynamicnotch.tech/blog/mac-power-user-hacks"
+      "url": "https://www.dynamicnotch.tech/blog/mac-power-user-hacks"
     }
   },
   {
@@ -240,7 +382,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2025-11-25",
-      "url": "https://dynamicnotch.tech/blog/intro"
+      "url": "https://www.dynamicnotch.tech/blog/intro"
     }
   },
   {
@@ -258,7 +400,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-01-02",
-      "url": "https://dynamicnotch.tech/blog/why-dynamic-island-mac"
+      "url": "https://www.dynamicnotch.tech/blog/why-dynamic-island-mac"
     }
   },
   {
@@ -276,7 +418,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-02-15",
-      "url": "https://dynamicnotch.tech/blog/boost-productivity"
+      "url": "https://www.dynamicnotch.tech/blog/boost-productivity"
     }
   },
   {
@@ -294,7 +436,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-02-28",
-      "url": "https://dynamicnotch.tech/blog/minimalist-setup"
+      "url": "https://www.dynamicnotch.tech/blog/minimalist-setup"
     }
   },
   {
@@ -312,7 +454,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-03-01",
-      "url": "https://dynamicnotch.tech/blog/notch-customization"
+      "url": "https://www.dynamicnotch.tech/blog/notch-customization"
     }
   },
   {
@@ -330,7 +472,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-03-20",
-      "url": "https://dynamicnotch.tech/blog/battery-efficiency"
+      "url": "https://www.dynamicnotch.tech/blog/battery-efficiency"
     }
   },
   {
@@ -348,7 +490,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-04-19",
-      "url": "https://dynamicnotch.tech/blog/how-to-hide-macbook-notch"
+      "url": "https://www.dynamicnotch.tech/blog/how-to-hide-macbook-notch"
     }
   },
   {
@@ -366,7 +508,7 @@ const PAGES = [
         "name": "Aryaan"
       },
       "datePublished": "2026-05-23",
-      "url": "https://dynamicnotch.tech/blog/versionUpdate"
+      "url": "https://www.dynamicnotch.tech/blog/versionUpdate"
     }
   },
   {
@@ -386,47 +528,265 @@ const PAGES = [
     title: 'Contact Us - Dynamic Notch Support & Feedback',
     description: 'Have questions, feedback, or need help with Dynamic Notch? Get in touch directly with the developer.',
     type: 'website'
+  },
+  {
+    route: '/changelog',
+    title: 'Changelog - Dynamic Notch',
+    breadcrumbTitle: 'Changelog',
+    description: `Every Dynamic Notch release, what changed in it, and the minimum macOS it needs. Currently on ${VERSION}.`,
+    type: 'website',
+    priority: '0.6'
   }
 ];
 
-function main() {
+/** Fallback <lastmod> for pages that are not dated articles. Bump when core pages change. */
+const CORE_LASTMOD = '2026-08-12';
+
+/**
+ * The one place a page's absolute URL is built. Used for the canonical tag, og:url and
+ * the sitemap <loc> so those three can never disagree.
+ */
+function canonicalFor(route) {
+  return `${SITE_URL}${route === '/' ? '' : route}`;
+}
+
+/** datePublished from a single-object BlogPosting schema, or null. */
+function articleDate(page) {
+  if (!page.schema || Array.isArray(page.schema)) return null;
+  return page.schema.datePublished ?? null;
+}
+
+function priorityFor(route) {
+  if (route === '/') return '1.0';
+  if (route === '/blog') return '0.9';
+  if (route.startsWith('/blog/')) return '0.8';
+  if (route === '/contact') return '0.6';
+  return '0.5';
+}
+
+/** Built from PAGES so a new route can never be missing from the sitemap. */
+function buildSitemap(pages) {
+  const articleDates = pages.map(articleDate).filter(Boolean).sort();
+  const newestArticle = articleDates.length ? articleDates[articleDates.length - 1] : CORE_LASTMOD;
+
+  const entries = pages.map((page) => {
+    const lastmod =
+      page.lastmod ??
+      articleDate(page) ??
+      (page.route === '/blog' ? newestArticle : CORE_LASTMOD);
+
+    return [
+      '  <url>',
+      `    <loc>${canonicalFor(page.route)}</loc>`,
+      `    <lastmod>${lastmod}</lastmod>`,
+      `    <priority>${page.priority ?? priorityFor(page.route)}</priority>`,
+      '  </url>',
+    ].join('\n');
+  });
+
+  return [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+    ...entries,
+    '</urlset>',
+    '',
+  ].join('\n');
+}
+
+/**
+ * The appcast is what the shipping app actually reads, so it is the authority on version
+ * and minimum OS. Fail the build rather than let llms.txt and the schema drift away from it.
+ */
+function verifyAppcast() {
+  if (!fs.existsSync(APPCAST_PATH)) {
+    throw new Error(`appcast not found at ${APPCAST_PATH}`);
+  }
+
+  const xml = fs.readFileSync(APPCAST_PATH, 'utf-8');
+  const read = (tag) => {
+    const match = xml.match(new RegExp(`<${tag}>([^<]+)</${tag}>`));
+    return match ? match[1].trim() : null;
+  };
+
+  const checks = [
+    ['sparkle:shortVersionString', read('sparkle:shortVersionString'), VERSION, 'VERSION'],
+    ['sparkle:minimumSystemVersion', read('sparkle:minimumSystemVersion'), REQUIREMENTS.minMacOS, 'REQUIREMENTS.minMacOS'],
+  ];
+
+  for (const [tag, actual, expected, constantName] of checks) {
+    if (actual !== expected) {
+      throw new Error(
+        `public/appcast.xml <${tag}> is "${actual}" but src/data/product.js ${constantName} is "${expected}".\n` +
+        `        Update src/data/product.js so the site stops advertising the wrong value.`
+      );
+    }
+  }
+
+  // The appcast is also the authority on where the binary lives and how big it is, so
+  // the schema's downloadUrl / fileSize come from here rather than a second hardcoding.
+  const enclosure = xml.match(/<enclosure\s+url="([^"]+)"\s+length="(\d+)"/);
+  if (!enclosure) {
+    throw new Error('public/appcast.xml has no <enclosure url="…" length="…"> to read.');
+  }
+
+  return { downloadUrl: enclosure[1], fileSize: Number(enclosure[2]) };
+}
+
+/**
+ * Fields every BlogPosting needs but that would be noise repeated eleven times in PAGES.
+ * Also attaches the site identity so the graph resolves to one publisher.
+ */
+function enrichSchema(schema, page) {
+  const list = Array.isArray(schema) ? [...schema] : [schema];
+
+  const enriched = list.map((entry) => {
+    if (entry['@type'] !== 'BlogPosting') return entry;
+    return {
+      ...entry,
+      author: PERSON,
+      publisher: { "@id": `${SITE_URL}/#organization` },
+      image: OG_IMAGE,
+      dateModified: entry.dateModified ?? entry.datePublished,
+      mainEntityOfPage: {
+        "@type": "WebPage",
+        "@id": canonicalFor(page.route),
+      },
+    };
+  });
+
+  const breadcrumbs = breadcrumbsFor(page.route, page.breadcrumbTitle ?? page.title);
+  if (breadcrumbs) enriched.push(breadcrumbs);
+
+  if (page.route === '/') enriched.push(ORGANIZATION, WEBSITE, VIDEO, HOW_TO);
+
+  return enriched;
+}
+
+/**
+ * Every `<Route path="...">` in App.tsx has to have a PAGES entry, or that route ships
+ * without meta tags and never reaches the sitemap. Fail the build instead.
+ */
+function verifyRouteCoverage() {
+  const appSource = fs.readFileSync(APP_TSX_PATH, 'utf-8');
+  const routes = [...appSource.matchAll(/<Route\s+path="([^"]+)"/g)]
+    .map((match) => match[1])
+    .filter((route) => route !== '*');
+
+  const covered = new Set(PAGES.map((page) => page.route));
+  const missing = routes.filter((route) => !covered.has(route));
+
+  if (missing.length > 0) {
+    throw new Error(
+      `these routes exist in src/App.tsx but have no entry in scripts/prerender.js PAGES:\n` +
+      missing.map((route) => `          ${route}`).join('\n') +
+      `\n        Add them so they get meta tags, JSON-LD and a sitemap URL.`
+    );
+  }
+}
+
+/**
+ * Puts the server-rendered app inside `#root`.
+ *
+ * The replacement is a function rather than a string because the rendered markup
+ * contains `$` characters (Tailwind arbitrary values, prices, CSS variables), and
+ * `String.replace` would interpret `$&` and `$1` in a string replacement as capture
+ * references and silently corrupt the output.
+ */
+function injectApp(html, appHtml) {
+  if (!html.includes(ROOT_DIV)) {
+    throw new Error(
+      `could not find ${ROOT_DIV} in the built template. Vite's output shape changed;\n` +
+      `        update ROOT_DIV in scripts/prerender.js to match.`
+    );
+  }
+  return html.replace(ROOT_DIV, () => `<div id="root">${appHtml}</div>`);
+}
+
+/** Head rewrites shared by the real routes and the 404 page. */
+function applyHead(html, { title, description, url, type, robots }) {
+  html = replaceTitle(html, title);
+  html = replaceOrInsertMeta(html, 'name', 'description', description);
+  html = replaceOrInsertMeta(html, 'name', 'robots', robots);
+
+  // OpenGraph
+  html = replaceOrInsertMeta(html, 'property', 'og:title', title);
+  html = replaceOrInsertMeta(html, 'property', 'og:description', description);
+  html = replaceOrInsertMeta(html, 'property', 'og:type', type);
+  html = replaceOrInsertMeta(html, 'property', 'og:site_name', 'Dynamic Notch');
+  html = replaceOrInsertMeta(html, 'property', 'og:image', OG_IMAGE);
+  html = replaceOrInsertMeta(html, 'property', 'og:image:width', OG_IMAGE_WIDTH);
+  html = replaceOrInsertMeta(html, 'property', 'og:image:height', OG_IMAGE_HEIGHT);
+  html = replaceOrInsertMeta(html, 'property', 'og:image:alt', OG_IMAGE_ALT);
+
+  // Twitter
+  html = replaceOrInsertMeta(html, 'name', 'twitter:card', 'summary_large_image');
+  html = replaceOrInsertMeta(html, 'name', 'twitter:title', title);
+  html = replaceOrInsertMeta(html, 'name', 'twitter:description', description);
+  html = replaceOrInsertMeta(html, 'name', 'twitter:image', OG_IMAGE);
+  html = replaceOrInsertMeta(html, 'name', 'twitter:image:alt', OG_IMAGE_ALT);
+
+  if (url) {
+    html = replaceOrInsertCanonical(html, url);
+    html = replaceOrInsertMeta(html, 'property', 'og:url', url);
+  }
+
+  return html;
+}
+
+async function main() {
   if (!fs.existsSync(TEMPLATE_PATH)) {
     console.error(`Error: build template not found at ${TEMPLATE_PATH}. Run "npm run build" first.`);
     process.exit(1);
+  }
+  if (!fs.existsSync(SSR_ENTRY_PATH)) {
+    console.error(
+      `Error: SSR bundle not found at ${SSR_ENTRY_PATH}.\n` +
+      `       Run "vite build --ssr src/entry-server.tsx --outDir dist-ssr" first ` +
+      `(the "build" script does this).`
+    );
+    process.exit(1);
+  }
+
+  const { render } = await import(pathToFileURL(SSR_ENTRY_PATH).href);
+
+  const { downloadUrl, fileSize } = verifyAppcast();
+  verifyRouteCoverage();
+
+  // Teach the SoftwareApplication entry where the build actually lives.
+  const softwareApp = PAGES.find((page) => page.route === '/')
+    ?.schema?.find((entry) => entry['@type'] === 'SoftwareApplication');
+  if (softwareApp) {
+    softwareApp.downloadUrl = downloadUrl;
+    softwareApp.fileSize = `${Math.round(fileSize / 1024)}KB`;
   }
 
   const baseHtml = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
   console.log(`Pre-rendering ${PAGES.length} routes...`);
 
   for (const page of PAGES) {
-    const fullUrl = `https://dynamicnotch.tech${page.route === '/' ? '' : page.route}`;
-    let html = baseHtml;
-
-    // Replace basic tags
-    html = replaceTitle(html, page.title);
-    html = replaceOrInsertCanonical(html, fullUrl);
-    html = replaceOrInsertMeta(html, 'name', 'description', page.description);
-    html = replaceOrInsertMeta(html, 'name', 'robots', 'index, follow');
-
-    // OpenGraph
-    html = replaceOrInsertMeta(html, 'property', 'og:title', page.title);
-    html = replaceOrInsertMeta(html, 'property', 'og:description', page.description);
-    html = replaceOrInsertMeta(html, 'property', 'og:url', fullUrl);
-    html = replaceOrInsertMeta(html, 'property', 'og:type', page.type);
-    html = replaceOrInsertMeta(html, 'property', 'og:image', 'https://dynamicnotch.tech/urlicon.png?v=2');
-
-    // Twitter
-    html = replaceOrInsertMeta(html, 'name', 'twitter:title', page.title);
-    html = replaceOrInsertMeta(html, 'name', 'twitter:description', page.description);
-    html = replaceOrInsertMeta(html, 'name', 'twitter:image', 'https://dynamicnotch.tech/urlicon.png?v=2');
+    const fullUrl = canonicalFor(page.route);
+    const appHtml = await render(page.route);
+    let html = applyHead(baseHtml, {
+      title: page.title,
+      description: page.description,
+      url: fullUrl,
+      type: page.type,
+      robots: 'index, follow',
+    });
 
     // Schema Markup
     if (page.schema) {
-      html = replaceOrInsertSchema(html, page.schema);
+      html = replaceOrInsertSchema(html, enrichSchema(page.schema, page));
     } else {
-      // If no schema, remove the default SoftwareApplication schema from the base template
-      html = html.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
+      // Drop the base template's SoftwareApplication schema — it only belongs on "/" —
+      // but still give the page its breadcrumb trail.
+      const breadcrumbs = breadcrumbsFor(page.route, page.breadcrumbTitle ?? page.title);
+      html = breadcrumbs
+        ? replaceOrInsertSchema(html, breadcrumbs)
+        : html.replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, '');
     }
+
+    html = injectApp(html, appHtml);
 
     // Determine output file path
     let outputPath;
@@ -444,7 +804,37 @@ function main() {
     console.log(`Successfully pre-rendered: ${page.route} -> ${outputPath}`);
   }
 
+  // Designed 404. The <Route path="*"> in App.tsx renders it under the current
+  // vercel.json catch-all rewrite; this file is what Vercel serves directly if that
+  // rewrite is ever narrowed, and it is deliberately kept out of the sitemap.
+  const notFoundHtml = injectApp(
+    applyHead(baseHtml, {
+      title: 'Page not found - Dynamic Notch',
+      description:
+        'That page does not exist. Head back to the Dynamic Notch home page or browse the blog.',
+      type: 'website',
+      robots: 'noindex, follow',
+    }).replace(/<script\s+type=["']application\/ld\+json["']>[\s\S]*?<\/script>/gi, ''),
+    // Any path with no PAGES entry falls through to <Route path="*"> and renders NotFound.
+    await render('/__not-found__'),
+  );
+  fs.writeFileSync(path.join(DIST_DIR, '404.html'), notFoundHtml, 'utf-8');
+  console.log('Generated 404.html');
+
+  // Generated, not checked in, so they cannot fall out of step with PAGES / product.js.
+  fs.writeFileSync(path.join(DIST_DIR, 'sitemap.xml'), buildSitemap(PAGES), 'utf-8');
+  console.log(`Generated sitemap.xml with ${PAGES.length} URLs`);
+
+  fs.writeFileSync(path.join(DIST_DIR, 'llms.txt'), buildLlmsTxt(), 'utf-8');
+  console.log('Generated llms.txt');
+
   console.log('Pre-rendering completed successfully!');
 }
 
-main();
+// `main` is async, so a try/catch around the call would not see a rejection — it would
+// surface as an unhandled rejection and, depending on the Node version, still exit 0.
+main().catch((error) => {
+  console.error(`Pre-render failed: ${error.message}`);
+  if (error.stack) console.error(error.stack);
+  process.exit(1);
+});

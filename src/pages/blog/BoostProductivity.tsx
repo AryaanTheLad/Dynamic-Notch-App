@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function BoostProductivity() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="How Dynamic Notch Supercharges Productivity"
                 description="Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state."
                 publishDate="2026-02-15"
-                url="https://dynamicnotch.tech/blog/boost-productivity"
+                url="https://www.dynamicnotch.tech/blog/boost-productivity"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function BoostProductivity() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
-                        <time dateTime="2023-11-15">February 15, 2026</time>
-                        <span>•</span>
-                        <span>5 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <time dateTime="2026-02-15">February 15, 2026</time>
+                        <span aria-hidden="true">•</span>
+                        <span>1 min read</span>
                     </div>
                 </header>
 
@@ -51,7 +53,8 @@ export default function BoostProductivity() {
                         Your eye naturally gravitates toward the center of your screen. Utilizing the top center creates a spatially intuitive anchor point. It’s always there, always ready, and always out of the way when you don’t need it. With Dynamic Notch, you simply get more work done.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="boost-productivity" />
         </div>
     );
 }

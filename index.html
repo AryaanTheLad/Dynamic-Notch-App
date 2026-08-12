@@ -8,25 +8,25 @@
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
       "name": "Dynamic Notch",
-      "operatingSystem": "macOS",
+      "operatingSystem": "macOS 14.6 or later",
+      "processorRequirements": "Apple Silicon (M1 or later)",
       "applicationCategory": "UtilitiesApplication",
-      "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, music player, weather widget, and native AirDrop integration.",
-      "url": "https://dynamicnotch.tech",
+      "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, media controls, clipboard history, a timer, notes and weather.",
+      "url": "https://www.dynamicnotch.tech",
+      "softwareVersion": "3.0",
       "offers": {
         "@type": "Offer",
         "price": "5.99",
         "priceCurrency": "USD"
       },
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "5",
-        "reviewCount": "1"
-      },
       "featureList": [
-        "File Tray for temporary storage",
-        "Music Player controls",
-        "Native AirDrop integration",
-        "Weather and Notes widgets"
+        "Media Control",
+        "File Tray",
+        "Quick Notes",
+        "Clipboard History",
+        "Custom Timer",
+        "Current Task Setter",
+        "Weather at a glance"
       ]
     }
 </script>
@@ -38,12 +38,20 @@
     <link rel="icon" type="image/png" href="/urlicon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    
-    <!-- Google Fonts: Inter -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Inter is self-hosted (see the @font-face in src/index.css). A font preload must
+         carry `crossorigin` even same-origin, because fonts are always fetched in CORS
+         mode — without it the preload is discarded and the file is fetched twice. -->
+    <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
+
+    <!-- The server-rendered markup carries framer-motion's `initial` styles, so entrance
+         animated sections ship as opacity:0 and are revealed on mount. With scripting off
+         that mount never happens and the page reads blank, so reveal them up front. Text
+         extractors ignore CSS and see the content either way; this is for human visitors
+         who have JavaScript disabled. -->
+    <noscript>
+      <style>[style*="opacity:0"] { opacity: 1 !important; transform: none !important; }</style>
+    </noscript>
   </head>
   <body class="bg-[#000000] text-white">
     <div id="root"></div>

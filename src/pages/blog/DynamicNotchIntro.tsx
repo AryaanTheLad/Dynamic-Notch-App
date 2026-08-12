@@ -1,19 +1,21 @@
-import { motion } from 'framer-motion';
+import { m } from 'framer-motion';
 import ArticleSEO from '../../components/ArticleSEO';
+import ArticleFooter from '../../components/ArticleFooter';
+import { useEntrance } from '../../hooks/useEntrance';
 
 export default function DynamicNotchIntro() {
+    const entrance = useEntrance();
+
     return (
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="Elevate Your macOS Experience with Dynamic Notch"
                 description="If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac."
                 publishDate="2025-11-25"
-                url="https://dynamicnotch.tech/blog/intro"
+                url="https://www.dynamicnotch.tech/blog/intro"
             />
-            <motion.article
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+            <m.article
+                {...entrance({ duration: 0.6 })}
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
@@ -22,10 +24,10 @@ export default function DynamicNotchIntro() {
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
                         <span className="font-medium text-white/80">By Aryaan</span>
-                        <span>•</span>
-                        <time dateTime="2023-10-25">November 25, 2025</time>
-                        <span>•</span>
-                        <span>5 min read</span>
+                        <span aria-hidden="true">•</span>
+                        <time dateTime="2025-11-25">November 25, 2025</time>
+                        <span aria-hidden="true">•</span>
+                        <span>2 min read</span>
                     </div>
                 </header>
 
@@ -63,7 +65,8 @@ export default function DynamicNotchIntro() {
                         to expand it, or drag files directly into the black area to trigger the File Tray.
                     </p>
                 </section>
-            </motion.article>
+            </m.article>
+            <ArticleFooter currentId="intro" />
         </div>
     );
 }
