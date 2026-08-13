@@ -4,11 +4,11 @@
         <title>DynamicNotch</title>
         <item>
             <title>3.0</title>
-            <pubDate>Sat, 20 Jun 2026 18:13:06 +0500</pubDate>
-            <sparkle:version>31</sparkle:version>
+            <pubDate>Thu, 13 Aug 2026 14:44:27 +0500</pubDate>
+            <sparkle:version>32</sparkle:version>
             <sparkle:shortVersionString>3.0</sparkle:shortVersionString>
             <sparkle:minimumSystemVersion>14.6</sparkle:minimumSystemVersion>
-            <enclosure url="https://www.dynamicnotch.tech/releases/3.0/dn-3.0-74a5f4cd.dmg" length="2911168" type="application/octet-stream" sparkle:edSignature="FGCy8fRlQ+kB/EfF5uzgbnoVlQxsajlXwRbVbTn71J7C2ryzk8dWahQLWYc6dsVzOTdcrdQUrKa/OFuHDcqDBQ=="/>
+            <enclosure url="https://dynamicnotch.tech/DynamicNotchApp.dmg" length="3871988" type="application/octet-stream" sparkle:edSignature="JzXry3zpIkdPvEH9lPe3Zo7wnmOBmhgAn2oV6P0V3rvzx46PJFpzO7vCcsbGW1nt42Lugd9yLbBuUTRy40edCQ=="/>
         </item>
     </channel>
 </rss>
