@@ -52,7 +52,7 @@ export const AUTHOR = {
 };
 
 /** Matches <sparkle:shortVersionString> in public/appcast.xml. */
-export const VERSION = '3.0';
+export const VERSION = '4.0';
 
 export const PRICE = {
   /** Numeric amount, for schema.org Offer. */
@@ -78,7 +78,7 @@ export const REQUIREMENTS = {
   architecture: 'Apple Silicon (M1 or later)',
   /** Signed and notarized by Apple — no Gatekeeper detour on first launch. */
   notarized: true,
-  downloadSize: '2.9 MB',
+  downloadSize: '3.9 MB',
 };
 
 export const PERFORMANCE = {
@@ -129,7 +129,7 @@ export const FEATURES = [
  */
 export const SPECS = [
   { label: 'Price', value: `${PRICE.display} one-time, pay what you want above that` },
-  { label: 'Version', value: `${VERSION} (build 31)` },
+  { label: 'Version', value: `${VERSION} (build 33)` },
   { label: 'Operating system', value: REQUIREMENTS.minMacOSLabel },
   { label: 'Architecture', value: `${REQUIREMENTS.architecture}. Intel Macs are not supported.` },
   { label: 'Download size', value: REQUIREMENTS.downloadSize },
@@ -152,6 +152,24 @@ export const SPECS = [
  * there rather than inventing history.
  */
 export const RELEASES = [
+  {
+    version: '4.0',
+    build: '33',
+    date: '2026-08-13',
+    dateLabel: '13 August 2026',
+    minMacOS: '14.6',
+    notes: [
+      'Volume, brightness and headphone connections now show on the collapsed notch, along with this Mac’s battery and the level of a connected AirPods, mouse, keyboard or trackpad.',
+      'A configurable system-wide shortcut opens and closes the notch, so hovering the top of the screen is no longer the only way in. Defaults to ⌃⌥⌘N.',
+      'Events shows your next meeting with the time remaining and a Join button for Zoom, Meet, Teams, Webex and FaceTime links, plus a full month grid.',
+      'Colour is a new section: sample any pixel on any display, read it back as HEX, RGB, HSL or a Swift literal, and check WCAG contrast without leaving what you are doing.',
+      'Mirror is a new section — a live camera view for checking yourself before a call, running only while the section is open.',
+      'Finished downloads land in the file tray on their own, and AirDrop moved into the Files section where you can drop a file straight onto it.',
+      'Aurora Glass theme, and the collapsed notch now takes its own theme independently of the expanded panel.',
+      'Settings rebuilt around a sidebar, with live theme previews and every explanation on screen rather than in a tooltip.',
+      'A large correctness pass: the opening animation, file tray persistence, “Choose files…”, clipboard privacy around password managers, haptics settings and multi-display placement are all fixed.',
+    ],
+  },
   {
     version: '3.0',
     build: '31',
