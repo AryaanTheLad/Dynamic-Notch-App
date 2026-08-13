@@ -9,7 +9,6 @@ import Footer from './components/Footer';
 
 import Home from './pages/Home';
 const Blog = lazy(() => import('./pages/Blog'));
-const DynamicNotchIntro = lazy(() => import('./pages/blog/DynamicNotchIntro'));
 const WhyDynamicIslandMac = lazy(() => import('./pages/blog/WhyDynamicIslandMac'));
 const BoostProductivity = lazy(() => import('./pages/blog/BoostProductivity'));
 const MinimalistSetup = lazy(() => import('./pages/blog/MinimalistSetup'));
@@ -78,7 +77,6 @@ export function AppShell() {
               <Route path="/blog/founder-journey-first-payout" element={<FounderJourney />} />
               <Route path="/blog/native-swift-vs-electron" element={<NativeSwiftApp />} />
               <Route path="/blog/mac-power-user-hacks" element={<PowerUserHacks />} />
-              <Route path="/blog/intro" element={<DynamicNotchIntro />} />
               <Route path="/blog/why-dynamic-island-mac" element={<WhyDynamicIslandMac />} />
               <Route path="/blog/boost-productivity" element={<BoostProductivity />} />
               <Route path="/blog/minimalist-setup" element={<MinimalistSetup />} />

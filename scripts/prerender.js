@@ -367,39 +367,25 @@ const PAGES = [
       "url": "https://www.dynamicnotch.tech/blog/mac-power-user-hacks"
     }
   },
-  {
-    route: '/blog/intro',
-    title: 'Elevate Your macOS Experience with Dynamic Notch - Dynamic Notch Blog',
-    description: "If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.",
-    type: 'article',
-    schema: {
-      "@context": "https://schema.org",
-      "@type": "BlogPosting",
-      "headline": "Elevate Your macOS Experience with Dynamic Notch",
-      "description": "If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.",
-      "author": {
-        "@type": "Person",
-        "name": "Aryaan"
-      },
-      "datePublished": "2025-11-25",
-      "url": "https://www.dynamicnotch.tech/blog/intro"
-    }
-  },
+  // /blog/intro was merged into /blog/why-dynamic-island-mac and 301s there in
+  // vercel.json. The two covered the same query with the same argument, and the intro
+  // copy had drifted from the product (it claimed M2-and-later and "under 0.1% CPU").
   {
     route: '/blog/why-dynamic-island-mac',
     title: 'Why Your Mac Deserves a Dynamic Island - Dynamic Notch Blog',
-    description: 'An area the iPhone transformed into an interactive hub was left completely static on macOS—until now.',
+    description: "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it isn't.",
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Why Your Mac Deserves a Dynamic Island",
-      "description": "An area the iPhone transformed into an interactive hub was left completely static on macOS—until now.",
+      "description": "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it isn't.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
       },
       "datePublished": "2026-01-02",
+      "dateModified": "2026-08-13",
       "url": "https://www.dynamicnotch.tech/blog/why-dynamic-island-mac"
     }
   },
@@ -478,18 +464,19 @@ const PAGES = [
   {
     route: '/blog/how-to-hide-macbook-notch',
     title: 'How to Hide the MacBook Notch (and Why You Might Not Want To) - Dynamic Notch Blog',
-    description: 'If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful.',
+    description: 'Five ways to hide the MacBook notch, including the built-in macOS setting most people miss — plus the menu bar problem hiding it does not solve.',
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "How to Hide the MacBook Notch (and Why You Might Not Want To)",
-      "description": "If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful.",
+      "description": "Five ways to hide the MacBook notch, including the built-in macOS setting most people miss — plus the menu bar problem hiding it does not solve.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
       },
       "datePublished": "2026-04-19",
+      "dateModified": "2026-08-13",
       "url": "https://www.dynamicnotch.tech/blog/how-to-hide-macbook-notch"
     }
   },

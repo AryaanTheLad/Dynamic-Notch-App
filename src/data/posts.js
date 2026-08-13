@@ -52,10 +52,10 @@ export const POSTS = [
     title: 'How to Hide the MacBook Notch (and Why You Might Not Want To)',
     date: 'April 19, 2026',
     dateISO: '2026-04-19',
-    readTime: '2 min read',
+    readTime: '7 min read',
     topics: ['notch', 'customization'],
     excerpt:
-      'If you are searching for how to hide the MacBook notch, here are the best methods—and an alternative way to make it genuinely useful.',
+      'Five methods, including the built-in macOS setting most people miss — plus the menu bar problem that hiding the notch does not solve.',
   },
   {
     id: 'battery-efficiency',
@@ -102,20 +102,10 @@ export const POSTS = [
     title: 'Why Your Mac Deserves a Dynamic Island',
     date: 'January 2, 2026',
     dateISO: '2026-01-02',
-    readTime: '2 min read',
+    readTime: '5 min read',
     topics: ['notch', 'product'],
     excerpt:
-      'An area the iPhone transformed into an interactive hub was left completely static on macOS—until now.',
-  },
-  {
-    id: 'intro',
-    title: 'Elevate Your macOS Experience with Dynamic Notch',
-    date: 'November 25, 2025',
-    dateISO: '2025-11-25',
-    readTime: '2 min read',
-    topics: ['product', 'notch'],
-    excerpt:
-      "If you've ever envied the iOS Dynamic Island, Dynamic Notch brings that identical, hyper-refined utility straight to your Mac.",
+      'Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it is not.',
   },
 ];
 
