@@ -6,9 +6,11 @@ import {
   VERSION,
   REQUIREMENTS,
   FEATURES,
+  FAQS,
   PRICE,
   AUTHOR,
   SOCIAL,
+  DEMO_VIDEO,
   FIRST_LAUNCH_STEPS,
   buildLlmsTxt,
 } from '../src/data/product.js';
@@ -31,7 +33,7 @@ const OG_IMAGE = `${SITE_URL}/og-card.jpg`;
 const OG_IMAGE_WIDTH = '1200';
 const OG_IMAGE_HEIGHT = '630';
 const OG_IMAGE_ALT =
-  'Dynamic Notch — everyone else hides the notch. We gave it a job. macOS 14.6+, Apple Silicon, $5.99 once.';
+  'Dynamic Notch: everyone else hides the notch, we gave it a job. macOS 14.6+, Apple Silicon, $5.99 once.';
 
 /** Reused as `publisher`, `author` and `provider` so the graph has one identity, not four. */
 const PERSON = {
@@ -74,25 +76,29 @@ const WEBSITE = {
 
 /**
  * The hero demo. Without this the only moving picture of the product in existence is
- * invisible to search — a `<video>` tag on its own carries no title, no description and
+ * invisible to search: a `<video>` tag on its own carries no title, no description and
  * no thumbnail for anything to index.
  *
- * `uploadDate` is the 3.0 release date rather than the build date, so it stays stable
- * across rebuilds instead of claiming the video is new every deploy.
+ * `uploadDate` is a fixed date in product.js rather than the build date, so it stays
+ * stable across rebuilds instead of claiming the video is new every deploy.
  */
 const VIDEO = {
   "@context": "https://schema.org",
   "@type": "VideoObject",
   "@id": `${SITE_URL}/#demo-video`,
-  "name": "Dynamic Notch running on a MacBook",
+  "name": "Dynamic Notch 4.0 running on a MacBook",
   "description":
-    "A screen recording of Dynamic Notch in use: dragging files into the notch, " +
-    "controlling playback, running a timer and reading the clipboard history, all " +
+    "A screen recording of Dynamic Notch 4.0 in use: dragging files into the MacBook " +
+    "notch, controlling playback, writing a note, reading clipboard history, sampling a " +
+    "colour with its contrast ratio, checking the calendar, and changing themes, all " +
     "without leaving the app in front.",
-  "thumbnailUrl": `${SITE_URL}/hero-poster.webp`,
-  "contentUrl": `${SITE_URL}/demo.mp4`,
+  "thumbnailUrl": `${SITE_URL}${DEMO_VIDEO.poster}`,
+  "contentUrl": `${SITE_URL}${DEMO_VIDEO.src}`,
   "encodingFormat": "video/mp4",
-  "uploadDate": "2026-06-20",
+  "duration": DEMO_VIDEO.duration,
+  "width": DEMO_VIDEO.width,
+  "height": DEMO_VIDEO.height,
+  "uploadDate": DEMO_VIDEO.uploadDate,
   "publisher": { "@id": `${SITE_URL}/#organization` },
 };
 
@@ -103,7 +109,7 @@ const HOW_TO = {
   "name": "How to install Dynamic Notch on a MacBook",
   "description":
     "Dynamic Notch is signed and notarized by Apple, so it opens like any other Mac " +
-    "app — there is no Gatekeeper warning and no right-click workaround.",
+    "app. There is no Gatekeeper warning and no right-click workaround.",
   "totalTime": "PT2M",
   "tool": [
     {
@@ -197,23 +203,37 @@ function replaceOrInsertSchema(html, schemaObj) {
 const PAGES = [
   {
     route: '/',
-    title: 'Dynamic Notch - The Ultimate MacBook Notch Utility',
-    description: 'Transform your MacBook notch into an interactive Dynamic Island. Add a file tray, music player, native AirDrop, and widgets right to your notch.',
+    title: 'Dynamic Notch: Turn the MacBook Notch Into a Dynamic Island',
+    description: `Dynamic Notch is a native macOS app that turns the MacBook notch into a control centre: file tray, media controls, clipboard history, notes, timer, calendar, colour picker and weather. ${PRICE.display} once, no subscription.`,
     type: 'website',
     schema: [
       {
         "@context": "https://schema.org",
         "@type": "SoftwareApplication",
         "name": "Dynamic Notch",
+        "alternateName": "Dynamic Notch for macOS",
         "operatingSystem": REQUIREMENTS.minMacOSLabel,
         "processorRequirements": REQUIREMENTS.architecture,
         "applicationCategory": "UtilitiesApplication",
-        "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, media controls, clipboard history, a timer, notes and weather.",
+        "applicationSubCategory": "Menu bar and desktop utility",
+        "description":
+          "A native macOS utility that brings Dynamic Island functionality to the MacBook " +
+          "notch. Hover the notch or press a keyboard shortcut and it expands into a panel " +
+          "with a file tray, media controls, clipboard history, quick notes, a timer, " +
+          "calendar events, a colour picker with contrast checking, a camera mirror, " +
+          "weather and the system volume and brightness HUD.",
         "url": SITE_URL,
         "softwareVersion": VERSION,
-        "screenshot": `${SITE_URL}/shots/media.webp`,
+        "screenshot": [
+          `${SITE_URL}/shots/4.0/media.webp`,
+          `${SITE_URL}/shots/4.0/files.webp`,
+          `${SITE_URL}/shots/4.0/colour.webp`,
+        ],
+        "video": { "@id": `${SITE_URL}/#demo-video` },
         "publisher": { "@id": `${SITE_URL}/#organization` },
         "author": PERSON,
+        "privacyPolicy": `${SITE_URL}/privacy`,
+        "releaseNotes": `${SITE_URL}/changelog`,
         // downloadUrl / fileSize are filled in from public/appcast.xml at build time.
         "offers": {
           "@type": "Offer",
@@ -228,89 +248,31 @@ const PAGES = [
         // review-snippet policy requires the markup to match visible content.
         "featureList": FEATURES.map(f => f.title)
       },
+      // Built from the same array the page renders, so the rich result can never claim
+      // an answer a visitor cannot find. See src/data/product.js.
       {
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is it safe for my MacBook?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Absolutely. Dynamic Notch uses native macOS APIs and doesn't modify system files."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does it support external monitors?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! However, it's recommended to be used on Macbook M1 or later for the best experience."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does it affect my battery life?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Not at all! Dynamic notch is a very lightweight utility app that has minimal impact on the system. Used 0% cpu on idle, with 2-5% when actively being used. Ram usage is constant around 45MB."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is there a one-time purchase?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": `Dynamic Notch is priced at ${PRICE.display}, along with a pay-what-you-want model.`
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What features does it have?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "File Tray, Media Control, Quick Notes, Custom Timer, Current Task Setter, Clipboard History, Weather and more!"
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I customize the application?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, you can configure your Dynamic Notch and change specific behaviors."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Is it compatible with older Macs?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Dynamic Notch works on Apple Silicon Macs starting with the base variant of M1."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How do I hide the MacBook notch?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "While our app embraces the notch, you can use our 'Hide Notch Mode' to revert the notch when needed."
-            }
-          }
-        ]
+        "mainEntity": FAQS.map((faq) => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+        })),
       }
     ]
   },
   {
     route: '/blog',
-    title: 'Dynamic Notch Blog - MacBook Notch Utilities & Customization',
-    description: 'Read the latest articles about maximizing productivity, customizing your MacBook notch, and turning it into a functional Dynamic Island.',
+    title: 'Dynamic Notch Blog: MacBook Notch Utilities and Customization',
+    description: 'Guides on the MacBook notch: how to hide it, how to customize it, how to turn it into a Dynamic Island, and how a native Mac utility keeps your menu bar clear.',
     type: 'website',
     schema: {
       "@context": "https://schema.org",
       "@type": "Blog",
       "name": "Dynamic Notch Blog",
-      "description": "Read the latest articles about maximizing productivity, customizing your MacBook notch, and turning it into a functional Dynamic Island.",
-      "url": "https://www.dynamicnotch.tech/blog"
+      "description": "Guides on the MacBook notch: how to hide it, how to customize it, how to turn it into a Dynamic Island, and how a native Mac utility keeps your menu bar clear.",
+      "url": "https://www.dynamicnotch.tech/blog",
+      "publisher": { "@id": `${SITE_URL}/#organization` }
     }
   },
   {
@@ -352,13 +314,13 @@ const PAGES = [
   {
     route: '/blog/mac-power-user-hacks',
     title: '5 Essential macOS Customization Hacks for Power Users in 2026 - Dynamic Notch Blog',
-    description: "Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions.",
+    description: "Real speed on a Mac comes from cutting the small errands, not from writing scripts. Five changes that remove window switching from your day.",
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "5 Essential macOS Customization Hacks for Power Users in 2026",
-      "description": "Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions.",
+      "description": "Real speed on a Mac comes from cutting the small errands, not from writing scripts. Five changes that remove window switching from your day.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
@@ -373,13 +335,13 @@ const PAGES = [
   {
     route: '/blog/why-dynamic-island-mac',
     title: 'Why Your Mac Deserves a Dynamic Island - Dynamic Notch Blog',
-    description: "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it isn't.",
+    description: "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static. Here is what happens when it is not.",
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Why Your Mac Deserves a Dynamic Island",
-      "description": "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it isn't.",
+      "description": "Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static. Here is what happens when it is not.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
@@ -392,13 +354,13 @@ const PAGES = [
   {
     route: '/blog/boost-productivity',
     title: 'How Dynamic Notch Supercharges Productivity - Dynamic Notch Blog',
-    description: 'Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state.',
+    description: 'Every time you stop writing code to open Spotify, wait for it, and hit next, you pay for it twice: once in seconds and once in focus.',
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "How Dynamic Notch Supercharges Productivity",
-      "description": "Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state.",
+      "description": "Every time you stop writing code to open Spotify, wait for it, and hit next, you pay for it twice: once in seconds and once in focus.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
@@ -428,13 +390,13 @@ const PAGES = [
   {
     route: '/blog/notch-customization',
     title: 'How Much Can You Customize the macOS Notch? - Dynamic Notch Blog',
-    description: "With Dynamic Notch, the static bezel isn't just utilized—it is deeply customizable to fit any personal aesthetic.",
+    description: "The notch does not have to look like a black rectangle. Themes, accent colours, module order and what shows on the collapsed bar are all yours to set.",
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "How Much Can You Customize the macOS Notch?",
-      "description": "With Dynamic Notch, the static bezel isn't just utilized—it is deeply customizable to fit any personal aesthetic.",
+      "description": "The notch does not have to look like a black rectangle. Themes, accent colours, module order and what shows on the collapsed bar are all yours to set.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
@@ -464,13 +426,13 @@ const PAGES = [
   {
     route: '/blog/how-to-hide-macbook-notch',
     title: 'How to Hide the MacBook Notch (and Why You Might Not Want To) - Dynamic Notch Blog',
-    description: 'Five ways to hide the MacBook notch, including the built-in macOS setting most people miss — plus the menu bar problem hiding it does not solve.',
+    description: 'Five ways to hide the MacBook notch, including the built-in macOS setting most people miss, plus the menu bar problem hiding it does not solve.',
     type: 'article',
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "How to Hide the MacBook Notch (and Why You Might Not Want To)",
-      "description": "Five ways to hide the MacBook notch, including the built-in macOS setting most people miss — plus the menu bar problem hiding it does not solve.",
+      "description": "Five ways to hide the MacBook notch, including the built-in macOS setting most people miss, plus the menu bar problem hiding it does not solve.",
       "author": {
         "@type": "Person",
         "name": "Aryaan"
@@ -500,20 +462,20 @@ const PAGES = [
   },
   {
     route: '/privacy',
-    title: 'Privacy Policy - Dynamic Notch',
-    description: 'Read our Privacy Policy to understand how we protect your data. Dynamic Notch operates locally and values your privacy first.',
+    title: 'Privacy Policy: Dynamic Notch',
+    description: 'What Dynamic Notch reads, what it stores and the only network calls it makes. Notes, clipboard history, files, calendar events and the camera never leave your Mac.',
     type: 'website'
   },
   {
     route: '/terms',
-    title: 'Terms of Service - Dynamic Notch',
+    title: 'Terms of Service: Dynamic Notch',
     description: 'Read the terms of service governing the download, license, and usage of the Dynamic Notch macOS application.',
     type: 'website'
   },
   {
     route: '/contact',
-    title: 'Contact Us - Dynamic Notch Support & Feedback',
-    description: 'Have questions, feedback, or need help with Dynamic Notch? Get in touch directly with the developer.',
+    title: 'Contact Dynamic Notch: Support and Feedback',
+    description: 'Questions about Dynamic Notch, a bug to report, or a feature you want in the notch? Write to the developer directly and get a real reply.',
     type: 'website'
   },
   {
@@ -765,7 +727,7 @@ async function main() {
     if (page.schema) {
       html = replaceOrInsertSchema(html, enrichSchema(page.schema, page));
     } else {
-      // Drop the base template's SoftwareApplication schema — it only belongs on "/" —
+      // Drop the base template's SoftwareApplication schema, it only belongs on "/" , 
       // but still give the page its breadcrumb trail.
       const breadcrumbs = breadcrumbsFor(page.route, page.breadcrumbTitle ?? page.title);
       html = breadcrumbs
@@ -818,7 +780,7 @@ async function main() {
   console.log('Pre-rendering completed successfully!');
 }
 
-// `main` is async, so a try/catch around the call would not see a rejection — it would
+// `main` is async, so a try/catch around the call would not see a rejection, it would
 // surface as an unhandled rejection and, depending on the Node version, still exit 0.
 main().catch((error) => {
   console.error(`Pre-render failed: ${error.message}`);

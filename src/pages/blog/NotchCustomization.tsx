@@ -10,7 +10,7 @@ export default function NotchCustomization() {
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="How Much Can You Customize the macOS Notch?"
-                description="With Dynamic Notch, the static bezel isn't just utilized—it is deeply customizable to fit any personal aesthetic."
+                description="The notch does not have to look like a black rectangle. Themes, accent colours, module order and what shows on the collapsed bar are all yours to set."
                 publishDate="2026-03-01"
                 url="https://www.dynamicnotch.tech/blog/notch-customization"
             />
@@ -19,7 +19,7 @@ export default function NotchCustomization() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         How Much Can You Customize the macOS Notch?
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">

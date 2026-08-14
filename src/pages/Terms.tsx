@@ -9,25 +9,25 @@ export default function Terms() {
     return (
         <>
             <SEO 
-                title="Terms of Service - Dynamic Notch"
+                title="Terms of Service: Dynamic Notch"
                 description="Read the terms of service governing the download, license, and usage of the Dynamic Notch macOS application."
             />
-            <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
+            <div className="mx-auto max-w-3xl px-6 pt-32 pb-20">
             <m.div
                 {...entrance({ duration: 0.6 })}
             >
-                <h1 className="text-4xl font-bold mb-8 title-gradient">Terms of Service</h1>
-                <div className="prose prose-invert prose-lg text-[var(--color-text-secondary)]">
+                <h1 className="title-gradient text-4xl font-semibold tracking-[-0.03em] md:text-5xl">Terms of Service</h1>
+                <div className="prose prose-invert prose-lg mt-6 text-[var(--color-text-secondary)]">
                     <p>Last updated: {LEGAL_LAST_UPDATED_LABEL}</p>
                     
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Acceptance of Terms</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">1. Acceptance of Terms</h2>
                     <p>
                         By downloading, installing, or using Dynamic Notch, you acknowledge that you have read, 
                         understood, and agree to be bound by these Terms and Conditions. If you do not agree 
                         with any part of these terms, you must not download or use the application.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">2. License & Use</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">2. License & Use</h2>
                     <p>
                         Developed by Aryaan, Dynamic Notch is provided to you as a personal use utility. 
                         This grant is a license for use, not a transfer of title. Under this license, you may not:
@@ -38,7 +38,7 @@ export default function Terms() {
                         <li>Remove any copyright or other proprietary notations from the materials.</li>
                     </ul>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. Disclaimer</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">3. Disclaimer</h2>
                     <p>
                         All rights reserved. This application and its original content, features, and functionality are 
                         the exclusive property of Aryaan. Unauthorized distribution, reproduction, modification, or 
@@ -53,7 +53,7 @@ export default function Terms() {
                         modified, repackaged, or third-party redistributed copies of the software.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">4. Limitation of Liability</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">4. Limitation of Liability</h2>
                     <p>
                         In no event shall Aryaan or Dynamic Notch be liable for any damages (including, 
                         without limitation, damages for loss of data or profit, or due to business interruption) 
@@ -61,14 +61,14 @@ export default function Terms() {
                         been notified of the possibility of such damage.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">5. External Data & APIs</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">5. External Data & APIs</h2>
                     <p>
                         The application interacts with third-party software (such as Spotify and Apple Music) 
                         and external APIs (for weather data). Use of these features is subject to those 
                         respective services' own terms and privacy policies.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">6. Termination</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">6. Termination</h2>
                     <p>
                         This license shall automatically terminate if you violate any of these restrictions 
                         and may be terminated by the developer at any time. Upon terminating your viewing 

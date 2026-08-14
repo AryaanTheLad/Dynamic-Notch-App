@@ -11,7 +11,7 @@ export type CtaPlacement = 'navbar' | 'hero' | 'pricing' | 'footer' | 'article';
 /**
  * Conversion events, in one place.
  *
- * Vercel Analytics was recording page views and nothing else — no CTA clicks, no
+ * Vercel Analytics was recording page views and nothing else, no CTA clicks, no
  * checkout starts, no way to attribute a sale to a page. Reconciling `checkout_start`
  * against LemonSqueezy's completed orders gives the real conversion rate.
  *
@@ -22,7 +22,7 @@ export function trackCheckout(placement: CtaPlacement, extra: Record<string, str
   track('checkout_start', { placement, price: PRICE.amount, ...extra });
 }
 
-/** The visitor asked to see the product in motion — the comprehension gate. */
+/** The visitor asked to see the product in motion, which is the comprehension gate. */
 export function trackDemoPlayed(placement: string) {
   track('demo_played', { placement });
 }

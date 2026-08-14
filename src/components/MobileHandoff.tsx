@@ -25,7 +25,7 @@ export default function MobileHandoff() {
             setCopied(true);
             setTimeout(() => setCopied(false), 2200);
         } catch {
-            // Clipboard blocked (insecure context, or the user declined) — the mailto
+            // Clipboard blocked (insecure context, or the user declined), the mailto
             // route beside this button still works, so fail quietly.
         }
     }

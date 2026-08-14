@@ -13,10 +13,11 @@ import {
 import { trackCheckout } from '../lib/analytics';
 
 const INCLUDED = [
-    `All ${FEATURES.length} notch features — no tiers, nothing held back for a higher price`,
-    'In-app updates, delivered through Sparkle',
+    `All ${FEATURES.length} notch features. No tiers, nothing held back for a higher price.`,
+    'Free updates for as long as the app ships, delivered in-app through Sparkle',
     `${PERFORMANCE.ram} of memory and ${PERFORMANCE.idleCpu} CPU while it sits idle`,
-    'Notes, clipboard history and File Tray contents never leave your Mac',
+    'Notes, clipboard history and file tray contents never leave your Mac',
+    'No account to create, and nothing stops working if you never come back',
 ];
 
 const SPECS = [
@@ -30,8 +31,8 @@ export default function Pricing() {
     const entrance = useEntrance();
 
     return (
-        <section id="pricing" className="notch-spill py-28 px-6 md:py-36">
-            <div className="max-w-5xl mx-auto">
+        <section id="pricing" className="notch-spill px-6 py-20 md:py-28">
+            <div className="mx-auto max-w-5xl">
                 <SectionHeading
                     eyebrow="Pricing"
                     title={
@@ -45,10 +46,10 @@ export default function Pricing() {
 
                 <m.div
                     {...entrance({ inView: true, delay: 0.1, y: 24 })}
-                    className="mt-14 grid grid-cols-1 gap-5 md:grid-cols-5"
+                    className="mt-12 grid grid-cols-1 gap-4 md:mt-14 md:gap-5 lg:grid-cols-5"
                 >
                     {/* What you get */}
-                    <div className="md:col-span-3 rounded-[1.75rem] border border-white/[0.07] bg-[var(--color-surface)] p-8">
+                    <div className="rounded-3xl border border-white/[0.07] bg-[var(--color-surface)] p-6 md:p-8 lg:col-span-3">
                         <h3 className="text-base font-semibold tracking-[-0.01em]">
                             What's included
                         </h3>
@@ -71,13 +72,13 @@ export default function Pricing() {
                             </h4>
                             <p className="mt-2 text-sm font-light leading-relaxed text-[var(--color-text-secondary)]">
                                 {PRICE.display} is the whole price. The checkout lets you pay more if
-                                you want to — it unlocks nothing extra, it just funds the next release.
+                                you want to. It unlocks nothing extra, it just funds the next release.
                             </p>
                         </div>
                     </div>
 
                     {/* Price and CTA */}
-                    <div className="relative md:col-span-2 flex flex-col overflow-hidden rounded-[1.75rem] border border-white/12 bg-[var(--color-surface-raised)] p-8">
+                    <div className="relative flex flex-col overflow-hidden rounded-3xl border border-white/12 bg-[var(--color-surface-raised)] p-6 md:p-8 lg:col-span-2">
                         <div className="pointer-events-none absolute -top-24 left-1/2 h-48 w-48 -translate-x-1/2 rounded-full bg-[var(--color-accent)]/20 blur-3xl" />
 
                         <div className="relative flex items-baseline gap-2">
@@ -106,7 +107,7 @@ export default function Pricing() {
                             onClick={() => trackCheckout('pricing')}
                             className="relative mt-8 inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-center font-medium text-black shadow-[0_10px_40px_-12px_rgba(255,255,255,0.5)] transition-transform duration-300 hover:scale-[1.02] active:scale-95"
                         >
-                            Buy Dynamic Notch — {PRICE.display}
+                            Buy Dynamic Notch, {PRICE.display}
                         </a>
 
                         <p className="relative mt-4 text-xs leading-relaxed text-white/50">

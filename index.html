@@ -3,6 +3,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- Baseline head for dev and for anything that reads the template directly.
+         `scripts/prerender.js` overwrites the title, meta and JSON-LD per route at build
+         time from src/data/product.js, which is the source of truth. -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -11,29 +14,38 @@
       "operatingSystem": "macOS 14.6 or later",
       "processorRequirements": "Apple Silicon (M1 or later)",
       "applicationCategory": "UtilitiesApplication",
-      "description": "A macOS utility that brings Dynamic Island functionality to the MacBook notch. Features include a file tray, media controls, clipboard history, a timer, notes and weather.",
+      "description": "A native macOS utility that brings Dynamic Island functionality to the MacBook notch: a file tray, media controls, clipboard history, quick notes, a timer, calendar events, a colour picker, a camera mirror, weather and the system volume and brightness HUD.",
       "url": "https://www.dynamicnotch.tech",
-      "softwareVersion": "3.0",
+      "softwareVersion": "4.0",
       "offers": {
         "@type": "Offer",
         "price": "5.99",
         "priceCurrency": "USD"
       },
       "featureList": [
-        "Media Control",
-        "File Tray",
-        "Quick Notes",
-        "Clipboard History",
-        "Custom Timer",
-        "Current Task Setter",
-        "Weather at a glance"
+        "Media player",
+        "File tray",
+        "AirDrop",
+        "Clipboard history",
+        "Quick notes",
+        "Timer",
+        "Current task",
+        "Calendar and events",
+        "Colour picker",
+        "Camera mirror",
+        "Weather",
+        "System HUD",
+        "Download watcher",
+        "Finder shortcut",
+        "Themes and appearance",
+        "Global shortcut"
       ]
     }
 </script>
-    <title>Dynamic Notch - MacBook Notch Utility</title>
-    <meta name="description" content="The ultimate macOS utility to make your MacBook notch interactive. Features include a file tray, music player, and native AirDrop integration.">
-    <meta property="og:title" content="Dynamic Notch for macOS" />
-    <meta property="og:description" content="Transform your MacBook notch into a functional workstation." />
+    <title>Dynamic Notch: Turn the MacBook Notch Into a Dynamic Island</title>
+    <meta name="description" content="Dynamic Notch is a native macOS app that turns the MacBook notch into a control centre: file tray, media controls, clipboard history, notes, timer, calendar, colour picker and weather. $5.99 once, no subscription.">
+    <meta property="og:title" content="Dynamic Notch: Turn the MacBook Notch Into a Dynamic Island" />
+    <meta property="og:description" content="A native macOS app that turns the MacBook notch into a working control centre. $5.99 once, no subscription." />
     <meta charset="UTF-8" />
     <link rel="icon" type="image/png" href="/urlicon.png?v=2" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -41,7 +53,7 @@
 
     <!-- Inter is self-hosted (see the @font-face in src/index.css). A font preload must
          carry `crossorigin` even same-origin, because fonts are always fetched in CORS
-         mode — without it the preload is discarded and the file is fetched twice. -->
+         mode, without it the preload is discarded and the file is fetched twice. -->
     <link rel="preload" href="/fonts/inter-var-latin.woff2" as="font" type="font/woff2" crossorigin>
 
     <!-- The server-rendered markup carries framer-motion's `initial` styles, so entrance

@@ -3,7 +3,7 @@
  * `src/components/ArticleFooter.tsx` picks related posts out of it.
  *
  * `readTime` is the article's word count at 230 wpm, rounded up. Recount when you
- * edit a post — the previous labels claimed 4–6 minutes for 200-word articles.
+ * edit a post, the previous labels claimed 4 to 6 minutes for 200-word articles.
  * `dateISO` is what goes in `<time dateTime>`; `date` is only ever displayed.
  */
 export const POSTS = [
@@ -35,7 +35,7 @@ export const POSTS = [
     readTime: '2 min read',
     topics: ['macos', 'productivity', 'customization'],
     excerpt:
-      "Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions.",
+      'Real speed on a Mac comes from cutting the small errands, not from writing scripts. Five changes that remove window switching from your day.',
   },
   {
     id: 'versionUpdate',
@@ -55,7 +55,7 @@ export const POSTS = [
     readTime: '7 min read',
     topics: ['notch', 'customization'],
     excerpt:
-      'Five methods, including the built-in macOS setting most people miss — plus the menu bar problem that hiding the notch does not solve.',
+      'Five methods, including the built-in macOS setting most people miss, plus the menu bar problem that hiding the notch does not solve.',
   },
   {
     id: 'battery-efficiency',
@@ -75,7 +75,7 @@ export const POSTS = [
     readTime: '1 min read',
     topics: ['notch', 'customization'],
     excerpt:
-      "With Dynamic Notch, the static bezel isn't just utilized—it is deeply customizable to fit any personal aesthetic.",
+      'The notch does not have to look like a black rectangle. Themes, accent colours, module order and what shows on the collapsed bar are all yours to set.',
   },
   {
     id: 'minimalist-setup',
@@ -95,7 +95,7 @@ export const POSTS = [
     readTime: '1 min read',
     topics: ['productivity', 'workflow'],
     excerpt:
-      'Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state.',
+      'Every time you stop writing code to open Spotify, wait for it, and hit next, you pay for it twice: once in seconds and once in focus.',
   },
   {
     id: 'why-dynamic-island-mac',
@@ -105,7 +105,7 @@ export const POSTS = [
     readTime: '5 min read',
     topics: ['notch', 'product'],
     excerpt:
-      'Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it is not.',
+      'Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static. Here is what happens when it is not.',
   },
 ];
 

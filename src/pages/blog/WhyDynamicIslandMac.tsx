@@ -17,7 +17,7 @@ export default function WhyDynamicIslandMac() {
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO
                 title="Why Your Mac Deserves a Dynamic Island"
-                description="Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static — here is what happens when it isn't."
+                description="Apple gave the iPhone cutout timers, playback and live activities. On the Mac the same space was left static. Here is what happens when it is not."
                 publishDate="2026-01-02"
                 modifiedDate="2026-08-13"
                 url="https://www.dynamicnotch.tech/blog/why-dynamic-island-mac"
@@ -27,7 +27,7 @@ export default function WhyDynamicIslandMac() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         Why Your Mac Deserves a Dynamic Island
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
@@ -44,7 +44,7 @@ export default function WhyDynamicIslandMac() {
                     <p className={P}>
                         Apple put a camera housing into the top of two products and then did completely
                         different things with the space around it. On iPhone it became the Dynamic Island:
-                        timers, playback, live activities, AirDrop progress — a small, permanent surface for
+                        timers, playback, live activities and AirDrop progress: a small, permanent surface for
                         the thing you are currently doing. On the Mac, the identical cutout was left as a
                         gap in the menu bar and nothing else.
                     </p>
@@ -58,7 +58,7 @@ export default function WhyDynamicIslandMac() {
                         The top edge of the screen has a property the rest of the display does not: it is
                         the one place your cursor can reach without aiming. Throw the pointer upward and it
                         stops at the edge, every time. It is the same reason the menu bar has lived there
-                        since 1984 — infinite height in Fitts&apos; law terms, so you can hit it at speed
+                        since 1984, infinite height in Fitts&apos; law terms, so you can hit it at speed
                         without looking.
                     </p>
                     <p className={P}>
@@ -66,7 +66,7 @@ export default function WhyDynamicIslandMac() {
                         glanceable in a way a Dock badge or a window in the background is not.
                     </p>
                     <p className={P}>
-                        Most people respond to the notch by trying to make that area disappear — a black
+                        Most people respond to the notch by trying to make that area disappear with a black
                         menu bar, a dark wallpaper. We wrote up{' '}
                         <Link to="/blog/how-to-hide-macbook-notch" className={LINK}>
                             every method for hiding the MacBook notch
@@ -97,7 +97,7 @@ export default function WhyDynamicIslandMac() {
                     <p className={P}>
                         Move the pointer to the notch and it expands. Click to open it properly, or drag a
                         file straight onto it to drop that file into the tray. Drag back out when you want
-                        it somewhere else — Finder, a message, an AirDrop sheet. There is no window to
+                        it somewhere else: Finder, a message, an AirDrop sheet. There is no window to
                         manage and no keyboard shortcut to memorise.
                     </p>
                     <p className={P}>
@@ -114,7 +114,7 @@ export default function WhyDynamicIslandMac() {
                         Worth saying plainly: this is not an argument that the notch is beautiful. It is an
                         argument that a cutout you have already paid for in screen design should return
                         something. If you try it and decide you preferred a clean black strip, Hide Notch
-                        Mode is built in — you are not choosing between the two forever.
+                        Mode is built in, so you are not choosing between the two forever.
                     </p>
                     <p className={P}>
                         Dynamic Notch is {PRICE.display} once, with no subscription.{' '}

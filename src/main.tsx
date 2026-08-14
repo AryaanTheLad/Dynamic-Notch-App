@@ -15,7 +15,7 @@ const tree = (
  * Every route ships with its body server-rendered by `scripts/prerender.js`, so the
  * normal path is to hydrate that markup rather than throw it away and re-render.
  *
- * `createRoot` is kept as a fallback for the case where `#root` is empty — a build that
+ * `createRoot` is kept as a fallback for the case where `#root` is empty, a build that
  * skipped prerendering, or a route served before its static HTML was generated. Calling
  * `hydrateRoot` on an empty container would leave the page blank.
  *

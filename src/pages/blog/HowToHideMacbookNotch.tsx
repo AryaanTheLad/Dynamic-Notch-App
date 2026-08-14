@@ -16,7 +16,7 @@ export default function HowToHideMacbookNotch() {
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO
                 title="How to Hide the MacBook Notch (and Why You Might Not Want To)"
-                description="Five ways to hide the MacBook notch, including the built-in macOS setting most people miss — plus the menu bar problem hiding it does not solve."
+                description="Five ways to hide the MacBook notch, including the built-in macOS setting most people miss, plus the menu bar problem hiding it does not solve."
                 publishDate="2026-04-19"
                 modifiedDate="2026-08-13"
                 url="https://www.dynamicnotch.tech/blog/how-to-hide-macbook-notch"
@@ -26,7 +26,7 @@ export default function HowToHideMacbookNotch() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         How to Hide the MacBook Notch (and Why You Might Not Want To)
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
@@ -42,7 +42,7 @@ export default function HowToHideMacbookNotch() {
                     <p className={P}>
                         The short answer: you cannot switch the notch off, because it is a physical cutout
                         in the panel rather than something the software draws. What you can do is make it
-                        stop being noticeable — and there are five ways to do that, one of which is built
+                        stop being noticeable, and there are five ways to do that, one of which is built
                         into macOS and almost nobody knows about.
                     </p>
                     <p className={P}>
@@ -56,16 +56,16 @@ export default function HowToHideMacbookNotch() {
                         following year. If your Mac is one of these, you have one:
                     </p>
                     <ul className={UL}>
-                        <li><strong>MacBook Pro 14-inch and 16-inch</strong> — 2021 onwards</li>
-                        <li><strong>MacBook Air 13-inch</strong> — M2, 2022 onwards</li>
-                        <li><strong>MacBook Air 15-inch</strong> — M2, 2023 onwards</li>
+                        <li><strong>MacBook Pro 14-inch and 16-inch</strong>: 2021 onwards</li>
+                        <li><strong>MacBook Air 13-inch</strong>: M2, 2022 onwards</li>
+                        <li><strong>MacBook Air 15-inch</strong>: M2, 2023 onwards</li>
                     </ul>
                     <p className={P}>
                         It houses the camera and the ambient light sensor. On the 2021 Pro that camera went
                         from 720p to 1080p, which is the trade Apple made: a better webcam and thinner
                         bezels, at the cost of a bite out of the menu bar. The screen area beside the notch
-                        is extra space that older MacBooks did not have — the notch does not cover anything
-                        you used to have, it sits in space that was previously bezel.
+                        is extra space older MacBooks did not have. The notch does not cover anything you used
+                        to have; it sits in space that used to be bezel.
                     </p>
 
                     <h2 className={H2}>Method 1: The built-in macOS setting (per app)</h2>
@@ -93,7 +93,7 @@ export default function HowToHideMacbookNotch() {
 
                     <h2 className={H2}>Method 2: Black out the menu bar</h2>
                     <p className={P}>
-                        The most popular approach. A small utility — TopNotch is the best known — forces the
+                        The most popular approach. A small utility (TopNotch is the best known) forces the
                         menu bar to solid black. The notch then blends into a uniform dark strip across the
                         top of the display.
                     </p>
@@ -103,12 +103,12 @@ export default function HowToHideMacbookNotch() {
                     </p>
                     <ul className={UL}>
                         <li>
-                            <strong>MacBook Pro (14&quot; / 16&quot;)</strong> — the Liquid Retina XDR panel is
+                            <strong>MacBook Pro (14&quot; / 16&quot;)</strong>: the Liquid Retina XDR panel is
                             mini-LED, so black pixels are genuinely close to off. The camouflage is nearly
                             perfect.
                         </li>
                         <li>
-                            <strong>MacBook Air</strong> — a conventional backlit LCD, so &quot;black&quot; is dark
+                            <strong>MacBook Air</strong>: a conventional backlit LCD, so &quot;black&quot; is dark
                             grey with the backlight behind it. The notch stays slightly visible against it,
                             especially at high brightness or off-angle.
                         </li>
@@ -137,8 +137,8 @@ export default function HowToHideMacbookNotch() {
                         to the top of the screen.
                     </p>
                     <p className={P}>
-                        This does not hide the notch — the cutout is still there against whatever is behind
-                        it — but it removes the row of icons that draws your eye to that area, and in
+                        This does not hide the notch. The cutout is still there against whatever sits behind
+                        it. What it removes is the row of icons that draws your eye to that area, and in
                         full-screen apps the effect is close to a clean edge. Pair it with a dark wallpaper
                         and the top of the display goes quiet.
                     </p>
@@ -148,7 +148,7 @@ export default function HowToHideMacbookNotch() {
                         Obvious, but worth stating: the notch only exists on the built-in panel. Running
                         clamshell with the lid closed, or simply putting your working windows on the
                         external monitor, removes the question entirely. If the notch bothers you mainly at
-                        your desk, this is the fix — and it costs nothing if you already have a monitor.
+                        your desk, this is the fix, and it costs nothing if you already own a monitor.
                     </p>
 
                     <h2 className={H2}>The problem none of these solve</h2>
@@ -158,8 +158,8 @@ export default function HowToHideMacbookNotch() {
                     </p>
                     <p className={P}>
                         macOS lays out menu bar icons from the right, and the app&apos;s own menus from the left.
-                        When those two runs meet the notch, icons stop appearing — they do not wrap or
-                        scroll, they are simply not drawn. Open an app with a long menu bar, like a design
+                        When those two runs meet the notch, icons stop appearing. They do not wrap and they do
+                        not scroll; they are simply not drawn. Open an app with a long menu bar, like a design
                         or development tool, and status icons you rely on quietly vanish. The more menu bar
                         utilities you run, the sooner it happens.
                     </p>
@@ -172,14 +172,14 @@ export default function HowToHideMacbookNotch() {
 
                     <h2 className={H2}>Why you might not want to hide it</h2>
                     <p className={P}>
-                        Every method above spends something — vertical space, a background process, your
-                        choice of wallpaper, or the menu bar itself — to make a piece of your screen do
-                        nothing more convincingly. Which is a strange trade when you look at it directly.
+                        Every method above spends something to make a piece of your screen do nothing more
+                        convincingly: vertical space, a background process, your choice of wallpaper, or
+                        the menu bar itself. Which is a strange trade when you look at it directly.
                     </p>
                     <p className={P}>
                         The area beside the notch is the one part of the display your eye passes over
-                        constantly and your cursor can reach without aiming — you throw the pointer at the
-                        top of the screen and it stops there. On iPhone, Apple took the same cutout and gave
+                        constantly and the one your cursor can reach without aiming. You throw the pointer at
+                        the top of the screen and it stops there. On iPhone, Apple took the same cutout and gave
                         it timers, playback and live activities. On the Mac the equivalent space was left
                         static, which is the gap we wrote about in{' '}
                         <Link to="/blog/why-dynamic-island-mac" className={LINK}>
@@ -192,8 +192,8 @@ export default function HowToHideMacbookNotch() {
                         <Link to="/" className={LINK}>Dynamic Notch</Link> takes the other route. Instead of
                         camouflaging the cutout, it makes the space around it interactive: drag files into
                         it to carry them between apps, control whatever is playing, run a timer, keep your
-                        current task pinned in view, pull back something you copied, or check the weather —
-                        without leaving the window in front of you.
+                        current task pinned in view, pull back something you copied, or check the weather,
+                        all without leaving the window in front of you.
                     </p>
                     <p className={P}>
                         It is native Swift, runs at around 45 MB of memory and 0% CPU when idle, and is
@@ -209,11 +209,11 @@ export default function HowToHideMacbookNotch() {
 
                     <h2 className={H2}>Which method should you pick?</h2>
                     <ul className={UL}>
-                        <li><strong>You want it gone in one app that breaks against it</strong> — Method 1, the built-in setting.</li>
-                        <li><strong>You want it blended everywhere and you have a Pro</strong> — Method 2, a black menu bar.</li>
-                        <li><strong>You want to try before installing anything</strong> — Method 3, a dark wallpaper.</li>
-                        <li><strong>Your icons keep disappearing</strong> — none of these. Reduce the number of menu bar utilities, or move what you can into the notch instead.</li>
-                        <li><strong>You would rather it earned its space</strong> — <Link to="/" className={LINK}>give it a job</Link>.</li>
+                        <li><strong>You want it gone in one app that breaks against it</strong>: Method 1, the built-in setting.</li>
+                        <li><strong>You want it blended everywhere and you have a Pro</strong>: Method 2, a black menu bar.</li>
+                        <li><strong>You want to try before installing anything</strong>: Method 3, a dark wallpaper.</li>
+                        <li><strong>Your icons keep disappearing</strong>: none of these. Reduce the number of menu bar utilities, or move what you can into the notch instead.</li>
+                        <li><strong>You would rather it earned its space</strong>: <Link to="/" className={LINK}>give it a job</Link>.</li>
                     </ul>
                     <p className={P}>
                         Hiding the notch is easy, and if a black strip is genuinely what you want, Method 3

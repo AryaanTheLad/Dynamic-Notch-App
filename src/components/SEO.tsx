@@ -3,12 +3,12 @@ import { useLocation } from 'react-router-dom';
 import { SITE_URL } from '../data/product.js';
 
 /**
- * 1200×630 card built for `summary_large_image`. The old default was urlicon.png —
+ * 1200×630 card built for `summary_large_image`. The old default was urlicon.png , 
  * a 2000×2000, 246 KB square, which every platform either cropped or rejected.
  */
 const DEFAULT_IMAGE = `${SITE_URL}/og-card.jpg`;
 const DEFAULT_IMAGE_ALT =
-  'Dynamic Notch — everyone else hides the notch. We gave it a job. macOS 14.6+, Apple Silicon, $5.99 once.';
+  'Dynamic Notch, everyone else hides the notch. We gave it a job. macOS 14.6+, Apple Silicon, $5.99 once.';
 
 interface SEOProps {
   title: string;
@@ -27,7 +27,7 @@ interface SEOProps {
  * Updates an existing head tag in place, creating it only when it is genuinely absent.
  *
  * "In place" is the whole point. This component used to render `<Helmet>`, which under
- * React 19 delegates to React's native metadata hoisting — and that hoisting *appends*
+ * React 19 delegates to React's native metadata hoisting, and that hoisting *appends*
  * to `<head>` with no knowledge of the tags `scripts/prerender.js` already wrote into
  * the served HTML. The result was every meta tag, and the canonical, duplicated on
  * every page in production. Mutating the existing node cannot produce a second one.
@@ -56,7 +56,7 @@ function setCanonical(href: string) {
  * Keeps the document head in step with client-side navigation.
  *
  * This renders nothing. `scripts/prerender.js` is the single source of truth for the
- * head of every route — it writes the title, meta, canonical and JSON-LD into each
+ * head of every route, it writes the title, meta, canonical and JSON-LD into each
  * route's static HTML, which is what crawlers read, because a crawler always fetches a
  * fresh document rather than navigating the SPA.
  *
@@ -66,7 +66,7 @@ function setCanonical(href: string) {
  *
  * JSON-LD is deliberately not managed here. It only matters to crawlers, crawlers only
  * ever see the prerendered document, and `verifyRouteCoverage()` in prerender.js fails
- * the build if a route is missing its entry — so there is no path by which a route ends
+ * the build if a route is missing its entry, so there is no path by which a route ends
  * up without schema.
  */
 export default function SEO({

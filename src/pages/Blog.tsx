@@ -8,40 +8,43 @@ export default function Blog() {
     const entrance = useEntrance();
 
     return (
-        <div className="pt-32 pb-20 px-6 max-w-6xl mx-auto">
+        <div className="mx-auto max-w-6xl px-6 pt-32 pb-20">
             <SEO
-              title="Dynamic Notch Blog - MacBook Notch Utilities & Customization"
-              description="Read the latest articles about maximizing productivity, customizing your MacBook notch, and turning it into a functional Dynamic Island."
+              title="Dynamic Notch Blog: MacBook Notch Utilities and Customization"
+              description="Guides on the MacBook notch: how to hide it, how to customize it, how to turn it into a Dynamic Island, and how a native Mac utility keeps your menu bar clear."
             />
-            <m.div {...entrance({ duration: 0.6 })} className="mb-16 text-center">
-                <h1 className="text-4xl md:text-5xl font-semibold mb-4 text-white">The Dynamic Notch Journal</h1>
-                <p className="text-lg text-[var(--color-text-secondary)] max-w-2xl mx-auto">
-                    Insights, updates, and thoughts on making macOS workflows cleaner, faster, and much more beautiful.
+            <m.div {...entrance({ duration: 0.6 })} className="mb-14 text-center">
+                <h1 className="title-gradient text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+                    The Dynamic Notch Journal
+                </h1>
+                <p className="mx-auto mt-5 max-w-2xl text-base font-light leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
+                    How to hide the notch, how to customize it, and what happens when you stop
+                    hiding it and give it something to do.
                 </p>
             </m.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-5 lg:grid-cols-3">
                 {POSTS.map((post, i) => (
                     <m.div
                         key={post.id}
                         {...entrance({ inView: true, delay: i * 0.1, duration: 0.5 })}
                     >
                         <Link to={`/blog/${post.id}`} className="group block h-full">
-                            <article className="h-full bg-white/5 border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all duration-300 flex flex-col cursor-pointer hover:shadow-lg hover:shadow-white/5">
-                                <div className="flex items-center gap-3 text-xs text-[var(--color-text-secondary)] mb-4">
+                            <article className="flex h-full cursor-pointer flex-col rounded-3xl border border-white/[0.07] bg-[var(--color-surface)] p-6 transition-colors duration-300 hover:border-white/15 hover:bg-[var(--color-surface-raised)]">
+                                <div className="mb-4 flex items-center gap-3 text-xs text-[var(--color-text-secondary)]">
                                     <time dateTime={post.dateISO}>{post.date}</time>
                                     <span aria-hidden="true">•</span>
                                     <span>{post.readTime}</span>
                                 </div>
-                                <h2 className="text-xl font-medium text-white mb-3 group-hover:text-blue-400 transition-colors">
+                                <h2 className="mb-3 text-xl font-semibold tracking-[-0.01em] text-white">
                                     {post.title}
                                 </h2>
-                                <p className="text-[var(--color-text-secondary)] text-sm leading-relaxed flex-grow">
+                                <p className="flex-grow text-sm font-light leading-relaxed text-[var(--color-text-secondary)]">
                                     {post.excerpt}
                                 </p>
-                                <div className="mt-6 flex items-center text-sm font-medium text-white group-hover:text-blue-400 transition-colors">
-                                    Read Article
-                                    <svg className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                                <div className="mt-6 flex items-center text-sm font-medium text-white/75 transition-colors group-hover:text-white">
+                                    Read it
+                                    <svg className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
                                     </svg>
                                 </div>

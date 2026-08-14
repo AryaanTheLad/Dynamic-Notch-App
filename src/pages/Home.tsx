@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import Hero from '../components/Hero';
 import SEO from '../components/SEO';
+import { PRICE } from '../data/product.js';
 
 const Features = lazy(() => import('../components/Features'));
 const NotchDrop = lazy(() => import('../components/NotchDrop'));
@@ -13,8 +14,8 @@ export default function Home() {
   return (
     <>
       <SEO
-        title="Dynamic Notch - The Ultimate MacBook Notch Utility"
-        description="Transform your MacBook notch into an interactive Dynamic Island. Add a file tray, music player, native AirDrop, and widgets right to your notch."
+        title="Dynamic Notch: Turn the MacBook Notch Into a Dynamic Island"
+        description={`Dynamic Notch is a native macOS app that turns the MacBook notch into a control centre: file tray, media controls, clipboard history, notes, timer, calendar, colour picker and weather. ${PRICE.display} once, no subscription.`}
       />
       <Hero />
       <Suspense fallback={null}>

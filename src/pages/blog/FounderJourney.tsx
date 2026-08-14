@@ -19,7 +19,7 @@ export default function FounderJourney() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         Behind the Launch: What It Feels Like to Ship a Mac App and Earn Your First Payout
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
@@ -33,7 +33,7 @@ export default function FounderJourney() {
 
                 <section>
                     <p className="text-xl text-white/90 leading-relaxed font-light mb-8">
-                        There is a specific kind of quiet tension that fills the room right before you push software you built into the real world. You spent weeks—sometimes months—sitting in front of an IDE, tweaking animations pixel by pixel, fixing edge-case memory leaks, and convincing yourself that maybe, just maybe, this tiny utility matters.
+                        There is a specific kind of quiet tension that fills the room right before you push software you built into the real world. You spent weeks, sometimes months, sitting in front of an IDE, tweaking animations pixel by pixel, fixing edge-case memory leaks, and convincing yourself that maybe, just maybe, this tiny utility matters.
                     </p>
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">The Spark & The Unknown</h2>
@@ -66,7 +66,7 @@ export default function FounderJourney() {
                         </p>
                     </div>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        It’s impossible to overstate how profound that moment feels for an indie developer. It isn't about the monetary amount—it's about the <strong>validation of craft</strong>. Someone looked at a problem you solved, trusted your design vision, and decided it added value to their daily life.
+                        It’s impossible to overstate how profound that moment feels for an indie developer. It isn't about the monetary amount, it's about the <strong>validation of craft</strong>. Someone looked at a problem you solved, trusted your design vision, and decided it added value to their daily life.
                     </p>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
                         When the payout hit my bank account days later, it marked a turning point. It transformed a side project into a real product.

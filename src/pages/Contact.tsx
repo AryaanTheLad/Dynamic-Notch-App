@@ -3,6 +3,10 @@ import { useState } from 'react';
 import SEO from '../components/SEO';
 import { useEntrance } from '../hooks/useEntrance';
 
+/** One field style, so the inputs match the buttons and cards everywhere else. */
+const FIELD =
+    'w-full rounded-2xl border border-white/[0.09] bg-[var(--color-surface)] px-4 py-3 text-sm font-light text-white outline-none transition-colors placeholder:text-white/30 focus:border-white/25 focus-visible:ring-2 focus-visible:ring-[var(--color-accent-soft)]';
+
 export default function Contact() {
     const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
     const entrance = useEntrance();
@@ -15,7 +19,7 @@ export default function Contact() {
         const formData = new FormData(form);
 
         // Honeypot: a real person never sees this field, so anything in it is a bot
-        // filling every input it finds. Report success rather than an error — telling a
+        // filling every input it finds. Report success rather than an error, telling a
         // spam script it failed just invites it to retry with a different shape.
         if (formData.get("company")) {
             setStatus("success");
@@ -39,36 +43,41 @@ export default function Contact() {
 
     return (
         <>
-            <SEO 
-                title="Contact Us - Dynamic Notch Support & Feedback"
-                description="Have questions, feedback, or need help with Dynamic Notch? Get in touch directly with the developer."
+            <SEO
+                title="Contact Dynamic Notch: Support and Feedback"
+                description="Questions about Dynamic Notch, a bug to report, or a feature you want in the notch? Write to the developer directly and get a real reply."
             />
-            <div className="pt-32 pb-20 px-6 max-w-2xl mx-auto min-h-[70vh]">
+            <div className="mx-auto min-h-[70vh] max-w-2xl px-6 pt-32 pb-20">
                 <m.div {...entrance({ duration: 0.8, ease: [0.16, 1, 0.3, 1] })}>
-                    <h1 className="text-5xl font-light italic font-serif mb-4 title-gradient text-center">Contact Us</h1>
-                    <p className="text-white/40 text-center mb-16 text-sm uppercase tracking-[0.3em]">
-                        A Direct Line to Aryaan
+                    <h1 className="title-gradient text-center text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
+                        Get in touch
+                    </h1>
+                    <p className="mx-auto mt-5 mb-12 max-w-md text-center text-base font-light leading-relaxed text-[var(--color-text-secondary)]">
+                        Bugs, refunds, feature requests, or a question the FAQ did not answer.
+                        This goes straight to Aryaan, who wrote the app.
                     </p>
 
                     {status === "success" ? (
                         <m.div
                             {...entrance({ y: 0, scale: 0.98, duration: 1 })}
-                            className="bg-black border border-white/20 rounded-none p-16 text-center shadow-[0_0_60px_rgba(255,255,255,0.03)]"
+                            className="rounded-3xl border border-white/[0.07] bg-[var(--color-surface)] p-8 text-center md:p-12"
                         >
-                            <h2 className="text-4xl font-light italic font-serif text-white mb-6">Message Sent</h2>
-                            <div className="h-px w-8 bg-white/40 mx-auto mb-8" />
-                            <p className="text-white/60 text-sm tracking-wide leading-relaxed max-w-xs mx-auto">
-                                Your transmission has been received. Aryaan will review your message shortly. Thank you for reaching out.
+                            <h2 className="text-2xl font-semibold tracking-[-0.01em] text-white">
+                                Message sent
+                            </h2>
+                            <p className="mx-auto mt-4 max-w-sm text-sm font-light leading-relaxed text-[var(--color-text-secondary)]">
+                                It landed. You will get a reply from Aryaan, usually within a day.
                             </p>
-                            <button 
+                            <button
+                                type="button"
                                 onClick={() => setStatus("idle")}
-                                className="mt-12 px-8 py-3 border border-white/10 text-[10px] uppercase tracking-[0.2em] text-white/30 hover:text-white hover:border-white transition-all duration-700"
+                                className="mt-8 inline-flex h-11 items-center justify-center rounded-full border border-white/12 bg-white/[0.06] px-6 text-sm font-medium text-white transition-colors hover:border-white/25 hover:bg-white/12"
                             >
                                 Send another message
                             </button>
                         </m.div>
                     ) : (
-                        <form className="space-y-10" onSubmit={handleSubmit}>
+                        <form className="space-y-8" onSubmit={handleSubmit}>
                             {/* Honeypot. `hidden` keeps it out of the layout and out of the
                                 accessibility tree, so screen readers never announce it, while
                                 a bot parsing the DOM still finds and fills it. */}
@@ -80,59 +89,58 @@ export default function Contact() {
                                 aria-hidden="true"
                                 hidden
                             />
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                                <div className="flex flex-col gap-3">
-                                    <label htmlFor="name" className="text-[10px] uppercase tracking-widest text-white/30 ml-1">Name</label>
+                            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="name" className="text-xs font-medium text-white/60">Name</label>
                                     <input
                                         type="text"
                                         id="name"
                                         name="name"
                                         required
-                                        className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-white transition-all duration-500 font-light"
-                                        placeholder="Full Name"
+                                        className={FIELD}
+                                        placeholder="Your name"
                                     />
                                 </div>
 
-                                <div className="flex flex-col gap-3">
-                                    <label htmlFor="email" className="text-[10px] uppercase tracking-widest text-white/30 ml-1">Email</label>
+                                <div className="flex flex-col gap-2">
+                                    <label htmlFor="email" className="text-xs font-medium text-white/60">Email</label>
                                     <input
                                         type="email"
                                         id="email"
                                         name="email"
                                         required
-                                        className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-white transition-all duration-500 font-light"
-                                        placeholder="Email Address"
+                                        className={FIELD}
+                                        placeholder="you@example.com"
                                     />
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-3">
-                                <label htmlFor="message" className="text-[10px] uppercase tracking-widest text-white/30 ml-1">Message</label>
+                            <div className="flex flex-col gap-2">
+                                <label htmlFor="message" className="text-xs font-medium text-white/60">Message</label>
                                 <textarea
                                     id="message"
                                     name="message"
                                     required
-                                    rows={4}
-                                    className="w-full bg-transparent border-b border-white/10 py-3 text-white focus:outline-none focus:border-white transition-all duration-500 resize-none font-light leading-relaxed"
-                                    placeholder="Write your message here..."
+                                    rows={6}
+                                    className={`${FIELD} resize-none leading-relaxed`}
+                                    placeholder="What is going on?"
                                 ></textarea>
                             </div>
 
-                            <div className="pt-6 flex justify-center">
+                            <div className="flex justify-center pt-2">
                                 <button
                                     type="submit"
                                     disabled={status === "submitting"}
-                                    className="group relative px-12 py-4 bg-white text-black text-xs font-bold uppercase tracking-[0.3em] overflow-hidden transition-all duration-500 hover:px-16 disabled:opacity-50"
+                                    className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 font-medium text-black shadow-[0_10px_40px_-12px_rgba(255,255,255,0.5)] transition-transform duration-300 hover:scale-[1.02] active:scale-95 disabled:opacity-50 disabled:hover:scale-100"
                                 >
-                                    <span className="relative z-10">
-                                        {status === "submitting" ? "Sending..." : "Send Message"}
-                                    </span>
-                                    <div className="absolute inset-0 bg-white group-hover:bg-white/90 transition-all" />
+                                    {status === "submitting" ? "Sending..." : "Send message"}
                                 </button>
                             </div>
-                            
+
                             {status === "error" && (
-                                <p className="text-white/40 text-[10px] uppercase tracking-widest text-center mt-4 italic">The transmission failed. Please try again.</p>
+                                <p role="alert" className="text-center text-sm text-white/60">
+                                    That did not go through. Try again, or email directly if it keeps failing.
+                                </p>
                             )}
                         </form>
                     )}

@@ -24,7 +24,7 @@ function iconFor(name: string) {
 }
 
 /**
- * A live notch you can drag files onto. Everything stays in the browser — the files
+ * A live notch you can drag files onto. Everything stays in the browser, the files
  * are only ever read for their name and size, which is the point: it demonstrates the
  * File Tray without asking anyone to install or upload anything.
  */
@@ -49,20 +49,20 @@ export default function NotchDrop() {
     }
 
     return (
-        <section id="try-it" className="notch-spill py-28 px-6 md:py-36">
-            <div className="max-w-5xl mx-auto">
+        <section id="try-it" className="notch-spill px-6 py-20 md:py-28">
+            <div className="mx-auto max-w-5xl">
                 <SectionHeading
                     eyebrow="Try it"
                     title={<>Drag a file onto the notch.</>}
                     subtitle={
                         <>
                             This is a working copy of the File Tray, running right here in the page.
-                            Drop something on it — nothing is uploaded, nothing leaves your machine.
+                            Drop something on it, nothing is uploaded, nothing leaves your machine.
                         </>
                     }
                 />
 
-                <m.div {...entrance({ inView: true, delay: 0.1, y: 24 })} className="mt-14">
+                <m.div {...entrance({ inView: true, delay: 0.1, y: 24 })} className="mt-12 md:mt-14">
                     <div
                         onDragOver={(event) => {
                             event.preventDefault();
@@ -151,8 +151,8 @@ export default function NotchDrop() {
                             <div className="mt-8 flex flex-col items-center gap-4 text-center">
                                 <p className="max-w-sm text-sm font-light leading-relaxed text-[var(--color-text-secondary)]">
                                     {items.length === 0
-                                        ? 'In the app this sits on your real notch, and the files stay there until you drag them out — into Finder, Slack, or AirDrop.'
-                                        : 'That is the whole interaction. In the app you drag them back out anywhere — Finder, Slack, AirDrop.'}
+                                        ? 'In the app this sits on your real notch, and the files stay there until you drag them out into Finder, Slack, or AirDrop.'
+                                        : 'That is the whole interaction. In the app you drag them back out anywhere: Finder, Slack, AirDrop.'}
                                 </p>
 
                                 <div className="flex items-center gap-3">

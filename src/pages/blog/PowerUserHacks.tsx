@@ -10,7 +10,7 @@ export default function PowerUserHacks() {
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="5 Essential macOS Customization Hacks for Power Users in 2026"
-                description="Unlocking maximum productivity on macOS isn't about complex scripts—it's about streamlining your visual space and micro-interactions."
+                description="Real speed on a Mac comes from cutting the small errands, not from writing scripts. Five changes that remove window switching from your day."
                 publishDate="2026-06-12"
                 url="https://www.dynamicnotch.tech/blog/mac-power-user-hacks"
             />
@@ -19,7 +19,7 @@ export default function PowerUserHacks() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         5 Essential macOS Customization Hacks for Power Users in 2026
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
@@ -43,7 +43,7 @@ export default function PowerUserHacks() {
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">2. Turn Unused Display Hardware into an Interactive Shelf</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        The hardware camera notch on modern MacBooks used to be a dead zone. With <strong>Dynamic Notch</strong>, you can transform that static bezel into an expanded HUD. Use it as a temporary drag-and-drop file tray, media player, clipboard manager, or quick note container—keeping your desktop completely clean while keeping essential tools a hover away.
+                        The hardware camera notch on modern MacBooks used to be a dead zone. With <strong>Dynamic Notch</strong>, you can transform that static bezel into an expanded HUD. Use it as a temporary drag-and-drop file tray, media player, clipboard manager, or quick note container, keeping your desktop completely clean while keeping essential tools a hover away.
                     </p>
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">3. Master Contextual Keyboard Shortcuts & Hot Corners</h2>
@@ -53,7 +53,7 @@ export default function PowerUserHacks() {
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">4. Eliminate Floating Workspace Windows</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        Having multiple chat apps, music players, and timer windows scattered across your screens creates cognitive overload. Consolidating ambient tasks—like Spotify track controls or focus timers—into a single persistent HUD reduces window switching and keeps your main work canvas front and center.
+                        Having multiple chat apps, music players, and timer windows scattered across your screens creates cognitive overload. Consolidating ambient tasks, like Spotify track controls or focus timers, into a single persistent HUD reduces window switching and keeps your main work canvas front and center.
                     </p>
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">5. Establish Digital Minimalism with Unified Dark Aesthetics</h2>

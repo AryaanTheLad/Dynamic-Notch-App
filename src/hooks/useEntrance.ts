@@ -4,7 +4,7 @@ import { useReducedMotion, type MotionProps } from 'framer-motion';
 /**
  * react-router stamps the first location of a session with the key `default` and gives
  * every subsequent one a generated key. That makes it an exact, timing-free answer to
- * "is this markup that came from the server, or a page the visitor navigated to?" —
+ * "is this markup that came from the server, or a page the visitor navigated to?" , 
  * identical on the server and on the client, so it can gate rendering without risking a
  * hydration mismatch.
  */
@@ -18,7 +18,7 @@ type EntranceOptions = {
   delay?: number;
   duration?: number;
   /**
-   * Kept for readability at call sites — "this one is below the fold". It no longer
+   * Kept for readability at call sites, "this one is below the fold". It no longer
    * switches to `whileInView`; see the note on the hook.
    */
   inView?: boolean;
@@ -35,15 +35,15 @@ type EntranceOptions = {
  *
  * 2. It animates on mount, never on scroll. `whileInView` gates `opacity` on an
  *    IntersectionObserver callback, which means anything that renders the page without
- *    scrolling it — search and AI crawlers, print, embedded webviews, a failed
- *    framer-motion feature chunk — sees `opacity: 0` and reads a blank page. A reveal
+ *    scrolling it, search and AI crawlers, print, embedded webviews, a failed
+ *    framer-motion feature chunk, sees `opacity: 0` and reads a blank page. A reveal
  *    effect is not worth risking the entire page's content, so sections fade in as they
  *    mount and are guaranteed visible from then on.
  *
  * 3. The first page of a session does not animate in; client-side navigation does.
  *
  *    Every route now ships server-rendered, and framer-motion does not run a mount
- *    animation over hydrated DOM — it applies `initial` and stops. That left the navbar,
+ *    animation over hydrated DOM, it applies `initial` and stops. That left the navbar,
  *    the hero badge, the demo video and the footer CTA stranded at `opacity: 0`
  *    permanently. Timing-based workarounds do not fix it, because React 19 hydrates
  *    Suspense boundaries in deferred passes and there is no single moment when

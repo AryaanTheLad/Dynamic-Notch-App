@@ -12,13 +12,13 @@ export default function Footer() {
     const entrance = useEntrance();
 
     return (
-        <footer className="relative pt-32 pb-10 border-t border-white/5 overflow-hidden">
+        <footer className="relative overflow-hidden border-t border-white/5 pt-20 pb-10 md:pt-28">
             {/* Background Glow */}
             <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-[var(--color-accent)] opacity-[0.03] blur-[100px] rounded-[100%] pointer-events-none" />
 
             <div className="max-w-4xl mx-auto px-6 text-center z-10 relative">
-                <m.div {...entrance({ y: 30, duration: 0.8, inView: true })} className="mb-24">
-                    <h2 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-8">
+                <m.div {...entrance({ y: 30, duration: 0.8, inView: true })} className="mb-20">
+                    <h2 className="mb-8 text-[2rem] font-semibold tracking-[-0.03em] text-white md:text-[2.75rem]">
                         {PRICE.display}. Once. No subscription.
                     </h2>
                     <a
@@ -28,7 +28,7 @@ export default function Footer() {
                         onClick={() => trackCheckout('footer')}
                         className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center"
                     >
-                        Buy Dynamic Notch — {PRICE.display}
+                        Buy Dynamic Notch, {PRICE.display}
                     </a>
 
                     <p className="mt-6 text-sm text-white/60">

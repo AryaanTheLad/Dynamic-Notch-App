@@ -2,7 +2,7 @@ User-agent: *
 Allow: /
 
 # AI crawlers and answer engines, named explicitly so none of them fall back to a
-# cautious default. Training and retrieval are both welcome — the whole point of
+# cautious default. Training and retrieval are both welcome, which is the whole point of
 # /llms.txt is to be quoted accurately.
 User-agent: GPTBot
 Allow: /

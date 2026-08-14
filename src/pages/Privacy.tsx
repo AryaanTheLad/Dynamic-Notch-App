@@ -8,74 +8,99 @@ export default function Privacy() {
 
     return (
         <>
-            <SEO 
-                title="Privacy Policy - Dynamic Notch"
-                description="Read our Privacy Policy to understand how we protect your data. Dynamic Notch operates locally and values your privacy first."
+            <SEO
+                title="Privacy Policy: Dynamic Notch"
+                description="What Dynamic Notch reads, what it stores and the only network calls it makes. Notes, clipboard history, files, calendar events and the camera never leave your Mac."
             />
-            <div className="pt-32 pb-20 px-6 max-w-3xl mx-auto">
+            <div className="mx-auto max-w-3xl px-6 pt-32 pb-20">
             <m.div
                 {...entrance({ duration: 0.6 })}
             >
-                <h1 className="text-4xl font-bold mb-8 title-gradient">Privacy Policy</h1>
-                <div className="prose prose-invert prose-lg text-[var(--color-text-secondary)]">
+                <h1 className="title-gradient text-4xl font-semibold tracking-[-0.03em] md:text-5xl">Privacy Policy</h1>
+                <div className="prose prose-invert prose-lg mt-6 text-[var(--color-text-secondary)]">
                     <p>Last updated: {LEGAL_LAST_UPDATED_LABEL}</p>
-                    
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">1. Introduction</h2>
+
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">1. The short version</h2>
                     <p>
-                        Welcome to Dynamic Notch. Developed by Aryaan. By Installing this app you agree to our privacy
-                        policy and our terms and conditions. This app is built with a "Privacy First" philosophy. 
-                        We believe that your desktop activity is your business alone. This policy explains the minimal, 
-                        anonymous data we collect to help improve the app experience.
+                        Dynamic Notch runs on your Mac. Notes, clipboard history, file tray contents,
+                        calendar events and the camera preview stay on the machine and are never
+                        uploaded anywhere. The app collects no names, no email addresses and nothing
+                        that identifies you. This page sets out exactly what it does read, what it
+                        stores and the only times it touches the network.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">2. Data We Collect</h2>
-                    <p>
-                        Dynamic Notch is designed to run almost entirely locally on your Mac. We do not collect names, 
-                        emails, IP addresses, or any personally identifiable information (PII).
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">2. What stays on your Mac</h2>
+                    <ul className="list-disc space-y-2 pl-6">
                         <li>
-                            <strong className="text-white">Anonymous Install Signal:</strong> When you open the app for the 
-                            very first time, a one-time anonymous signal is sent to our server to increment a download counter. 
-                            This signal only contains the app version.
+                            <strong className="text-white">Notes, clipboard history and the file tray.</strong>{' '}
+                            Stored locally. Files in the tray are referenced in place, not copied to a
+                            server. Clipboard entries from password managers are deliberately skipped.
                         </li>
                         <li>
-                            <strong className="text-white">Local Storage:</strong> Features like Quick Notes and your 
-                            File Tray are stored exclusively on your own machine. We never upload your files or text 
-                            content to any cloud server.
+                            <strong className="text-white">Calendar events.</strong> Read through
+                            Apple&apos;s EventKit only if you switch the events module on and grant
+                            access. Titles and times are displayed in the notch and never transmitted.
                         </li>
                         <li>
-                            <strong className="text-white">Weather Data:</strong> Location requests for the weather widget 
-                            are handled via the system's location services and used only to fetch current conditions from 
-                            open APIs. We do not store your coordinate history.
+                            <strong className="text-white">Camera.</strong> The mirror shows a live
+                            preview while the section is open. Nothing is recorded, saved or sent, and
+                            the camera is released the moment you close it.
+                        </li>
+                        <li>
+                            <strong className="text-white">Colours you sample.</strong> Read from the
+                            screen and put on your clipboard. Nothing is logged.
                         </li>
                     </ul>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">3. How We Use Your Data</h2>
-                    <p>
-                        The minimal data we collect is used solely for:
-                    </p>
-                    <ul className="list-disc pl-6 space-y-2">
-                        <li>Monitoring the total number of active installations to justify further development.</li>
-                        <li>Ensuring compatibility by tracking which app versions are most widely used.</li>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">3. The only network calls</h2>
+                    <ul className="list-disc space-y-2 pl-6">
+                        <li>
+                            <strong className="text-white">A one-time install signal.</strong> The first
+                            time you open the app it increments an install counter. The request carries
+                            the app version and nothing else.
+                        </li>
+                        <li>
+                            <strong className="text-white">Weather lookups.</strong> If the weather
+                            module is on, your approximate location is used to fetch current conditions
+                            from Open-Meteo. No coordinate history is stored.
+                        </li>
+                        <li>
+                            <strong className="text-white">Update checks.</strong> Sparkle fetches the
+                            public appcast feed to see whether a newer build exists.
+                        </li>
                     </ul>
                     <p className="mt-4">
-                        We do not and will never sell, rent, or share your data with third parties or data brokers.
+                        There is no analytics SDK, no advertising identifier and no account system. Your
+                        data is never sold, rented or shared with third parties or data brokers.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">4. Transparency & Security</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">4. Permissions</h2>
                     <p>
-                        Dynamic Notch is signed with an Apple Developer ID and notarized by Apple, so macOS
-                        checks the binary before it ever runs and the app opens without a Gatekeeper detour.
-                        Beyond that we remain transparent about behaviour: the app is built with standard Swift
-                        and SwiftUI libraries and does not perform any background "phoning home" aside from the
-                        initial install signal.
+                        Every permission is tied to a module, and a module you leave switched off never
+                        asks for one. Location is for weather, calendar access is for events, and the
+                        camera is for the mirror. You can revoke any of them in System Settings at any
+                        time, and the rest of the app carries on working.
                     </p>
 
-                    <h2 className="text-white mt-8 mb-4 text-2xl font-semibold">5. Contact</h2>
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">5. Security</h2>
                     <p>
-                        If you have any questions about this policy or the app’s behavior, feel free to reach out 
-                        through our official channels.
+                        Dynamic Notch is signed with an Apple Developer ID and notarized by Apple, which
+                        means macOS verifies the binary before it runs and Apple has scanned it for
+                        malware. It is built in Swift and SwiftUI on standard system frameworks, does
+                        not modify system files, and does not phone home beyond the three calls listed
+                        above.
+                    </p>
+
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">6. Payments</h2>
+                    <p>
+                        Purchases are handled by LemonSqueezy as merchant of record. Payment details are
+                        entered on their checkout and are never seen by, or passed to, this app.
+                    </p>
+
+                    <h2 className="mt-10 mb-4 text-2xl font-semibold text-white">7. Contact</h2>
+                    <p>
+                        Questions about this policy, or about anything the app does on your machine, can
+                        go straight to the developer through the contact page.
                     </p>
                 </div>
             </m.div>

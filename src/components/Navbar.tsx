@@ -33,7 +33,7 @@ export default function Navbar() {
         >
             <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
                 <HomeLink className="group flex cursor-pointer items-center gap-2 py-3">
-                    {/* 48×48 WebP for a 24px slot — urlicon.png is 2000×2000 and stays a favicon. */}
+                    {/* 48×48 WebP for a 24px slot, urlicon.png is 2000×2000 and stays a favicon. */}
                     <img src="/logo-48.webp" alt="Dynamic Notch" width="24" height="24" className="h-6 w-6 object-contain" />
                     <span className="translate-x-1 text-sm font-semibold tracking-[-0.01em] text-white/90 transition-transform duration-300 group-hover:translate-x-2">
                         Dynamic Notch
@@ -67,7 +67,7 @@ export default function Navbar() {
                         onClick={() => trackCheckout('navbar')}
                         className="relative z-50 ml-1 inline-flex items-center justify-center rounded-full border border-white/12 bg-white/10 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-white hover:text-black"
                     >
-                        Buy — {PRICE.display}
+                        Buy {PRICE.display}
                     </a>
                 </div>
             </div>

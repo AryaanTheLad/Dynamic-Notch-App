@@ -22,7 +22,7 @@ export default function Changelog() {
                     <p className="mt-5 text-base font-light leading-relaxed text-[var(--color-text-secondary)]">
                         Shipping version <span className="text-white">{VERSION}</span>, which needs{' '}
                         {REQUIREMENTS.minMacOSLabel} on {REQUIREMENTS.architecture}. Updates arrive
-                        in-app over Sparkle — the feed itself is{' '}
+                        in-app over Sparkle, the feed itself is{' '}
                         <a
                             href={`${SITE_URL}/appcast.xml`}
                             className="text-white underline decoration-white/30 hover:decoration-white transition-colors"
@@ -37,7 +37,7 @@ export default function Changelog() {
                             <m.li
                                 key={release.version}
                                 {...entrance({ inView: true, delay: 0.05 * index, y: 20 })}
-                                className="rounded-3xl border border-white/[0.07] bg-[var(--color-surface)] p-7"
+                                className="rounded-3xl border border-white/[0.07] bg-[var(--color-surface)] p-6 md:p-7"
                             >
                                 <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
                                     <h2 className="text-2xl font-semibold tracking-[-0.02em]">

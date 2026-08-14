@@ -19,7 +19,7 @@ export default function NativeSwiftApp() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         Why Native Swift Apps are Making a Massive Comeback on macOS
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
@@ -67,7 +67,7 @@ export default function NativeSwiftApp() {
 
                     <h2 className="text-2xl font-semibold mt-10 mb-4 text-white">The Future is Native</h2>
                     <p className="text-[var(--color-text-secondary)] leading-relaxed mb-6">
-                        As developers and power users demand faster workflows and longer battery life, native macOS utilities are enjoying a renaissance. Building native software requires a deeper investment in learning Apple's platform ecosystem, but the result—fast, beautiful, respectful software—is well worth the effort.
+                        As developers and power users demand faster workflows and longer battery life, native macOS utilities are enjoying a renaissance. Building native software requires a deeper investment in learning Apple's platform ecosystem, but the result is fast, beautiful, respectful software, and it is worth the effort.
                     </p>
                 </section>
             </m.article>

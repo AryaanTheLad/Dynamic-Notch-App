@@ -81,7 +81,7 @@ export default function InteractiveTimer() {
     const sStr = (timeLeft % 60).toString().padStart(2, '0');
 
     return (
-        <div className="w-full h-32 mt-4 bg-black/50 rounded-lg border border-white/5 relative overflow-hidden flex items-center justify-center group">
+        <div className="group relative mt-6 flex h-32 w-full items-center justify-center overflow-hidden rounded-2xl border border-white/5 bg-black/50">
             <div className={`transition-all duration-300 h-10 bg-[#1a1a1a] rounded-full flex items-center justify-between px-3 border shadow-lg z-10 ${isActive ? 'w-32 border-pink-500/50 shadow-[0_0_15px_rgba(236,72,153,0.2)]' : 'w-40 border-white/10 hover:border-white/30'}`}>
 
                 {!isActive ? (

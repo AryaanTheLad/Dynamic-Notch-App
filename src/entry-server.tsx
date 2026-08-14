@@ -10,18 +10,18 @@ import { motionFeatures } from './lib/motion';
  *
  * Called by `scripts/prerender.js`, which injects the result into `<div id="root">` of
  * that route's static HTML. Before this existed the body shipped empty, so every crawler
- * that does not execute JavaScript — GPTBot, ClaudeBot, PerplexityBot, CCBot — saw a
+ * that does not execute JavaScript, GPTBot, ClaudeBot, PerplexityBot, CCBot, saw a
  * page with a title and nothing else, which is why AI answers described the product from
  * third-party listings instead of from this site.
  *
  * `react-dom/static` rather than `renderToString`: the route components and half of the
- * homepage are behind `React.lazy`, and `renderToString` does not resolve Suspense — it
+ * homepage are behind `React.lazy`, and `renderToString` does not resolve Suspense, it
  * emits the fallback, which would have produced "Loading..." as the page content.
  * `prerender` waits for every boundary to settle before resolving, which is exactly the
  * semantics static generation needs.
  *
  * The web-stream `prerender` is used over `prerenderToNodeStream` so this file stays
- * typeable under the browser tsconfig — `Response` drains the stream without pulling
+ * typeable under the browser tsconfig, `Response` drains the stream without pulling
  * Node's `Buffer` and stream types into the app's type graph.
  */
 export async function render(url: string): Promise<string> {

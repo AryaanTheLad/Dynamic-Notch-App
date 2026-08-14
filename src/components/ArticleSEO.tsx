@@ -16,7 +16,7 @@ interface ArticleSEOProps {
  * The `BlogPosting` JSON-LD for every article is emitted by `scripts/prerender.js`,
  * which enriches each entry with author, publisher, image, dateModified and
  * mainEntityOfPage from one place. It used to be built here as well, and the two copies
- * both ended up in the DOM — see the note in `SEO.tsx`. Schema now has exactly one
+ * both ended up in the DOM, see the note in `SEO.tsx`. Schema now has exactly one
  * owner, and `publishDate` / `modifiedDate` / `authorName` stay in the signature so the
  * call sites keep documenting each post's real dates alongside its copy.
  */

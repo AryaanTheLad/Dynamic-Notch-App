@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 /**
- * Inter, self-hosted. One variable file covers 300–700, which is every weight this site
+ * Inter, self-hosted. One variable file covers 300 to 700, which is every weight this site
  * uses (light / normal / medium / semibold / bold), so it replaces the two render-blocking
  * round trips to fonts.googleapis.com + fonts.gstatic.com with a single same-origin fetch
  * that is preloaded in index.html.
  *
- * Latin subset only — the site is English-only. Source: Google Fonts Inter v20.
+ * Latin subset only, the site is English-only. Source: Google Fonts Inter v20.
  */
 @font-face {
   font-family: 'Inter';
@@ -31,7 +31,7 @@
   --color-accent-hover: #4F46E5;
   --color-accent-soft: #A5B4FC;
 
-  /* Surface ramp. Every panel on the page picks one of these — no ad-hoc rgba. */
+  /* Surface ramp. Every panel on the page picks one of these, no ad-hoc rgba. */
   --color-surface: #0C0C11;
   --color-surface-raised: #13131A;
   --color-border: #22222B;

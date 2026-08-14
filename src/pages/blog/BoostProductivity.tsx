@@ -10,7 +10,7 @@ export default function BoostProductivity() {
         <div className="pt-32 pb-20 px-6 max-w-4xl mx-auto">
             <ArticleSEO 
                 title="How Dynamic Notch Supercharges Productivity"
-                description="Every time you stop writing code just to open Spotify, wait, and hit next—you break your flow state."
+                description="Every time you stop writing code to open Spotify, wait for it, and hit next, you pay for it twice: once in seconds and once in focus."
                 publishDate="2026-02-15"
                 url="https://www.dynamicnotch.tech/blog/boost-productivity"
             />
@@ -19,7 +19,7 @@ export default function BoostProductivity() {
                 className="prose prose-invert prose-lg max-w-none"
             >
                 <header className="mb-12">
-                    <h1 className="text-4xl md:text-5xl font-light italic font-serif tracking-tight mb-4 text-transparent bg-clip-text bg-gradient-to-b from-white to-white/70">
+                    <h1 className="title-gradient mb-4 text-4xl font-semibold tracking-[-0.03em] md:text-5xl">
                         How Dynamic Notch Supercharges Productivity
                     </h1>
                     <div className="flex items-center gap-4 text-sm text-[var(--color-text-secondary)]">
