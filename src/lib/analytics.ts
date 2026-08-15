@@ -5,8 +5,13 @@ import { PRICE } from '../data/product.js';
  * Where a checkout was started from. Every purchase CTA on the site reports one of
  * these, so the split between them answers the question the site could not answer at
  * all before: which section actually sells.
+ *
+ * `landing` covers the keyword-targeted pages (`/dynamic-island-for-mac`,
+ * `/mac-notch-app`, the comparison and alternative pages). They all report the same
+ * placement and pass their route as `page`, so the funnel stays five buckets wide while
+ * still attributing a sale to the specific page that earned it.
  */
-export type CtaPlacement = 'navbar' | 'hero' | 'pricing' | 'footer' | 'article';
+export type CtaPlacement = 'navbar' | 'hero' | 'pricing' | 'footer' | 'article' | 'landing';
 
 /**
  * Conversion events, in one place.

@@ -121,6 +121,17 @@ export default function WhyDynamicIslandMac() {
                         <Link to="/#pricing" className={LINK}>See what is included</Link>, or read the{' '}
                         <Link to="/changelog" className={LINK}>changelog</Link> for what has shipped so far.
                     </p>
+                    <p className={P}>
+                        If you are still weighing it up, the practical version of this argument is in{' '}
+                        <Link to="/dynamic-island-for-mac" className={LINK}>
+                            how to get a Dynamic Island on a Mac
+                        </Link>
+                        , and every app in the category, including the free ones, is compared in{' '}
+                        <Link to="/best-mac-notch-apps" className={LINK}>
+                            the best Mac notch apps
+                        </Link>
+                        .
+                    </p>
                 </section>
             </m.article>
             <ArticleFooter currentId="why-dynamic-island-mac" />

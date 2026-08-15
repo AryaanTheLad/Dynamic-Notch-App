@@ -70,16 +70,24 @@ export default function Hero() {
             </span>
           </div>
 
+          {/* "MacBook notch" rather than "the notch". The line is the brand's, and it stays
+              the brand's, but the page's single `<h1>` was carrying no indication of what
+              the product is for, which left the home page ranking on the product name and
+              nothing else. One word fixes that without touching the rhythm. */}
           <h1 className="mt-10 text-[2.6rem] font-semibold leading-[1.02] tracking-[-0.04em] sm:text-6xl md:text-[4.5rem] md:leading-[0.98]">
-            <span className="title-gradient">Everyone else hides the notch.</span>
+            <span className="title-gradient">Everyone else hides the MacBook notch.</span>
             <br className="hidden sm:block" />{' '}
             <span className="text-white">We gave it a job.</span>
           </h1>
 
+          {/* The first sentence is written to survive being quoted on its own, because an
+              answer engine asked "what is Dynamic Notch" will lift exactly this and drop
+              the rest of the page. It has to name the thing, the platform and the category
+              in one breath. */}
           <p className="mx-auto mt-6 max-w-2xl text-base font-light leading-relaxed text-[var(--color-text-secondary)] md:text-lg">
-            Dynamic Notch turns the MacBook notch into a working control centre. Park files,
-            control playback, read your next meeting, pick a colour, run a timer. All of it
-            without leaving the window you are in.
+            Dynamic Notch is a native macOS app that turns the MacBook notch into a Dynamic
+            Island. Park files, control playback, read your next meeting, pick a colour, run a
+            timer. All of it without leaving the window you are in.
           </p>
 
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">

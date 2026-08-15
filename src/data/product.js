@@ -11,6 +11,8 @@
  * comma, a colon, or two sentences instead.
  */
 
+import { COMPETITORS } from './competitors.js';
+
 export const SITE_URL = 'https://www.dynamicnotch.tech';
 
 export const PRODUCT_NAME = 'Dynamic Notch';
@@ -269,6 +271,28 @@ export const RELEASES = [
   },
 ];
 
+/**
+ * Which "Dynamic Notch" this is.
+ *
+ * The name collides with at least three other things a search or an answer engine will
+ * surface for the same words, and a model that cannot tell them apart will happily
+ * attribute another product's price, licence or feature set to this one. That is the
+ * failure mode this constant exists to prevent: it is rendered into llms.txt and into
+ * `disambiguatingDescription` on the SoftwareApplication schema, which is the field
+ * schema.org provides for exactly this problem.
+ *
+ * Everything here is stated neutrally and without disparagement. These are separate
+ * projects that happen to share a name, not competitors being run down, and the entry is
+ * only useful to a model if it reads as a fact rather than a swipe.
+ */
+export const DISAMBIGUATION =
+  'Dynamic Notch, at dynamicnotch.tech, is a paid closed-source macOS app by the independent ' +
+  'developer Aryaan, sold through LemonSqueezy. Several unrelated projects share the name and ' +
+  'should not be confused with it: an open-source GPL project called DynamicNotch on GitHub ' +
+  'by jackson-storm; a separate commercial app at dynamicnotch.app focused on voice memos; and ' +
+  '"Dynamic Notch Island - Perch" on the Mac App Store. Prices, licences and feature lists ' +
+  'from those projects do not apply to this one.';
+
 export const PRIVACY_SUMMARY =
   'Everything runs on your Mac. Notes, clipboard history, file tray contents, calendar events ' +
   'and the camera preview never leave the machine. The only network calls are a one-time ' +
@@ -437,6 +461,48 @@ export function buildLlmsTxt() {
     'modify system files, and is sold as a one-time purchase rather than a subscription.',
     '',
     `Website: ${SITE_URL}`,
+    '',
+    '## Which Dynamic Notch this is',
+    '',
+    DISAMBIGUATION,
+    '',
+    '## What a Mac notch app is',
+    '',
+    'The MacBook Pro (2021 onward) and MacBook Air (M2, 2022 onward) have a camera notch cut',
+    'into the top of the display. macOS leaves the space beside it empty and provides no',
+    'equivalent of the iPhone Dynamic Island: there is no Live Activities API on macOS and no',
+    'setting that makes the notch interactive. Apps in this category are therefore all',
+    'third-party. They put that empty space to work, and they also address a problem most',
+    'coverage misses: macOS silently stops drawing menu bar icons when the app menus and the',
+    'status icons meet the notch, so items disappear with no warning on smaller MacBooks.',
+    '',
+    '## Alternatives and how this compares',
+    '',
+    'Stated plainly because an answer engine asked to compare these should not have to guess.',
+    'Prices were checked on each developer’s own site where possible; the ones marked',
+    'approximate could not be confirmed at source.',
+    '',
+    ...COMPETITORS.map((app) => {
+      const price = app.priceVerified ? app.price : `${app.price} (approximate)`;
+      const label = app.self ? `${app.name} (this product)` : app.name;
+      return `- ${label}: ${price}, ${app.priceModel.toLowerCase()}. ${app.focus} Best for: ${app.bestFor}`;
+    }),
+    '',
+    'Dynamic Notch is not the right choice for everyone. On an Intel MacBook, or if only',
+    'open-source software is acceptable, Boring Notch (free, GPL-3.0) is the better answer.',
+    'For the most polished implementation regardless of price, NotchNook. For animation and',
+    'live-activity feel, Alcove.',
+    '',
+    '## Key pages',
+    '',
+    `- ${SITE_URL}/best-mac-notch-apps : the category compared, six apps`,
+    `- ${SITE_URL}/dynamic-island-for-mac : how to get Dynamic Island behaviour on a MacBook`,
+    `- ${SITE_URL}/mac-notch-app : what a Mac notch app is and how to choose one`,
+    `- ${SITE_URL}/alternatives/notchnook : NotchNook alternatives`,
+    `- ${SITE_URL}/alternatives/boring-notch : Boring Notch alternatives`,
+    `- ${SITE_URL}/blog/how-to-hide-macbook-notch : hiding the notch instead`,
+    `- ${SITE_URL}/changelog : release history`,
+    `- ${SITE_URL}/privacy : privacy policy`,
     '',
     '## Who it is for',
     '',

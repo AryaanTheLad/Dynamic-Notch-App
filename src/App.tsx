@@ -8,6 +8,14 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import Home from './pages/Home';
+// The keyword-targeted category pages. These are the site's entry points from search for
+// people who do not know the product by name, so they sit at the root rather than under
+// /blog: the topic is the page, not a dated post about the topic.
+const BestMacNotchApps = lazy(() => import('./pages/BestMacNotchApps'));
+const DynamicIslandForMac = lazy(() => import('./pages/DynamicIslandForMac'));
+const MacNotchApp = lazy(() => import('./pages/MacNotchApp'));
+const NotchNookAlternative = lazy(() => import('./pages/alternatives/NotchNookAlternative'));
+const BoringNotchAlternative = lazy(() => import('./pages/alternatives/BoringNotchAlternative'));
 const Blog = lazy(() => import('./pages/Blog'));
 const WhyDynamicIslandMac = lazy(() => import('./pages/blog/WhyDynamicIslandMac'));
 const BoostProductivity = lazy(() => import('./pages/blog/BoostProductivity'));
@@ -73,6 +81,11 @@ export function AppShell() {
           <Suspense fallback={<div className="h-screen w-full flex items-center justify-center">Loading...</div>}>
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/best-mac-notch-apps" element={<BestMacNotchApps />} />
+              <Route path="/dynamic-island-for-mac" element={<DynamicIslandForMac />} />
+              <Route path="/mac-notch-app" element={<MacNotchApp />} />
+              <Route path="/alternatives/notchnook" element={<NotchNookAlternative />} />
+              <Route path="/alternatives/boring-notch" element={<BoringNotchAlternative />} />
               <Route path="/blog" element={<Blog />} />
               <Route path="/blog/founder-journey-first-payout" element={<FounderJourney />} />
               <Route path="/blog/native-swift-vs-electron" element={<NativeSwiftApp />} />

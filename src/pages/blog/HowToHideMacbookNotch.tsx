@@ -206,6 +206,20 @@ export default function HowToHideMacbookNotch() {
                         It also ships a Hide Notch Mode, so if you try it and decide you preferred the notch
                         blended after all, you have not lost that option.
                     </p>
+                    <p className={P}>
+                        It is not the only app that takes this approach, and depending on what you want it
+                        may not be the right one. Boring Notch is free and open source, NotchNook is the
+                        most polished, and Alcove is closest to Apple&apos;s own animation. All six are set
+                        out side by side, with prices checked at source, in{' '}
+                        <Link to="/best-mac-notch-apps" className={LINK}>
+                            the best Mac notch apps compared
+                        </Link>
+                        , and{' '}
+                        <Link to="/mac-notch-app" className={LINK}>
+                            what a notch app actually does
+                        </Link>{' '}
+                        covers the category from scratch.
+                    </p>
 
                     <h2 className={H2}>Which method should you pick?</h2>
                     <ul className={UL}>

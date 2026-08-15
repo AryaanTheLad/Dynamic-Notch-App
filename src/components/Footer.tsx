@@ -40,6 +40,37 @@ export default function Footer() {
                     </p>
                 </m.div>
 
+                {/* The category pages, linked sitewide.
+                    They are the site's entry points from search but nothing on the home page
+                    pointed at them, which left them reachable only from the sitemap. A link
+                    in the footer of every page is the cheapest way to get them crawled and to
+                    pass the home page's authority into them. */}
+                <nav aria-label="Guides" className="mb-10">
+                    <h2 className="mb-4 text-[10px] font-semibold uppercase tracking-[0.22em] text-white/45">
+                        Guides
+                    </h2>
+                    <div className="flex flex-wrap items-center justify-center gap-x-6 text-sm font-light text-[var(--color-text-secondary)]">
+                        <Link to="/best-mac-notch-apps" className={footerLink}>
+                            Best Mac notch apps
+                        </Link>
+                        <Link to="/dynamic-island-for-mac" className={footerLink}>
+                            Dynamic Island for Mac
+                        </Link>
+                        <Link to="/mac-notch-app" className={footerLink}>
+                            What is a notch app?
+                        </Link>
+                        <Link to="/alternatives/notchnook" className={footerLink}>
+                            NotchNook alternatives
+                        </Link>
+                        <Link to="/alternatives/boring-notch" className={footerLink}>
+                            Boring Notch alternatives
+                        </Link>
+                        <Link to="/blog/how-to-hide-macbook-notch" className={footerLink}>
+                            How to hide the notch
+                        </Link>
+                    </div>
+                </nav>
+
                 <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/5 text-sm font-light text-[var(--color-text-secondary)]">
                     <div className="flex items-center gap-2 mb-2 md:mb-0">
                         <HomeLink className="font-semibold text-white tracking-tight hover:opacity-80 transition-opacity py-3">Dynamic Notch</HomeLink>

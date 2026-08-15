@@ -12,8 +12,11 @@ import {
   SOCIAL,
   DEMO_VIDEO,
   FIRST_LAUNCH_STEPS,
+  DISAMBIGUATION,
   buildLlmsTxt,
 } from '../src/data/product.js';
+import { COMPETITORS } from '../src/data/competitors.js';
+import { landingFaqs } from '../src/data/landingFaqs.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -124,6 +127,67 @@ const HOW_TO = {
   })),
 };
 
+/**
+ * `FAQPage` built from the same array `src/components/FaqSection.tsx` renders, so a rich
+ * result can never answer a question the visitor cannot find. Same contract the home
+ * page's FAQ already follows, see FAQS in product.js.
+ */
+function faqSchemaFor(route) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": landingFaqs(route).map((faq) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": { "@type": "Answer", "text": faq.answer },
+    })),
+  };
+}
+
+/**
+ * The comparison page's six apps as an `ItemList`.
+ *
+ * This is the block that decides whether an answer engine asked "which Mac notch app is
+ * best" can quote the page as a comparison rather than as one vendor's advert. Each item
+ * carries the competitor's own URL, not a link back here, because a list that points
+ * every entry at the author is not a comparison and will not be read as one.
+ *
+ * `offers` is emitted only for prices confirmed on the developer's own site. Asserting a
+ * machine-readable price for a rival on the strength of someone else's roundup is how
+ * structured data ends up spreading a wrong number, see src/data/competitors.js.
+ */
+function comparisonListSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "The best Mac notch apps in 2026",
+    "description":
+      "MacBook notch apps compared on price, licence and what each one focuses on.",
+    "numberOfItems": COMPETITORS.length,
+    "itemListOrder": "https://schema.org/ItemListUnordered",
+    "itemListElement": COMPETITORS.map((app, index) => {
+      const item = {
+        "@type": "SoftwareApplication",
+        "name": app.name,
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": app.minMacOS === 'Not stated' ? 'macOS' : app.minMacOS,
+        "description": app.focus,
+        "url": app.self ? SITE_URL : app.url,
+      };
+
+      if (app.priceVerified) {
+        item.offers = {
+          "@type": "Offer",
+          "price": app.price === 'Free' ? '0' : app.price.replace(/[^0-9.]/g, ''),
+          "priceCurrency": "USD",
+        };
+      }
+
+      return { "@type": "ListItem", "position": index + 1, "item": item };
+    }),
+  };
+}
+
 /** Google wants a forward-looking date on an Offer; a year out, recomputed each build. */
 function priceValidUntil() {
   const date = new Date();
@@ -222,6 +286,10 @@ const PAGES = [
           "with a file tray, media controls, clipboard history, quick notes, a timer, " +
           "calendar events, a colour picker with contrast checking, a camera mirror, " +
           "weather and the system volume and brightness HUD.",
+        // schema.org's field for "there are other things with this name, here is which
+        // one this is". Three unrelated projects share the name, see DISAMBIGUATION in
+        // src/data/product.js.
+        "disambiguatingDescription": DISAMBIGUATION,
         "url": SITE_URL,
         "softwareVersion": VERSION,
         "screenshot": [
@@ -260,6 +328,74 @@ const PAGES = [
         })),
       }
     ]
+  },
+  // The keyword-targeted category pages. These carry the queries the home page cannot:
+  // it is a product page and ranks for the brand, while "best mac notch apps" and
+  // "dynamic island for mac" are category questions that need a page each.
+  {
+    route: '/best-mac-notch-apps',
+    title: 'The Best Mac Notch Apps in 2026, Compared Honestly',
+    breadcrumbTitle: 'Best Mac notch apps',
+    description:
+      'Six MacBook notch apps compared on price, licence and what each is actually good at: ' +
+      'Dynamic Notch, Boring Notch, NotchNook, Alcove, MediaMate and DynamicLake. Prices read ' +
+      'at source, written by the developer of one of them.',
+    type: 'article',
+    priority: '0.9',
+    lastmod: '2026-08-16',
+    schema: [comparisonListSchema(), faqSchemaFor('/best-mac-notch-apps')],
+  },
+  {
+    route: '/dynamic-island-for-mac',
+    title: 'Dynamic Island for Mac: How to Get One on a MacBook',
+    breadcrumbTitle: 'Dynamic Island for Mac',
+    description:
+      'macOS has no built-in Dynamic Island, but the MacBook notch can behave like one. What ' +
+      'the Dynamic Island does on iPhone, why the Mac never got it, and how to add media ' +
+      `controls, a file tray and live timers to the notch for ${PRICE.display}.`,
+    type: 'article',
+    priority: '0.9',
+    lastmod: '2026-08-16',
+    schema: faqSchemaFor('/dynamic-island-for-mac'),
+  },
+  {
+    route: '/mac-notch-app',
+    title: 'Mac Notch Apps: What They Do and Which One to Use',
+    breadcrumbTitle: 'Mac notch apps',
+    description:
+      'A Mac notch app puts the empty space beside the MacBook notch to work: media controls, ' +
+      'a file tray, clipboard history and timers. What they do, the menu bar problem they ' +
+      'solve, and how to choose one.',
+    type: 'article',
+    priority: '0.9',
+    lastmod: '2026-08-16',
+    schema: faqSchemaFor('/mac-notch-app'),
+  },
+  {
+    route: '/alternatives/notchnook',
+    title: 'NotchNook Alternatives for Mac: 5 Options Compared',
+    breadcrumbTitle: 'NotchNook alternatives',
+    description:
+      'Looking for a NotchNook alternative? Five MacBook notch apps compared on price, licence ' +
+      `and breadth, including the free open-source option and a ${PRICE.display} one-time ` +
+      'purchase covering sixteen modules.',
+    type: 'article',
+    priority: '0.8',
+    lastmod: '2026-08-16',
+    schema: faqSchemaFor('/alternatives/notchnook'),
+  },
+  {
+    route: '/alternatives/boring-notch',
+    title: 'Boring Notch Alternatives: 5 Mac Notch Apps Compared',
+    breadcrumbTitle: 'Boring Notch alternatives',
+    description:
+      'Boring Notch is free and open source, and for most people it is enough. If you need ' +
+      'clipboard history, notes, a colour picker or a support inbox, here are the alternatives ' +
+      'worth paying for, compared honestly.',
+    type: 'article',
+    priority: '0.8',
+    lastmod: '2026-08-16',
+    schema: faqSchemaFor('/alternatives/boring-notch'),
   },
   {
     route: '/blog',
