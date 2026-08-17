@@ -6,6 +6,16 @@
       "source": "/blog/intro",
       "destination": "/blog/why-dynamic-island-mac",
       "permanent": true
+    },
+    {
+      "source": "/blog/versionupdate",
+      "destination": "/blog/versionUpdate",
+      "permanent": true
+    },
+    {
+      "source": "/download",
+      "destination": "/",
+      "permanent": true
     }
   ],
   "rewrites": [
