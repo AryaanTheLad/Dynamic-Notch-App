@@ -109,7 +109,12 @@ export const DEMO_VIDEO = {
   duration: 'PT1M14S',
   width: 1920,
   height: 1080,
-  uploadDate: '2026-08-14',
+  /**
+   * Google requires a full ISO 8601 datetime with an offset here, not a bare date: a
+   * date-only value is reported as both an invalid datetime and a missing timezone, and
+   * the video loses its rich result. Offset is +05:00, where the site is authored.
+   */
+  uploadDate: '2026-08-14T12:00:00+05:00',
 };
 
 /**
