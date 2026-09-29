@@ -41,3 +41,8 @@ export function trackMobileHandoff(method: 'email' | 'copy_link') {
 export function trackFaqOpened(question: string) {
   track('faq_opened', { question });
 }
+
+/** A visitor followed the cross-promotion to another app by the same creator. */
+export function trackSisterApp(app: string) {
+  track('sister_app_click', { app });
+}

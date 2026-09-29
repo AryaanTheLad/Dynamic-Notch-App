@@ -9,6 +9,7 @@ const Pricing = lazy(() => import('../components/Pricing'));
 const FirstLaunch = lazy(() => import('../components/FirstLaunch'));
 const Specs = lazy(() => import('../components/Specs'));
 const FAQ = lazy(() => import('../components/FAQ'));
+const MoreFromCreator = lazy(() => import('../components/MoreFromCreator'));
 
 export default function Home() {
   return (
@@ -25,6 +26,7 @@ export default function Home() {
         <FirstLaunch />
         <Specs />
         <FAQ />
+        <MoreFromCreator />
       </Suspense>
     </>
   );
