@@ -1,40 +1,28 @@
+# Every crawler, search and AI alike, is welcome on every page. They are listed by name
+# in one group so none falls back to a cautious default, and so the Disallow lines below
+# apply to all of them (a named group would otherwise replace the `*` rules entirely).
 User-agent: *
-Allow: /
-
-# AI crawlers and answer engines, named explicitly so none of them fall back to a
-# cautious default. Training and retrieval are both welcome, which is the whole point of
-# /llms.txt is to be quoted accurately.
+User-agent: Googlebot
+User-agent: Bingbot
 User-agent: GPTBot
-Allow: /
 User-agent: ChatGPT-User
-Allow: /
 User-agent: OAI-SearchBot
-Allow: /
 User-agent: ClaudeBot
-Allow: /
 User-agent: Claude-User
-Allow: /
 User-agent: Claude-SearchBot
-Allow: /
 User-agent: PerplexityBot
-Allow: /
 User-agent: Perplexity-User
-Allow: /
 User-agent: Google-Extended
-Allow: /
 User-agent: Applebot
-Allow: /
 User-agent: Applebot-Extended
-Allow: /
 User-agent: CCBot
-Allow: /
 User-agent: cohere-ai
-Allow: /
 User-agent: Bytespider
-Allow: /
 User-agent: Amazonbot
-Allow: /
 User-agent: meta-externalagent
 Allow: /
+# The app binary and the update feed are for the app, not for search results.
+Disallow: /releases/
+Disallow: /api/
 
 Sitemap: https://www.dynamicnotch.tech/sitemap.xml

@@ -25,7 +25,7 @@ export default function Footer() {
                         href={CHECKOUT_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackCheckout('footer')}
+                        onClick={(e) => trackCheckout('footer', {}, e)}
                         className="h-14 px-10 rounded-full bg-white text-black font-medium text-lg hover:scale-105 active:scale-95 transition-all duration-300 shadow-[0_0_40px_rgba(255,255,255,0.15)] hover:shadow-[0_0_50px_rgba(255,255,255,0.25)] inline-flex items-center justify-center"
                     >
                         Buy Dynamic Notch, {PRICE.display}

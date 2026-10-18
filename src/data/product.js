@@ -104,6 +104,8 @@ export const SHORTCUT = '⌃⌥⌘N';
  */
 export const DEMO_VIDEO = {
   src: '/demo-4.0.mp4',
+  /** 1280×720, 30 fps re-encode (5.4 MB vs 13.7 MB), served below 1024px wide. */
+  srcSmall: '/demo-4.0-720.mp4',
   poster: '/hero-poster-4.0.webp',
   /** ISO 8601, for schema.org VideoObject. Source runs 1:13. */
   duration: 'PT1M14S',
@@ -546,8 +548,8 @@ export function buildLlmsTxt() {
     '',
     '## Updates',
     '',
-    `Current version: ${VERSION}. In-app updates are free and delivered with Sparkle from`,
-    `${SITE_URL}/appcast.xml.`,
+    `Current version: ${VERSION}. Updates are free and delivered inside the app with Sparkle.`,
+    `To get ${PRODUCT_NAME}, buy it at ${SITE_URL} (${PRICE.display} once).`,
     '',
     '## Frequently asked questions',
     '',

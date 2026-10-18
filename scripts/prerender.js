@@ -465,8 +465,8 @@ const PAGES = [
       "url": "https://www.dynamicnotch.tech/blog/mac-power-user-hacks"
     }
   },
-  // /blog/intro was merged into /blog/why-dynamic-island-mac and 301s there in
-  // vercel.json. The two covered the same query with the same argument, and the intro
+  // /blog/intro was merged into /blog/why-dynamic-island-mac and 301s there (see
+  // worker/index.js and public/_redirects). The two covered the same query with the same argument, and the intro
   // copy had drifted from the product (it claimed M2-and-later and "under 0.1% CPU").
   {
     route: '/blog/why-dynamic-island-mac',
@@ -625,7 +625,7 @@ const PAGES = [
 ];
 
 /** Fallback <lastmod> for pages that are not dated articles. Bump when core pages change. */
-const CORE_LASTMOD = '2026-08-12';
+const CORE_LASTMOD = '2026-10-18';
 
 /**
  * The one place a page's absolute URL is built. Used for the canonical tag, og:url and
@@ -834,14 +834,16 @@ async function main() {
 
   const { render } = await import(pathToFileURL(SSR_ENTRY_PATH).href);
 
-  const { downloadUrl, fileSize } = verifyAppcast();
+  const { fileSize } = verifyAppcast();
   verifyRouteCoverage();
 
-  // Teach the SoftwareApplication entry where the build actually lives.
+  // File size comes from the appcast. `downloadUrl` is deliberately NOT emitted: the
+  // .dmg is the paid product, and publishing its direct link in structured data hands it
+  // to every search engine and AI answer engine that reads the page, letting anyone skip
+  // checkout. The offer's `url` points at the site, which is where a purchase starts.
   const softwareApp = PAGES.find((page) => page.route === '/')
     ?.schema?.find((entry) => entry['@type'] === 'SoftwareApplication');
   if (softwareApp) {
-    softwareApp.downloadUrl = downloadUrl;
     softwareApp.fileSize = `${Math.round(fileSize / 1024)}KB`;
   }
 
@@ -889,9 +891,9 @@ async function main() {
     console.log(`Successfully pre-rendered: ${page.route} -> ${outputPath}`);
   }
 
-  // Designed 404. The <Route path="*"> in App.tsx renders it under the current
-  // vercel.json catch-all rewrite; this file is what Vercel serves directly if that
-  // rewrite is ever narrowed, and it is deliberately kept out of the sitemap.
+  // Designed 404. Cloudflare serves this file with a real 404 status for any path that
+  // has no static page (`not_found_handling: "404-page"` in wrangler.jsonc). It is
+  // deliberately kept out of the sitemap.
   const notFoundHtml = injectApp(
     applyHead(baseHtml, {
       title: 'Page not found - Dynamic Notch',

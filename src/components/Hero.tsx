@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { m } from "framer-motion";
 import { Play } from "lucide-react";
 import MobileHandoff from "./MobileHandoff";
@@ -18,6 +18,51 @@ export default function Hero() {
   const entrance = useEntrance();
   const videoRef = useRef<HTMLVideoElement>(null);
   const [playing, setPlaying] = useState(false);
+
+  /**
+   * Start the muted loop only once the page itself has finished loading.
+   *
+   * The video is 5 to 14 MB. With `autoPlay preload="auto"` in the server-rendered markup
+   * the browser started pulling it while still parsing the page, competing with the
+   * scripts, stylesheet and font that decide how fast the page appears, and on a phone
+   * that cannot install a Mac app at all. Now: phones, Data Saver and reduced-motion
+   * visitors get the poster with a play button, and everyone else gets the same autoplay
+   * a beat after load.
+   */
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+    const wantsAutoplay =
+      window.matchMedia("(min-width: 768px)").matches &&
+      !window.matchMedia("(prefers-reduced-motion: reduce)").matches &&
+      !connection?.saveData;
+    if (!wantsAutoplay) return;
+
+    let cancelled = false;
+    const start = () => {
+      if (cancelled || !video.paused) return;
+      video.preload = "auto";
+      video.muted = true;
+      void video.play().catch(() => {
+        // Refused (Low Power Mode and similar). The poster's play button stays up.
+      });
+    };
+
+    if (document.readyState === "complete") {
+      const id = window.setTimeout(start, 300);
+      return () => {
+        cancelled = true;
+        window.clearTimeout(id);
+      };
+    }
+    window.addEventListener("load", start, { once: true });
+    return () => {
+      cancelled = true;
+      window.removeEventListener("load", start);
+    };
+  }, []);
 
   /**
    * The demo autoplays muted and loops, because every browser blocks autoplay with
@@ -95,7 +140,7 @@ export default function Hero() {
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackCheckout('hero')}
+              onClick={(e) => trackCheckout('hero', {}, e)}
               className="inline-flex h-12 w-full items-center justify-center rounded-full bg-white px-8 font-medium tracking-[-0.01em] text-black shadow-[0_10px_40px_-10px_rgba(255,255,255,0.45)] transition-transform duration-300 hover:scale-[1.03] active:scale-95 sm:w-auto"
             >
               Buy Dynamic Notch, {PRICE.display}
@@ -117,8 +162,10 @@ export default function Hero() {
             </button>
           </div>
 
-          <p className="mt-5 text-xs text-white/45">
-            Signed and notarized by Apple, so it opens like any other Mac app.
+          {/* The three doubts that stop a $6 impulse buy: is it a subscription, will I have
+              to pay again, is it safe to open. Answered right under the button. */}
+          <p className="mt-5 text-xs text-white/55">
+            One-time payment · Free updates · Signed and notarized by Apple
           </p>
 
           <MobileHandoff />
@@ -140,11 +187,10 @@ export default function Hero() {
               ref={videoRef}
               className="h-full w-full"
               controls
-              autoPlay
               loop
               muted
               playsInline
-              preload="auto"
+              preload="none"
               poster={DEMO_VIDEO.poster}
               width={DEMO_VIDEO.width}
               height={DEMO_VIDEO.height}
@@ -152,6 +198,7 @@ export default function Hero() {
               onPause={() => setPlaying(true)}
               aria-label="Dynamic Notch 4.0 running on a MacBook: media controls, file tray, clipboard history, notes, colour picker, calendar and themes"
             >
+              <source src={DEMO_VIDEO.srcSmall} type="video/mp4" media="(max-width: 1023px)" />
               <source src={DEMO_VIDEO.src} type="video/mp4" />
               Your browser does not support the video tag.
             </video>

@@ -1,9 +1,8 @@
 import { Suspense, lazy, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
-import { SpeedInsights } from '@vercel/speed-insights/react';
-import { Analytics } from '@vercel/analytics/react';
 import { LazyMotion } from 'framer-motion';
 import { motionFeatures } from './lib/motion';
+import { trackPageview } from './lib/analytics';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -52,6 +51,11 @@ function ScrollToTop() {
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
+
+  // One pageview per route, the denominator for every checkout rate.
+  useEffect(() => {
+    trackPageview();
+  }, [pathname]);
 
   return null;
 }
@@ -106,9 +110,6 @@ export function AppShell() {
           </Suspense>
         </main>
         <Footer />
-
-        <SpeedInsights />
-        <Analytics />
       </div>
     </>
   );

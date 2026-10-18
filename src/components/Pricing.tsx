@@ -104,14 +104,14 @@ export default function Pricing() {
                             href={CHECKOUT_URL}
                             target="_blank"
                             rel="noopener noreferrer"
-                            onClick={() => trackCheckout('pricing')}
+                            onClick={(e) => trackCheckout('pricing', {}, e)}
                             className="relative mt-8 inline-flex h-12 items-center justify-center rounded-full bg-white px-6 text-center font-medium text-black shadow-[0_10px_40px_-12px_rgba(255,255,255,0.5)] transition-transform duration-300 hover:scale-[1.02] active:scale-95"
                         >
                             Buy Dynamic Notch, {PRICE.display}
                         </a>
 
                         <p className="relative mt-4 text-xs leading-relaxed text-white/50">
-                            {REFUND_POLICY}
+                            Secure checkout through LemonSqueezy. {REFUND_POLICY}
                         </p>
                     </div>
                 </m.div>

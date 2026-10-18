@@ -1,73 +1,48 @@
-# React + TypeScript + Vite
+# dynamicnotch.tech
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+React 19 + Vite + Tailwind, prerendered to static HTML at build time and served by a
+Cloudflare Worker with static assets.
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm run dev        # local dev server
+npm run build      # typecheck, client + SSR build, prerender every route into dist/
+npm run deploy     # build, then wrangler deploy
+npm run indexnow   # after a content deploy: ping Bing/IndexNow with every sitemap URL
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Hosting (Cloudflare)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- `wrangler.jsonc` serves `dist/` and runs `worker/index.js` in front of every request.
+- The Worker redirects `dynamicnotch.tech` and `http://` to `https://www.dynamicnotch.tech`
+  (301), turns trailing-slash URLs into 301s, and handles `/api/install` (the app's install
+  ping) and `/api/event` (site conversion events).
+- `public/_headers` and `public/_redirects` still apply to every static file.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### One-time setup
+
+- **Install ping:** `npx wrangler secret put INSTALL_TOKEN` with the same value the app
+  sends in `x-install-token`. Until it is set the endpoint answers 503, like the old Vercel
+  function did.
+- **Page views:** turn on Cloudflare Web Analytics for the site (dashboard, one switch,
+  no cookies).
+
+## Analytics
+
+Events (`pageview`, `checkout_start`, `demo_played`, `faq_opened`, `mobile_handoff`,
+`sister_app_click`, `install`) go to the Workers Analytics Engine dataset
+`dynamicnotch_events`. Columns: `blob1` event, `blob2` placement / detail, `blob3` path,
+`blob4` country, `blob5` traffic source.
+
+```sql
+-- Checkout clicks by placement and source, last 30 days
+SELECT blob2 AS placement, blob5 AS source, SUM(_sample_interval) AS clicks
+FROM dynamicnotch_events
+WHERE blob1 = 'checkout_start' AND timestamp > NOW() - INTERVAL '30' DAY
+GROUP BY placement, source ORDER BY clicks DESC
 ```
+
+Run it with the Analytics Engine SQL API
+(`https://api.cloudflare.com/client/v4/accounts/<account_id>/analytics_engine/sql`).
+
+Every checkout link also carries `placement`, `page` and `source` as LemonSqueezy custom
+data, so each **paid order** shows where the buyer came from (order → Custom data).

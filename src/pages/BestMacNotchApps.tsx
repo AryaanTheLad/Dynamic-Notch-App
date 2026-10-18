@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import ComparisonTable from '../components/ComparisonTable';
 import FaqSection from '../components/FaqSection';
+import LandingCta from '../components/LandingCta';
 import { useEntrance } from '../hooks/useEntrance';
 import { H1, H2, H3, P, UL, LEAD, LINK } from '../components/prose';
 import { COMPETITORS, COMPARISON_CHECKED_LABEL } from '../data/competitors.js';
@@ -237,6 +238,8 @@ export default function BestMacNotchApps() {
             NotchNook. All three are defensible choices, and the notch is dead space in every one
             of them until you install something.
           </p>
+
+          <LandingCta page="best-mac-notch-apps" />
         </section>
       </m.article>
     </div>

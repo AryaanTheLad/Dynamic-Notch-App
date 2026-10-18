@@ -64,7 +64,7 @@ export default function Navbar() {
                         href={CHECKOUT_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackCheckout('navbar')}
+                        onClick={(e) => trackCheckout('navbar', {}, e)}
                         className="relative z-50 ml-1 inline-flex items-center justify-center rounded-full border border-white/12 bg-white/10 px-4 py-2.5 text-sm font-medium text-white transition-colors duration-300 hover:bg-white hover:text-black"
                     >
                         Buy {PRICE.display}

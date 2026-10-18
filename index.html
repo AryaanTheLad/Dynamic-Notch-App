@@ -3,6 +3,9 @@
 <!doctype html>
 <html lang="en">
   <head>
+    <!-- charset must sit in the first 1024 bytes, before anything with text in it. -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- Baseline head for dev and for anything that reads the template directly.
          `scripts/prerender.js` overwrites the title, meta and JSON-LD per route at build
          time from src/data/product.js, which is the source of truth. -->
@@ -46,9 +49,15 @@
     <meta name="description" content="Dynamic Notch is a native macOS app that turns the MacBook notch into a control centre: file tray, media controls, clipboard history, notes, timer, calendar, colour picker and weather. $5.99 once, no subscription.">
     <meta property="og:title" content="Dynamic Notch: Turn the MacBook Notch Into a Dynamic Island" />
     <meta property="og:description" content="A native macOS app that turns the MacBook notch into a working control centre. $5.99 once, no subscription." />
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/urlicon.png?v=2" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- 32px favicon instead of the 2000px, 246 KB urlicon.png every page used to fetch. -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <meta name="theme-color" content="#050507" />
+
+    <!-- Warm the connection to checkout, so the page a buyer lands on after clicking
+         Buy is not also paying for DNS, TCP and TLS. -->
+    <link rel="preconnect" href="https://dynamicnotchofficial.lemonsqueezy.com" />
+    <link rel="dns-prefetch" href="https://dynamicnotchofficial.lemonsqueezy.com" />
 
 
     <!-- Inter is self-hosted (see the @font-face in src/index.css). A font preload must

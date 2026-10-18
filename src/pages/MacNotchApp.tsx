@@ -2,6 +2,7 @@ import { m } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import FaqSection from '../components/FaqSection';
+import LandingCta from '../components/LandingCta';
 import { useEntrance } from '../hooks/useEntrance';
 import { H1, H2, P, UL, LEAD, LINK } from '../components/prose';
 import { PRICE, FEATURES } from '../data/product.js';
@@ -163,6 +164,8 @@ export default function MacNotchApp() {
           </p>
 
           <FaqSection route="/mac-notch-app" />
+
+          <LandingCta page="mac-notch-app" />
         </section>
       </m.article>
     </div>

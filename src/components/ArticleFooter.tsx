@@ -32,7 +32,7 @@ export default function ArticleFooter({ currentId }: ArticleFooterProps) {
                         href={CHECKOUT_URL}
                         target="_blank"
                         rel="noopener noreferrer"
-                        onClick={() => trackCheckout('article')}
+                        onClick={(e) => trackCheckout('article', {}, e)}
                         className="inline-flex h-11 items-center justify-center rounded-full bg-white px-6 text-sm font-medium text-black transition-transform duration-300 hover:scale-[1.02] active:scale-95"
                     >
                         Buy Dynamic Notch, {PRICE.display}

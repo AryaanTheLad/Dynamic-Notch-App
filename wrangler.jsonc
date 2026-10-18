@@ -2,9 +2,21 @@
   "$schema": "https://unpkg.com/wrangler/config-schema.json",
   "name": "dynamic-notch-app",
   "compatibility_date": "2026-10-01",
+  // Canonical host, permanent redirects, /api/install and /api/event. See worker/index.js.
+  "main": "worker/index.js",
   "assets": {
     "directory": "./dist",
+    "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "html_handling": "drop-trailing-slash"
-  }
+    "html_handling": "drop-trailing-slash",
+    // The Worker has to see every request, or the apex and http:// copies of the site
+    // keep being served straight from assets.
+    "run_worker_first": true
+  },
+  // Conversion events and install pings. The dataset is created on first write.
+  // Query it with the Analytics Engine SQL API (see README).
+  "analytics_engine_datasets": [
+    { "binding": "EVENTS", "dataset": "dynamicnotch_events" }
+  ],
+  "observability": { "enabled": true }
 }

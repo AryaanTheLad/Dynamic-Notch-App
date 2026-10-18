@@ -134,7 +134,7 @@ export default function BoringNotchAlternative() {
               href={CHECKOUT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={() => trackCheckout('landing', { page: 'alternatives/boring-notch' })}
+              onClick={(e) => trackCheckout('landing', { page: 'alternatives/boring-notch' }, e)}
               className="inline-flex h-12 items-center justify-center rounded-full bg-white px-8 font-medium tracking-[-0.01em] text-black transition-transform duration-300 hover:scale-[1.03] active:scale-95"
             >
               Get Dynamic Notch, {PRICE.display}
